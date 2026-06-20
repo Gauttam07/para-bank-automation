@@ -21,7 +21,7 @@ TC-NEG-01 Login with Non Existent User
 TC-NEG-02 Blank Transfer Amount
     [Documentation]    Submit the transfer form without entering an amount and check for validation
     [Tags]    negative    UI
-    Ensure User Is Logged In
+    login    ${USER_ID}    ${USER_PWD}
     Submit Blank Transfer Amount
 #    Verify Transfer Error Is Shown
 
@@ -30,7 +30,7 @@ TC-NEG-03 Transfer Negative Amount
     ...    NOTE: This test is expected to FAIL — ParaBank processes the transfer
     ...    without showing any error (logged as DEF-001)
     [Tags]    negative    UI    known-bug
-    Ensure User Is Logged In
+    login    ${USER_ID}    ${USER_PWD}
     Submit Transfer With Negative Amount
     Verify Transfer Error Is Shown
 
@@ -39,7 +39,7 @@ TC-NEG-04 Transfer Amount Greater Than Balance
     ...    NOTE: This test is expected to FAIL — ParaBank completes the transfer
     ...    instead of blocking it (logged as DEF-002)
     [Tags]    negative    UI    known-bug
-    Ensure User Is Logged In
+        login    ${USER_ID}    ${USER_PWD}
     Submit Transfer With Amount Greater Than Balance
     Verify Transfer Error Is Shown
 
