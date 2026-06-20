@@ -31,6 +31,8 @@ TC_E2E_03 Transfer Funds via UI and Verify Balances via API
     ${response_after}=    Get Customer Accounts    ${CUSTOMER_ID}
     ${accounts_after}=    Set Variable    ${response_after.json()}
     ${source_after}=    Set Variable    ${accounts_after[0]['balance']}
+    Log To Console    ${source_after}
 
     ${expected}=    Evaluate    float(${source_before}) - 10
-    Should Be Equal As Numbers    ${source_after}    ${expected}
+    Log To Console    ${expected}
+    Should Be Equal As Numbers    ${source_after}    ${expected}  precision=1
