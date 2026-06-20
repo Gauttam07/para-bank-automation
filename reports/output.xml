@@ -1,0 +1,1366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.2 (Python 3.13.5 on win32)" generated="2026-06-19T21:52:38.395413" rpa="false" schemaversion="5">
+<suite id="s1" name="E2E" source="C:\Users\hp5cd\OneDrive\Desktop\SPRINT-CAPGE\tests\e2e">
+<suite id="s1-s1" name="TC E2E 01" source="C:\Users\hp5cd\OneDrive\Desktop\SPRINT-CAPGE\tests\e2e\TC_E2E_01.robot">
+<kw name="Setup E2E" owner="common_resources" type="SETUP">
+<kw name="Load Environment" owner="common_resources">
+<kw name="Load Env" owner="env_loader">
+<arg>${ENV}</arg>
+<status status="PASS" start="2026-06-19T21:52:39.089980" elapsed="0.001967"/>
+</kw>
+<kw name="Get Env" owner="env_loader">
+<msg time="2026-06-19T21:52:39.092370" level="INFO">${url} = https://parabank.parasoft.com</msg>
+<var>${url}</var>
+<arg>baseurl</arg>
+<status status="PASS" start="2026-06-19T21:52:39.092185" elapsed="0.000220"/>
+</kw>
+<kw name="Get Env" owner="env_loader">
+<msg time="2026-06-19T21:52:39.092610" level="INFO">${id} = john</msg>
+<var>${id}</var>
+<arg>user_id</arg>
+<status status="PASS" start="2026-06-19T21:52:39.092509" elapsed="0.000124"/>
+</kw>
+<kw name="Get Env" owner="env_loader">
+<msg time="2026-06-19T21:52:39.092838" level="INFO">${pwd} = demo</msg>
+<var>${pwd}</var>
+<arg>user_password</arg>
+<status status="PASS" start="2026-06-19T21:52:39.092736" elapsed="0.000124"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2026-06-19T21:52:39.094218" level="INFO">${BASE_URL} = https://parabank.parasoft.com</msg>
+<arg>${BASE_URL}</arg>
+<arg>${url}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2026-06-19T21:52:39.092966" elapsed="0.001299"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2026-06-19T21:52:39.095230" level="INFO">${USER_ID} = john</msg>
+<arg>${USER_ID}</arg>
+<arg>${id}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2026-06-19T21:52:39.094377" elapsed="0.000898"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2026-06-19T21:52:39.096177" level="INFO">${USER_PWD} = demo</msg>
+<arg>${USER_PWD}</arg>
+<arg>${pwd}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2026-06-19T21:52:39.095378" elapsed="0.000852"/>
+</kw>
+<status status="PASS" start="2026-06-19T21:52:39.089323" elapsed="0.006982"/>
+</kw>
+<kw name="Create Session To API" owner="api_keywords">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-06-19T21:52:39.096741" level="INFO">Creating Session using : alias=parabank, url=https://parabank.parasoft.com/parabank/services/bank, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>parabank</arg>
+<arg>${API_BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2026-06-19T21:52:39.096612" elapsed="0.000302"/>
+</kw>
+<status status="PASS" start="2026-06-19T21:52:39.096438" elapsed="0.000539"/>
+</kw>
+<status status="PASS" start="2026-06-19T21:52:39.089031" elapsed="0.007991"/>
+</kw>
+<test id="s1-s1-t1" name="TC_E2E_01 Create Savings Account and Verify details via API" line="12">
+<kw name="Open Application" owner="common_resources" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:52:39.097990" level="INFO">Opening browser 'chrome' to base url 'https://parabank.parasoft.com'.</msg>
+<arg>${BASE_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-06-19T21:52:39.097808" elapsed="4.004997"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-06-19T21:52:43.103213" elapsed="0.035193"/>
+</kw>
+<doc>opens the application</doc>
+<status status="PASS" start="2026-06-19T21:52:39.097580" elapsed="4.041049"/>
+</kw>
+<kw name="login" owner="login">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:52:43.141226" level="INFO">Typing text 'john' into text field 'xpath=//input[@name="username"]'.</msg>
+<arg>${login_username}</arg>
+<arg>${id}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-19T21:52:43.140510" elapsed="0.293971"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:52:44.436083" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:52:43.434894" elapsed="1.001361"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:52:44.436772" level="INFO">Typing text 'demo' into text field 'xpath=//input[@name="password"]'.</msg>
+<arg>${login_password}</arg>
+<arg>${pwd}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-19T21:52:44.436497" elapsed="0.077568"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:52:45.515026" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:52:44.514283" elapsed="1.000864"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:52:45.515597" level="INFO">Clicking button 'xpath=//input[@value="Log In"]'.</msg>
+<arg>${login_button}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-19T21:52:45.515354" elapsed="1.337355"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:52:47.854011" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:52:46.853049" elapsed="1.001072"/>
+</kw>
+<arg>${USER_ID}</arg>
+<arg>${USER_PWD}</arg>
+<status status="PASS" start="2026-06-19T21:52:43.139605" elapsed="4.714610"/>
+</kw>
+<kw name="Click Open New Account" owner="home_page">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:52:47.855179" level="INFO">Clicking element 'xpath=//a[contains(text(),'Open New Account')]'.</msg>
+<arg>${OPEN_NEW_ACCOUNT_URL}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-19T21:52:47.854976" elapsed="0.410278"/>
+</kw>
+<status status="PASS" start="2026-06-19T21:52:47.854691" elapsed="0.410682"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:52:49.266373" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:52:48.265741" elapsed="1.000753"/>
+</kw>
+<kw name="Select Account Type" owner="open_new_account_page">
+<kw name="Select From List By Value" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:52:49.267591" level="INFO">Selecting options from selection list 'xpath=//select[@id="type"]' by value 1.</msg>
+<arg>${ACCOUNT_TYPE_DROPDOWN}</arg>
+<arg>${account_type}</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<status status="PASS" start="2026-06-19T21:52:49.267396" elapsed="0.061633"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:52:50.329770" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:52:49.329223" elapsed="1.000667"/>
+</kw>
+<arg>1</arg>
+<status status="PASS" start="2026-06-19T21:52:49.267061" elapsed="1.062931"/>
+</kw>
+<kw name="Click Open Account Button" owner="open_new_account_page">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:52:50.330970" level="INFO">Clicking element 'xpath=//input[@value="Open New Account"]'.</msg>
+<arg>${OPEN_ACCOUNT_BUTTON}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-19T21:52:50.330758" elapsed="0.054812"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:52:52.387276" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:52:50.386317" elapsed="2.001120"/>
+</kw>
+<status status="PASS" start="2026-06-19T21:52:50.330442" elapsed="2.057136"/>
+</kw>
+<kw name="Get New Account Number" owner="open_new_account_page">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${ACCOUNT_DETAILS_LINK}</arg>
+<arg>timeout=20s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-06-19T21:52:52.388327" elapsed="0.021834"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:52:52.428623" level="INFO">${account_id} = 29217</msg>
+<var>${account_id}</var>
+<arg>${ACCOUNT_DETAILS_LINK}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-19T21:52:52.410377" elapsed="0.018313"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Account ID = ${account_id}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-06-19T21:52:52.428946" elapsed="0.000536"/>
+</kw>
+<return>
+<value>${account_id}</value>
+<status status="PASS" start="2026-06-19T21:52:52.429561" elapsed="0.000094"/>
+</return>
+<msg time="2026-06-19T21:52:52.429857" level="INFO">${account_id} = 29217</msg>
+<var>${account_id}</var>
+<status status="PASS" start="2026-06-19T21:52:52.388069" elapsed="0.041817"/>
+</kw>
+<kw name="Get Account Details" owner="api_keywords">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-06-19T21:52:52.430920" level="INFO">${headers} = {'Accept': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>Accept=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-06-19T21:52:52.430558" elapsed="0.000411"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2026-06-19T21:52:53.533258" level="INFO">GET Request : url=https://parabank.parasoft.com/parabank/services/bank/accounts/29217 
+ path_url=/parabank/services/bank/accounts/29217 
+ headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2026-06-19T21:52:53.533389" level="INFO">GET Response : url=https://parabank.parasoft.com/parabank/services/bank/accounts/29217 
+ status=200, reason=OK 
+ headers={'Date': 'Fri, 19 Jun 2026 16:22:56 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Server': 'cloudflare', 'cf-cache-status': 'DYNAMIC', 'X-Content-Type-Options': 'nosniff', 'Content-Encoding': 'gzip', 'CF-RAY': 'a0e3e018bd7c9741-FRA'} 
+ body={"id":29217,"customerId":12212,"type":"SAVINGS","balance":100.00} 
+ </msg>
+<msg time="2026-06-19T21:52:53.533455" level="INFO">C:\Users\hp5cd\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'parabank.parasoft.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-06-19T21:52:53.534125" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>parabank</arg>
+<arg>/accounts/${accountId}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-06-19T21:52:52.431102" elapsed="1.103056"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-06-19T21:52:53.534247" elapsed="0.000062"/>
+</return>
+<msg time="2026-06-19T21:52:53.534466" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>${account_id}</arg>
+<status status="PASS" start="2026-06-19T21:52:52.430278" elapsed="1.104212"/>
+</kw>
+<kw name="Verify Response Code" owner="api_keywords">
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-06-19T21:52:53.536845" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>${code}</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-06-19T21:52:53.536218" elapsed="0.000689"/>
+</kw>
+<arg>${response}</arg>
+<arg>200</arg>
+<status status="PASS" start="2026-06-19T21:52:53.534808" elapsed="0.002158"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${response.text}</arg>
+<arg>SAVINGS</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-06-19T21:52:53.537320" elapsed="0.000744"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${response.text}</arg>
+<arg>${account_id}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-06-19T21:52:53.538342" elapsed="0.000566"/>
+</kw>
+<kw name="Close Application" owner="common_resources" type="TEARDOWN">
+<kw name="Close All Browsers" owner="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2026-06-19T21:52:53.539467" elapsed="2.236417"/>
+</kw>
+<doc>closes the application</doc>
+<status status="PASS" start="2026-06-19T21:52:53.539263" elapsed="2.236730"/>
+</kw>
+<doc>End-to-End Savings Account UI creation &amp; API verification</doc>
+<tag>e2e</tag>
+<status status="PASS" start="2026-06-19T21:52:39.097081" elapsed="16.679189"/>
+</test>
+<status status="PASS" start="2026-06-19T21:52:38.434209" elapsed="17.342916"/>
+</suite>
+<suite id="s1-s2" name="TC E2E 02" source="C:\Users\hp5cd\OneDrive\Desktop\SPRINT-CAPGE\tests\e2e\TC_E2E_02.robot">
+<kw name="Setup E2E" owner="common_resources" type="SETUP">
+<kw name="Load Environment" owner="common_resources">
+<kw name="Load Env" owner="env_loader">
+<arg>${ENV}</arg>
+<status status="PASS" start="2026-06-19T21:52:55.789465" elapsed="0.001710"/>
+</kw>
+<kw name="Get Env" owner="env_loader">
+<msg time="2026-06-19T21:52:55.791589" level="INFO">${url} = https://parabank.parasoft.com</msg>
+<var>${url}</var>
+<arg>baseurl</arg>
+<status status="PASS" start="2026-06-19T21:52:55.791389" elapsed="0.000243"/>
+</kw>
+<kw name="Get Env" owner="env_loader">
+<msg time="2026-06-19T21:52:55.791917" level="INFO">${id} = john</msg>
+<var>${id}</var>
+<arg>user_id</arg>
+<status status="PASS" start="2026-06-19T21:52:55.791758" elapsed="0.000196"/>
+</kw>
+<kw name="Get Env" owner="env_loader">
+<msg time="2026-06-19T21:52:55.792224" level="INFO">${pwd} = demo</msg>
+<var>${pwd}</var>
+<arg>user_password</arg>
+<status status="PASS" start="2026-06-19T21:52:55.792086" elapsed="0.000170"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2026-06-19T21:52:55.792886" level="INFO">${BASE_URL} = https://parabank.parasoft.com</msg>
+<arg>${BASE_URL}</arg>
+<arg>${url}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2026-06-19T21:52:55.792404" elapsed="0.000541"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2026-06-19T21:52:55.793471" level="INFO">${USER_ID} = john</msg>
+<arg>${USER_ID}</arg>
+<arg>${id}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2026-06-19T21:52:55.793095" elapsed="0.000438"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2026-06-19T21:52:55.794074" level="INFO">${USER_PWD} = demo</msg>
+<arg>${USER_PWD}</arg>
+<arg>${pwd}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2026-06-19T21:52:55.793692" elapsed="0.000434"/>
+</kw>
+<status status="PASS" start="2026-06-19T21:52:55.789324" elapsed="0.004900"/>
+</kw>
+<kw name="Create Session To API" owner="api_keywords">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-06-19T21:52:55.794800" level="INFO">Creating Session using : alias=parabank, url=https://parabank.parasoft.com/parabank/services/bank, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>parabank</arg>
+<arg>${API_BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2026-06-19T21:52:55.794555" elapsed="0.000384"/>
+</kw>
+<status status="PASS" start="2026-06-19T21:52:55.794375" elapsed="0.000623"/>
+</kw>
+<status status="PASS" start="2026-06-19T21:52:55.789119" elapsed="0.005921"/>
+</kw>
+<test id="s1-s2-t1" name="TC_E2E_02 Create Checking Account and Verify Customer Accounts via API" line="12">
+<kw name="Open Application" owner="common_resources" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:52:55.796195" level="INFO">Opening browser 'chrome' to base url 'https://parabank.parasoft.com'.</msg>
+<arg>${BASE_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-06-19T21:52:55.795948" elapsed="3.714284"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-06-19T21:52:59.510541" elapsed="0.036933"/>
+</kw>
+<doc>opens the application</doc>
+<status status="PASS" start="2026-06-19T21:52:55.795620" elapsed="3.751976"/>
+</kw>
+<kw name="login" owner="login">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:52:59.548767" level="INFO">Typing text 'john' into text field 'xpath=//input[@name="username"]'.</msg>
+<arg>${login_username}</arg>
+<arg>${id}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-19T21:52:59.548540" elapsed="0.092235"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:53:00.641809" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:52:59.641107" elapsed="1.000857"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:00.642603" level="INFO">Typing text 'demo' into text field 'xpath=//input[@name="password"]'.</msg>
+<arg>${login_password}</arg>
+<arg>${pwd}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-19T21:53:00.642241" elapsed="0.064197"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:53:01.707441" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:53:00.706630" elapsed="1.000937"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:01.708019" level="INFO">Clicking button 'xpath=//input[@value="Log In"]'.</msg>
+<arg>${login_button}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-19T21:53:01.707773" elapsed="1.194057"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:53:03.902870" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:53:02.902121" elapsed="1.000876"/>
+</kw>
+<arg>${USER_ID}</arg>
+<arg>${USER_PWD}</arg>
+<status status="PASS" start="2026-06-19T21:52:59.548157" elapsed="4.354949"/>
+</kw>
+<kw name="Click Open New Account" owner="home_page">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:03.904249" level="INFO">Clicking element 'xpath=//a[contains(text(),'Open New Account')]'.</msg>
+<arg>${OPEN_NEW_ACCOUNT_URL}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-19T21:53:03.904039" elapsed="1.073332"/>
+</kw>
+<status status="PASS" start="2026-06-19T21:53:03.903660" elapsed="1.073875"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:53:05.978665" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:53:04.978005" elapsed="1.000783"/>
+</kw>
+<kw name="Select Account Type" owner="open_new_account_page">
+<kw name="Select From List By Value" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:05.979827" level="INFO">Selecting options from selection list 'xpath=//select[@id="type"]' by value 0.</msg>
+<arg>${ACCOUNT_TYPE_DROPDOWN}</arg>
+<arg>${account_type}</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<status status="PASS" start="2026-06-19T21:53:05.979600" elapsed="0.039379"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:53:07.019865" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:53:06.019254" elapsed="1.000727"/>
+</kw>
+<arg>0</arg>
+<status status="PASS" start="2026-06-19T21:53:05.979268" elapsed="1.040809"/>
+</kw>
+<kw name="Click Open Account Button" owner="open_new_account_page">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:07.021003" level="INFO">Clicking element 'xpath=//input[@value="Open New Account"]'.</msg>
+<arg>${OPEN_ACCOUNT_BUTTON}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-19T21:53:07.020795" elapsed="0.051286"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:53:09.072982" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:53:07.072362" elapsed="2.000759"/>
+</kw>
+<status status="PASS" start="2026-06-19T21:53:07.020530" elapsed="2.052717"/>
+</kw>
+<kw name="Get New Account Number" owner="open_new_account_page">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${ACCOUNT_DETAILS_LINK}</arg>
+<arg>timeout=20s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-06-19T21:53:09.073985" elapsed="0.018156"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:09.108363" level="INFO">${account_id} = 29439</msg>
+<var>${account_id}</var>
+<arg>${ACCOUNT_DETAILS_LINK}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-19T21:53:09.092405" elapsed="0.016005"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Account ID = ${account_id}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-06-19T21:53:09.108603" elapsed="0.000465"/>
+</kw>
+<return>
+<value>${account_id}</value>
+<status status="PASS" start="2026-06-19T21:53:09.109148" elapsed="0.000072"/>
+</return>
+<msg time="2026-06-19T21:53:09.109365" level="INFO">${account_id} = 29439</msg>
+<var>${account_id}</var>
+<status status="PASS" start="2026-06-19T21:53:09.073731" elapsed="0.035658"/>
+</kw>
+<kw name="Get Customer Accounts" owner="api_keywords">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-06-19T21:53:09.110227" level="INFO">${headers} = {'Accept': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>Accept=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-06-19T21:53:09.109977" elapsed="0.000275"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2026-06-19T21:53:10.097911" level="INFO">GET Request : url=https://parabank.parasoft.com/parabank/services/bank/customers/12212/accounts 
+ path_url=/parabank/services/bank/customers/12212/accounts 
+ headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2026-06-19T21:53:10.098011" level="INFO">GET Response : url=https://parabank.parasoft.com/parabank/services/bank/customers/12212/accounts 
+ status=200, reason=OK 
+ headers={'Date': 'Fri, 19 Jun 2026 16:23:13 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Server': 'cloudflare', 'cf-cache-status': 'DYNAMIC', 'X-Content-Type-Options': 'nosniff', 'Content-Encoding': 'gzip', 'CF-RAY': 'a0e3e0822ae21da4-FRA'} 
+ body=[{"id":13344,"customerId":12212,"type":"CHECKING","balance":-100001582.07},{"id":15675,"customerId":12212,"type":"SAVINGS","balance":100000180.00},{"id":15786,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":15897,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":16008,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":16119,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":16230,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":16341,"customerId":12212,"type":"SAVINGS","balance":0.00},{"id":16452,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":16785,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":17118,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":17229,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":17340,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":17784,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":17895,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":19227,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":20226,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":20337,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":20448,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":20559,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":20670,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":20892,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":21003,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":21225,"customerId":12212,"type":"SAVINGS","balance":0.00},{"id":21447,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":24000,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":24111,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":24222,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":24333,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":24444,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":24555,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":24666,"customerId":12212,"type":"CHECKING","balance":125.00},{"id":24777,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":24888,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":24999,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":25110,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":25443,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":25776,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":25998,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":26109,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":26220,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":26331,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":26664,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":26775,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":26886,"customerId":12212,"type":"SAVINGS","balance":0.00},{"id":26997,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":27219,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":27330,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":27441,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":27552,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":27663,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":27774,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":29217,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":29439,"customerId":12212,"type":"CHECKING","balance":100.00}] 
+ </msg>
+<msg time="2026-06-19T21:53:10.098143" level="INFO">C:\Users\hp5cd\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'parabank.parasoft.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-06-19T21:53:10.098404" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>parabank</arg>
+<arg>/customers/${customerId}/accounts</arg>
+<arg>expected_status=any</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-06-19T21:53:09.110350" elapsed="0.988086"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-06-19T21:53:10.098519" elapsed="0.000059"/>
+</return>
+<msg time="2026-06-19T21:53:10.098754" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>${CUSTOMER_ID}</arg>
+<status status="PASS" start="2026-06-19T21:53:09.109722" elapsed="0.989100"/>
+</kw>
+<kw name="Verify Response Code" owner="api_keywords">
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-06-19T21:53:10.100194" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>${code}</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-06-19T21:53:10.099622" elapsed="0.000628"/>
+</kw>
+<arg>${response}</arg>
+<arg>200</arg>
+<status status="PASS" start="2026-06-19T21:53:10.099245" elapsed="0.001063"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${response.text}</arg>
+<arg>${account_id}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-06-19T21:53:10.100626" elapsed="0.000572"/>
+</kw>
+<kw name="Close Application" owner="common_resources" type="TEARDOWN">
+<kw name="Close All Browsers" owner="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2026-06-19T21:53:10.101892" elapsed="2.232816"/>
+</kw>
+<doc>closes the application</doc>
+<status status="PASS" start="2026-06-19T21:53:10.101635" elapsed="2.233222"/>
+</kw>
+<doc>End-to-End Checking Account UI creation &amp; API verification</doc>
+<tag>e2e</tag>
+<status status="PASS" start="2026-06-19T21:52:55.795095" elapsed="16.540043"/>
+</test>
+<status status="PASS" start="2026-06-19T21:52:55.777909" elapsed="16.557792"/>
+</suite>
+<suite id="s1-s3" name="TC E2E 03" source="C:\Users\hp5cd\OneDrive\Desktop\SPRINT-CAPGE\tests\e2e\TC_E2E_03.robot">
+<kw name="Setup E2E" owner="common_resources" type="SETUP">
+<kw name="Load Environment" owner="common_resources">
+<kw name="Load Env" owner="env_loader">
+<arg>${ENV}</arg>
+<status status="PASS" start="2026-06-19T21:53:12.351062" elapsed="0.001241"/>
+</kw>
+<kw name="Get Env" owner="env_loader">
+<msg time="2026-06-19T21:53:12.352632" level="INFO">${url} = https://parabank.parasoft.com</msg>
+<var>${url}</var>
+<arg>baseurl</arg>
+<status status="PASS" start="2026-06-19T21:53:12.352471" elapsed="0.000189"/>
+</kw>
+<kw name="Get Env" owner="env_loader">
+<msg time="2026-06-19T21:53:12.352898" level="INFO">${id} = john</msg>
+<var>${id}</var>
+<arg>user_id</arg>
+<status status="PASS" start="2026-06-19T21:53:12.352757" elapsed="0.000178"/>
+</kw>
+<kw name="Get Env" owner="env_loader">
+<msg time="2026-06-19T21:53:12.353223" level="INFO">${pwd} = demo</msg>
+<var>${pwd}</var>
+<arg>user_password</arg>
+<status status="PASS" start="2026-06-19T21:53:12.353079" elapsed="0.000181"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2026-06-19T21:53:12.353875" level="INFO">${BASE_URL} = https://parabank.parasoft.com</msg>
+<arg>${BASE_URL}</arg>
+<arg>${url}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2026-06-19T21:53:12.353412" elapsed="0.000553"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2026-06-19T21:53:12.354485" level="INFO">${USER_ID} = john</msg>
+<arg>${USER_ID}</arg>
+<arg>${id}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2026-06-19T21:53:12.354128" elapsed="0.000399"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2026-06-19T21:53:12.354924" level="INFO">${USER_PWD} = demo</msg>
+<arg>${USER_PWD}</arg>
+<arg>${pwd}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2026-06-19T21:53:12.354646" elapsed="0.000322"/>
+</kw>
+<status status="PASS" start="2026-06-19T21:53:12.350928" elapsed="0.004103"/>
+</kw>
+<kw name="Create Session To API" owner="api_keywords">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-06-19T21:53:12.355438" level="INFO">Creating Session using : alias=parabank, url=https://parabank.parasoft.com/parabank/services/bank, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>parabank</arg>
+<arg>${API_BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2026-06-19T21:53:12.355318" elapsed="0.000298"/>
+</kw>
+<status status="PASS" start="2026-06-19T21:53:12.355157" elapsed="0.000528"/>
+</kw>
+<status status="PASS" start="2026-06-19T21:53:12.350685" elapsed="0.005061"/>
+</kw>
+<test id="s1-s3-t1" name="TC_E2E_03 Transfer Funds via UI and Verify Balances via API" line="12">
+<kw name="Open Application" owner="common_resources" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:12.356720" level="INFO">Opening browser 'chrome' to base url 'https://parabank.parasoft.com'.</msg>
+<arg>${BASE_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-06-19T21:53:12.356532" elapsed="3.743922"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-06-19T21:53:16.101197" elapsed="0.048340"/>
+</kw>
+<doc>opens the application</doc>
+<status status="PASS" start="2026-06-19T21:53:12.356266" elapsed="3.793585"/>
+</kw>
+<kw name="login" owner="login">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:16.152198" level="INFO">Typing text 'john' into text field 'xpath=//input[@name="username"]'.</msg>
+<arg>${login_username}</arg>
+<arg>${id}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-19T21:53:16.151899" elapsed="0.087811"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:53:17.240743" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:53:16.239986" elapsed="1.000877"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:17.241338" level="INFO">Typing text 'demo' into text field 'xpath=//input[@name="password"]'.</msg>
+<arg>${login_password}</arg>
+<arg>${pwd}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-19T21:53:17.241069" elapsed="0.081859"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:53:18.323756" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:53:17.323148" elapsed="1.000744"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:18.324414" level="INFO">Clicking button 'xpath=//input[@value="Log In"]'.</msg>
+<arg>${login_button}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-19T21:53:18.324135" elapsed="1.669261"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:53:20.994237" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:53:19.993724" elapsed="1.000744"/>
+</kw>
+<arg>${USER_ID}</arg>
+<arg>${USER_PWD}</arg>
+<status status="PASS" start="2026-06-19T21:53:16.151270" elapsed="4.843353"/>
+</kw>
+<kw name="Get Customer Accounts" owner="api_keywords">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-06-19T21:53:20.996031" level="INFO">${headers} = {'Accept': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>Accept=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-06-19T21:53:20.995708" elapsed="0.000349"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2026-06-19T21:53:22.031990" level="INFO">GET Request : url=https://parabank.parasoft.com/parabank/services/bank/customers/12212/accounts 
+ path_url=/parabank/services/bank/customers/12212/accounts 
+ headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2026-06-19T21:53:22.032076" level="INFO">GET Response : url=https://parabank.parasoft.com/parabank/services/bank/customers/12212/accounts 
+ status=200, reason=OK 
+ headers={'Date': 'Fri, 19 Jun 2026 16:23:24 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Server': 'cloudflare', 'cf-cache-status': 'DYNAMIC', 'Content-Security-Policy-Report-Only': "script-src 'unsafe-inline' 'unsafe-eval'; connect-src 'none'; report-uri https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report?m=NWxFcu9QtAeJ9KRbYLEozl51biXwUPMCslpw_xBtG28-1781886204.8156204-1.0.1.1-j6Y4N_LQlVvusDSP_8MTBLqm68e8cwz8uYrVcLd.d4XQDJvGD5rpD4SsNU9HxF3GCyFgrVvCzWBQSR6AXn1QFYLHJJ2TRLAmEQMhEsjpwB98phH8zquDSdJxr1emE1Ef_EEiFANn2v1km.sgTawUrPdM.ZbJLzGyUvyvBS8UKAQzriy1B4fRiuhliq7wbfrK; report-to cf-csp-endpoint", 'X-Content-Type-Options': 'nosniff', 'Report-To': '{"group":"cf-csp-endpoint","max_age":86400,"endpoints":[{"url":"https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report?m=NWxFcu9QtAeJ9KRbYLEozl51biXwUPMCslpw_xBtG28-1781886204.8156204-1.0.1.1-j6Y4N_LQlVvusDSP_8MTBLqm68e8cwz8uYrVcLd.d4XQDJvGD5rpD4SsNU9HxF3GCyFgrVvCzWBQSR6AXn1QFYLHJJ2TRLAmEQMhEsjpwB98phH8zquDSdJxr1emE1Ef_EEiFANn2v1km.sgTawUrPdM.ZbJLzGyUvyvBS8UKAQzriy1B4fRiuhliq7wbfrK"}]}', 'Content-Encoding': 'gzip', 'CF-RAY': 'a0e3e0cc1fbbd2c2-FRA'} 
+ body=[{"id":13344,"customerId":12212,"type":"CHECKING","balance":-100001582.07},{"id":15675,"customerId":12212,"type":"SAVINGS","balance":100000180.00},{"id":15786,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":15897,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":16008,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":16119,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":16230,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":16341,"customerId":12212,"type":"SAVINGS","balance":0.00},{"id":16452,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":16785,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":17118,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":17229,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":17340,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":17784,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":17895,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":19227,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":20226,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":20337,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":20448,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":20559,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":20670,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":20892,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":21003,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":21225,"customerId":12212,"type":"SAVINGS","balance":0.00},{"id":21447,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":24000,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":24111,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":24222,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":24333,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":24444,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":24555,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":24666,"customerId":12212,"type":"CHECKING","balance":125.00},{"id":24777,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":24888,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":24999,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":25110,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":25443,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":25776,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":25998,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":26109,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":26220,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":26331,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":26664,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":26775,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":26886,"customerId":12212,"type":"SAVINGS","balance":0.00},{"id":26997,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":27219,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":27330,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":27441,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":27552,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":27663,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":27774,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":29217,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":29439,"customerId":12212,"type":"CHECKING","balance":100.00}] 
+ </msg>
+<msg time="2026-06-19T21:53:22.032158" level="INFO">C:\Users\hp5cd\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'parabank.parasoft.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-06-19T21:53:22.032424" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>parabank</arg>
+<arg>/customers/${customerId}/accounts</arg>
+<arg>expected_status=any</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-06-19T21:53:20.996164" elapsed="1.036297"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-06-19T21:53:22.032558" elapsed="0.000058"/>
+</return>
+<msg time="2026-06-19T21:53:22.032806" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>${CUSTOMER_ID}</arg>
+<status status="PASS" start="2026-06-19T21:53:20.995274" elapsed="1.037575"/>
+</kw>
+<kw name="Verify Response Code" owner="api_keywords">
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-06-19T21:53:22.034082" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>${code}</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-06-19T21:53:22.033521" elapsed="0.000616"/>
+</kw>
+<arg>${response}</arg>
+<arg>200</arg>
+<status status="PASS" start="2026-06-19T21:53:22.033227" elapsed="0.000968"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-19T21:53:22.035056" level="INFO">${accounts} = [{'id': 13344, 'customerId': 12212, 'type': 'CHECKING', 'balance': -100001582.07}, {'id': 15675, 'customerId': 12212, 'type': 'SAVINGS', 'balance': 100000180.0}, {'id': 15786, 'customerId': 12212, 'ty...</msg>
+<var>${accounts}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-19T21:53:22.034448" elapsed="0.000683"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-19T21:53:22.035907" level="INFO">${source_account} = 13344</msg>
+<var>${source_account}</var>
+<arg>${accounts[0]['id']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-19T21:53:22.035400" elapsed="0.000531"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-19T21:53:22.036869" level="INFO">${destination_account} = 15675</msg>
+<var>${destination_account}</var>
+<arg>${accounts[1]['id']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-19T21:53:22.036163" elapsed="0.000744"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-19T21:53:22.037923" level="INFO">${source_before} = -100001582.07</msg>
+<var>${source_before}</var>
+<arg>${accounts[0]['balance']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-19T21:53:22.037243" elapsed="0.000706"/>
+</kw>
+<kw name="Click Transfer Funds" owner="home_page">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:22.038607" level="INFO">Clicking element 'xpath=//a[contains(text(),'Transfer Funds')]'.</msg>
+<arg>${TRANSFER_FUNDS_URL}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-19T21:53:22.038394" elapsed="0.404594"/>
+</kw>
+<status status="PASS" start="2026-06-19T21:53:22.038212" elapsed="0.404968"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:53:23.444763" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:53:22.443833" elapsed="1.001076"/>
+</kw>
+<kw name="Enter Amount" owner="transfer_funds_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:23.446096" level="INFO">Typing text '10' into text field 'xpath=//input[@id="amount"]'.</msg>
+<arg>${AMOUNT_FIELD}</arg>
+<arg>${amount}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-19T21:53:23.445869" elapsed="0.060373"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:53:24.507152" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:53:23.506479" elapsed="1.000790"/>
+</kw>
+<arg>10</arg>
+<status status="PASS" start="2026-06-19T21:53:23.445492" elapsed="1.061889"/>
+</kw>
+<kw name="Select From Account" owner="transfer_funds_page">
+<kw name="Select From List By Value" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:24.508507" level="INFO">Selecting options from selection list 'xpath=//select[@id="fromAccountId"]' by value 13344.</msg>
+<arg>${FROM_ACCOUNT_DROPDOWN}</arg>
+<arg>${from_account}</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<status status="PASS" start="2026-06-19T21:53:24.508258" elapsed="0.055873"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:53:25.564948" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:53:24.564324" elapsed="1.000740"/>
+</kw>
+<arg>${source_account}</arg>
+<status status="PASS" start="2026-06-19T21:53:24.507869" elapsed="1.057299"/>
+</kw>
+<kw name="Select To Account" owner="transfer_funds_page">
+<kw name="Select From List By Value" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:25.567526" level="INFO">Selecting options from selection list 'xpath=//select[@id="toAccountId"]' by value 15675.</msg>
+<arg>${TO_ACCOUNT_DROPDOWN}</arg>
+<arg>${to_account}</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<status status="PASS" start="2026-06-19T21:53:25.567307" elapsed="0.060989"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:53:26.629124" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:53:25.628621" elapsed="1.000622"/>
+</kw>
+<arg>${destination_account}</arg>
+<status status="PASS" start="2026-06-19T21:53:25.565633" elapsed="1.063716"/>
+</kw>
+<kw name="Click Transfer Button" owner="transfer_funds_page">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:26.630221" level="INFO">Clicking element 'xpath=//input[@value="Transfer"]'.</msg>
+<arg>${TRANSFER_BUTTON}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-19T21:53:26.630047" elapsed="0.052990"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:53:28.684098" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:53:26.683247" elapsed="2.000964"/>
+</kw>
+<status status="PASS" start="2026-06-19T21:53:26.629798" elapsed="2.054509"/>
+</kw>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:28.697534" level="INFO">Current page contains text 'Transfer Complete!'.</msg>
+<arg>Transfer Complete!</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2026-06-19T21:53:28.684681" elapsed="0.012948"/>
+</kw>
+<kw name="Get Customer Accounts" owner="api_keywords">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-06-19T21:53:28.698737" level="INFO">${headers} = {'Accept': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>Accept=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-06-19T21:53:28.698451" elapsed="0.000310"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2026-06-19T21:53:29.046914" level="INFO">GET Request : url=https://parabank.parasoft.com/parabank/services/bank/customers/12212/accounts 
+ path_url=/parabank/services/bank/customers/12212/accounts 
+ headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2026-06-19T21:53:29.046998" level="INFO">GET Response : url=https://parabank.parasoft.com/parabank/services/bank/customers/12212/accounts 
+ status=200, reason=OK 
+ headers={'Date': 'Fri, 19 Jun 2026 16:23:32 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Server': 'cloudflare', 'cf-cache-status': 'DYNAMIC', 'X-Content-Type-Options': 'nosniff', 'Content-Encoding': 'gzip', 'CF-RAY': 'a0e3e0f90917d2c2-FRA'} 
+ body=[{"id":13344,"customerId":12212,"type":"CHECKING","balance":-100001592.07},{"id":15675,"customerId":12212,"type":"SAVINGS","balance":100000190.00},{"id":15786,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":15897,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":16008,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":16119,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":16230,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":16341,"customerId":12212,"type":"SAVINGS","balance":0.00},{"id":16452,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":16785,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":17118,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":17229,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":17340,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":17784,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":17895,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":19227,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":20226,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":20337,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":20448,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":20559,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":20670,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":20892,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":21003,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":21225,"customerId":12212,"type":"SAVINGS","balance":0.00},{"id":21447,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":24000,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":24111,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":24222,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":24333,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":24444,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":24555,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":24666,"customerId":12212,"type":"CHECKING","balance":125.00},{"id":24777,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":24888,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":24999,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":25110,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":25443,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":25776,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":25998,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":26109,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":26220,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":26331,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":26664,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":26775,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":26886,"customerId":12212,"type":"SAVINGS","balance":0.00},{"id":26997,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":27219,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":27330,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":27441,"customerId":12212,"type":"CHECKING","balance":100.00},{"id":27552,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":27663,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":27774,"customerId":12212,"type":"SAVINGS","balance":200.00},{"id":29217,"customerId":12212,"type":"SAVINGS","balance":100.00},{"id":29439,"customerId":12212,"type":"CHECKING","balance":100.00}] 
+ </msg>
+<msg time="2026-06-19T21:53:29.047176" level="INFO">C:\Users\hp5cd\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'parabank.parasoft.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-06-19T21:53:29.047448" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>parabank</arg>
+<arg>/customers/${customerId}/accounts</arg>
+<arg>expected_status=any</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-06-19T21:53:28.698890" elapsed="0.348596"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-06-19T21:53:29.047602" elapsed="0.000067"/>
+</return>
+<msg time="2026-06-19T21:53:29.047851" level="INFO">${response_after} = &lt;Response [200]&gt;</msg>
+<var>${response_after}</var>
+<arg>${CUSTOMER_ID}</arg>
+<status status="PASS" start="2026-06-19T21:53:28.698154" elapsed="0.349724"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-19T21:53:29.048882" level="INFO">${accounts_after} = [{'id': 13344, 'customerId': 12212, 'type': 'CHECKING', 'balance': -100001592.07}, {'id': 15675, 'customerId': 12212, 'type': 'SAVINGS', 'balance': 100000190.0}, {'id': 15786, 'customerId': 12212, 'ty...</msg>
+<var>${accounts_after}</var>
+<arg>${response_after.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-19T21:53:29.048163" elapsed="0.000746"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-19T21:53:29.049790" level="INFO">${source_after} = -100001592.07</msg>
+<var>${source_after}</var>
+<arg>${accounts_after[0]['balance']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-19T21:53:29.049277" elapsed="0.000539"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2026-06-19T21:53:29.050433" level="INFO">${expected} = -100001592.07</msg>
+<var>${expected}</var>
+<arg>float(${source_before}) - 10</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2026-06-19T21:53:29.050058" elapsed="0.000401"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<arg>${source_after}</arg>
+<arg>${expected}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2026-06-19T21:53:29.050699" elapsed="0.000255"/>
+</kw>
+<kw name="Close Application" owner="common_resources" type="TEARDOWN">
+<kw name="Close All Browsers" owner="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2026-06-19T21:53:29.051504" elapsed="2.250810"/>
+</kw>
+<doc>closes the application</doc>
+<status status="PASS" start="2026-06-19T21:53:29.051295" elapsed="2.251162"/>
+</kw>
+<doc>End-to-End Funds Transfer via UI and verification via API</doc>
+<tag>e2e</tag>
+<status status="PASS" start="2026-06-19T21:53:12.355799" elapsed="18.946972"/>
+</test>
+<status status="PASS" start="2026-06-19T21:53:12.336438" elapsed="18.967312"/>
+</suite>
+<suite id="s1-s4" name="TC E2E 04" source="C:\Users\hp5cd\OneDrive\Desktop\SPRINT-CAPGE\tests\e2e\TC_E2E_04.robot">
+<kw name="Setup E2E" owner="common_resources" type="SETUP">
+<kw name="Load Environment" owner="common_resources">
+<kw name="Load Env" owner="env_loader">
+<arg>${ENV}</arg>
+<status status="PASS" start="2026-06-19T21:53:31.317398" elapsed="0.001395"/>
+</kw>
+<kw name="Get Env" owner="env_loader">
+<msg time="2026-06-19T21:53:31.319181" level="INFO">${url} = https://parabank.parasoft.com</msg>
+<var>${url}</var>
+<arg>baseurl</arg>
+<status status="PASS" start="2026-06-19T21:53:31.318990" elapsed="0.000229"/>
+</kw>
+<kw name="Get Env" owner="env_loader">
+<msg time="2026-06-19T21:53:31.319526" level="INFO">${id} = john</msg>
+<var>${id}</var>
+<arg>user_id</arg>
+<status status="PASS" start="2026-06-19T21:53:31.319372" elapsed="0.000188"/>
+</kw>
+<kw name="Get Env" owner="env_loader">
+<msg time="2026-06-19T21:53:31.319824" level="INFO">${pwd} = demo</msg>
+<var>${pwd}</var>
+<arg>user_password</arg>
+<status status="PASS" start="2026-06-19T21:53:31.319692" elapsed="0.000165"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2026-06-19T21:53:31.320466" level="INFO">${BASE_URL} = https://parabank.parasoft.com</msg>
+<arg>${BASE_URL}</arg>
+<arg>${url}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2026-06-19T21:53:31.320001" elapsed="0.000534"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2026-06-19T21:53:31.321099" level="INFO">${USER_ID} = john</msg>
+<arg>${USER_ID}</arg>
+<arg>${id}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2026-06-19T21:53:31.320722" elapsed="0.000436"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2026-06-19T21:53:31.321688" level="INFO">${USER_PWD} = demo</msg>
+<arg>${USER_PWD}</arg>
+<arg>${pwd}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2026-06-19T21:53:31.321314" elapsed="0.000432"/>
+</kw>
+<status status="PASS" start="2026-06-19T21:53:31.317240" elapsed="0.004607"/>
+</kw>
+<kw name="Create Session To API" owner="api_keywords">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-06-19T21:53:31.322452" level="INFO">Creating Session using : alias=parabank, url=https://parabank.parasoft.com/parabank/services/bank, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>parabank</arg>
+<arg>${API_BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2026-06-19T21:53:31.322287" elapsed="0.000369"/>
+</kw>
+<status status="PASS" start="2026-06-19T21:53:31.322051" elapsed="0.000700"/>
+</kw>
+<status status="PASS" start="2026-06-19T21:53:31.317000" elapsed="0.005809"/>
+</kw>
+<test id="s1-s4-t1" name="TC_E2E_04 Create New Account and Transfer Funds to It" line="13">
+<kw name="Open Application" owner="common_resources" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:31.324118" level="INFO">Opening browser 'chrome' to base url 'https://parabank.parasoft.com'.</msg>
+<arg>${BASE_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-06-19T21:53:31.323849" elapsed="3.684779"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-06-19T21:53:35.009018" elapsed="0.034815"/>
+</kw>
+<doc>opens the application</doc>
+<status status="PASS" start="2026-06-19T21:53:31.323512" elapsed="3.720426"/>
+</kw>
+<kw name="login" owner="login">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:35.045144" level="INFO">Typing text 'john' into text field 'xpath=//input[@name="username"]'.</msg>
+<arg>${login_username}</arg>
+<arg>${id}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-19T21:53:35.044902" elapsed="0.071926"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:53:36.117830" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:53:35.117080" elapsed="1.000866"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:36.118427" level="INFO">Typing text 'demo' into text field 'xpath=//input[@name="password"]'.</msg>
+<arg>${login_password}</arg>
+<arg>${pwd}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-19T21:53:36.118156" elapsed="0.063420"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:53:37.182786" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:53:36.181995" elapsed="1.000909"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:37.183363" level="INFO">Clicking button 'xpath=//input[@value="Log In"]'.</msg>
+<arg>${login_button}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-19T21:53:37.183112" elapsed="1.151640"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:53:39.335377" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:53:38.334956" elapsed="1.000540"/>
+</kw>
+<arg>${USER_ID}</arg>
+<arg>${USER_PWD}</arg>
+<status status="PASS" start="2026-06-19T21:53:35.044477" elapsed="4.291139"/>
+</kw>
+<kw name="Click Open New Account" owner="home_page">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:39.336549" level="INFO">Clicking element 'xpath=//a[contains(text(),'Open New Account')]'.</msg>
+<arg>${OPEN_NEW_ACCOUNT_URL}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-19T21:53:39.336378" elapsed="0.411827"/>
+</kw>
+<status status="PASS" start="2026-06-19T21:53:39.336091" elapsed="0.412260"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:53:40.749673" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:53:39.748779" elapsed="1.001017"/>
+</kw>
+<kw name="Select Account Type" owner="open_new_account_page">
+<kw name="Select From List By Value" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:40.750828" level="INFO">Selecting options from selection list 'xpath=//select[@id="type"]' by value 0.</msg>
+<arg>${ACCOUNT_TYPE_DROPDOWN}</arg>
+<arg>${account_type}</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<status status="PASS" start="2026-06-19T21:53:40.750633" elapsed="0.036391"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:53:41.787970" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:53:40.787226" elapsed="1.000850"/>
+</kw>
+<arg>0</arg>
+<status status="PASS" start="2026-06-19T21:53:40.750331" elapsed="1.037839"/>
+</kw>
+<kw name="Click Open Account Button" owner="open_new_account_page">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:41.789023" level="INFO">Clicking element 'xpath=//input[@value="Open New Account"]'.</msg>
+<arg>${OPEN_ACCOUNT_BUTTON}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-19T21:53:41.788854" elapsed="0.052146"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:53:43.841769" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:53:41.841234" elapsed="2.000689"/>
+</kw>
+<status status="PASS" start="2026-06-19T21:53:41.788610" elapsed="2.053446"/>
+</kw>
+<kw name="Get New Account Number" owner="open_new_account_page">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${ACCOUNT_DETAILS_LINK}</arg>
+<arg>timeout=20s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-06-19T21:53:43.842951" elapsed="0.024030"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:43.885246" level="INFO">${account_id} = 29661</msg>
+<var>${account_id}</var>
+<arg>${ACCOUNT_DETAILS_LINK}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-19T21:53:43.867313" elapsed="0.018006"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Account ID = ${account_id}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-06-19T21:53:43.885586" elapsed="0.000635"/>
+</kw>
+<return>
+<value>${account_id}</value>
+<status status="PASS" start="2026-06-19T21:53:43.886342" elapsed="0.000072"/>
+</return>
+<msg time="2026-06-19T21:53:43.886629" level="INFO">${new_account_id} = 29661</msg>
+<var>${new_account_id}</var>
+<status status="PASS" start="2026-06-19T21:53:43.842598" elapsed="0.044062"/>
+</kw>
+<kw name="Get Account Details" owner="api_keywords">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-06-19T21:53:43.887731" level="INFO">${headers} = {'Accept': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>Accept=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-06-19T21:53:43.887383" elapsed="0.000387"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2026-06-19T21:53:44.602356" level="INFO">GET Request : url=https://parabank.parasoft.com/parabank/services/bank/accounts/29661 
+ path_url=/parabank/services/bank/accounts/29661 
+ headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2026-06-19T21:53:44.602552" level="INFO">GET Response : url=https://parabank.parasoft.com/parabank/services/bank/accounts/29661 
+ status=200, reason=OK 
+ headers={'Date': 'Fri, 19 Jun 2026 16:23:47 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Server': 'cloudflare', 'cf-cache-status': 'DYNAMIC', 'X-Content-Type-Options': 'nosniff', 'Content-Encoding': 'gzip', 'CF-RAY': 'a0e3e15a5d64972f-FRA'} 
+ body={"id":29661,"customerId":12212,"type":"CHECKING","balance":100.00} 
+ </msg>
+<msg time="2026-06-19T21:53:44.602702" level="INFO">C:\Users\hp5cd\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'parabank.parasoft.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-06-19T21:53:44.603134" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>parabank</arg>
+<arg>/accounts/${accountId}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-06-19T21:53:43.887932" elapsed="0.715241"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-06-19T21:53:44.603286" elapsed="0.000098"/>
+</return>
+<msg time="2026-06-19T21:53:44.603635" level="INFO">${response_new} = &lt;Response [200]&gt;</msg>
+<var>${response_new}</var>
+<arg>${new_account_id}</arg>
+<status status="PASS" start="2026-06-19T21:53:43.887054" elapsed="0.716616"/>
+</kw>
+<kw name="Verify Response Code" owner="api_keywords">
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-06-19T21:53:44.605620" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>${code}</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-06-19T21:53:44.604528" elapsed="0.001168"/>
+</kw>
+<arg>${response_new}</arg>
+<arg>200</arg>
+<status status="PASS" start="2026-06-19T21:53:44.604132" elapsed="0.001649"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-19T21:53:44.607350" level="INFO">${new_account_details} = {'id': 29661, 'customerId': 12212, 'type': 'CHECKING', 'balance': 100.0}</msg>
+<var>${new_account_details}</var>
+<arg>${response_new.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-19T21:53:44.606409" elapsed="0.000976"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-19T21:53:44.608795" level="INFO">${starting_balance} = 100.0</msg>
+<var>${starting_balance}</var>
+<arg>${new_account_details['balance']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-19T21:53:44.607831" elapsed="0.001015"/>
+</kw>
+<kw name="Click Transfer Funds" owner="home_page">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:44.609805" level="INFO">Clicking element 'xpath=//a[contains(text(),'Transfer Funds')]'.</msg>
+<arg>${TRANSFER_FUNDS_URL}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-19T21:53:44.609574" elapsed="0.462390"/>
+</kw>
+<status status="PASS" start="2026-06-19T21:53:44.609215" elapsed="0.462974"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:53:46.073617" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:53:45.072750" elapsed="1.001084"/>
+</kw>
+<kw name="Enter Amount" owner="transfer_funds_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:46.075358" level="INFO">Typing text '25' into text field 'xpath=//input[@id="amount"]'.</msg>
+<arg>${AMOUNT_FIELD}</arg>
+<arg>${amount}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-19T21:53:46.074976" elapsed="0.107231"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:53:47.183441" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:53:46.182555" elapsed="1.001033"/>
+</kw>
+<arg>25</arg>
+<status status="PASS" start="2026-06-19T21:53:46.074482" elapsed="1.109235"/>
+</kw>
+<kw name="Select From Account" owner="transfer_funds_page">
+<kw name="Select From List By Value" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:47.184739" level="INFO">Selecting options from selection list 'xpath=//select[@id="fromAccountId"]' by value 13344.</msg>
+<arg>${FROM_ACCOUNT_DROPDOWN}</arg>
+<arg>${from_account}</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<status status="PASS" start="2026-06-19T21:53:47.184508" elapsed="0.035365"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:53:48.220663" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:53:47.220152" elapsed="1.000660"/>
+</kw>
+<arg>${ACCOUNT_ID}</arg>
+<status status="PASS" start="2026-06-19T21:53:47.184195" elapsed="1.036729"/>
+</kw>
+<kw name="Select To Account" owner="transfer_funds_page">
+<kw name="Select From List By Value" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:48.221919" level="INFO">Selecting options from selection list 'xpath=//select[@id="toAccountId"]' by value 29661.</msg>
+<arg>${TO_ACCOUNT_DROPDOWN}</arg>
+<arg>${to_account}</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<status status="PASS" start="2026-06-19T21:53:48.221728" elapsed="0.074759"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:53:49.297639" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:53:48.296730" elapsed="1.001033"/>
+</kw>
+<arg>${new_account_id}</arg>
+<status status="PASS" start="2026-06-19T21:53:48.221426" elapsed="1.076470"/>
+</kw>
+<kw name="Click Transfer Button" owner="transfer_funds_page">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:49.298767" level="INFO">Clicking element 'xpath=//input[@value="Transfer"]'.</msg>
+<arg>${TRANSFER_BUTTON}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-19T21:53:49.298594" elapsed="0.071858"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-19T21:53:51.371953" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-19T21:53:49.370983" elapsed="2.001107"/>
+</kw>
+<status status="PASS" start="2026-06-19T21:53:49.298346" elapsed="2.073862"/>
+</kw>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2026-06-19T21:53:51.387564" level="INFO">Current page contains text 'Transfer Complete!'.</msg>
+<arg>Transfer Complete!</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2026-06-19T21:53:51.372719" elapsed="0.014987"/>
+</kw>
+<kw name="Get Account Details" owner="api_keywords">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-06-19T21:53:51.389183" level="INFO">${headers} = {'Accept': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>Accept=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-06-19T21:53:51.388756" elapsed="0.000470"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2026-06-19T21:53:51.741306" level="INFO">GET Request : url=https://parabank.parasoft.com/parabank/services/bank/accounts/29661 
+ path_url=/parabank/services/bank/accounts/29661 
+ headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2026-06-19T21:53:51.741422" level="INFO">GET Response : url=https://parabank.parasoft.com/parabank/services/bank/accounts/29661 
+ status=200, reason=OK 
+ headers={'Date': 'Fri, 19 Jun 2026 16:23:54 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Server': 'cloudflare', 'cf-cache-status': 'DYNAMIC', 'X-Content-Type-Options': 'nosniff', 'Content-Encoding': 'gzip', 'CF-RAY': 'a0e3e186ec5f972f-FRA'} 
+ body={"id":29661,"customerId":12212,"type":"CHECKING","balance":125.00} 
+ </msg>
+<msg time="2026-06-19T21:53:51.741534" level="INFO">C:\Users\hp5cd\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'parabank.parasoft.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-06-19T21:53:51.741822" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>parabank</arg>
+<arg>/accounts/${accountId}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-06-19T21:53:51.389405" elapsed="0.352452"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-06-19T21:53:51.741959" elapsed="0.000055"/>
+</return>
+<msg time="2026-06-19T21:53:51.742178" level="INFO">${response_after} = &lt;Response [200]&gt;</msg>
+<var>${response_after}</var>
+<arg>${new_account_id}</arg>
+<status status="PASS" start="2026-06-19T21:53:51.388293" elapsed="0.353918"/>
+</kw>
+<kw name="Verify Response Code" owner="api_keywords">
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-06-19T21:53:51.743941" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>${code}</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-06-19T21:53:51.743190" elapsed="0.000808"/>
+</kw>
+<arg>${response_after}</arg>
+<arg>200</arg>
+<status status="PASS" start="2026-06-19T21:53:51.742719" elapsed="0.001340"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-19T21:53:51.745007" level="INFO">${new_account_details_after} = {'id': 29661, 'customerId': 12212, 'type': 'CHECKING', 'balance': 125.0}</msg>
+<var>${new_account_details_after}</var>
+<arg>${response_after.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-19T21:53:51.744304" elapsed="0.000789"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-19T21:53:51.745841" level="INFO">${after_balance} = 125.0</msg>
+<var>${after_balance}</var>
+<arg>${new_account_details_after['balance']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-19T21:53:51.745318" elapsed="0.000548"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2026-06-19T21:53:51.746406" level="INFO">${expected} = 125.0</msg>
+<var>${expected}</var>
+<arg>float(${starting_balance}) + 25</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2026-06-19T21:53:51.746105" elapsed="0.000327"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<arg>${after_balance}</arg>
+<arg>${expected}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2026-06-19T21:53:51.746650" elapsed="0.000242"/>
+</kw>
+<kw name="Close Application" owner="common_resources" type="TEARDOWN">
+<kw name="Close All Browsers" owner="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2026-06-19T21:53:51.747940" elapsed="2.287250"/>
+</kw>
+<doc>closes the application</doc>
+<status status="PASS" start="2026-06-19T21:53:51.747527" elapsed="2.287796"/>
+</kw>
+<doc>End-to-End creation of a checking account and transfer to it, verified via API</doc>
+<tag>e2e</tag>
+<status status="PASS" start="2026-06-19T21:53:31.322873" elapsed="22.712907"/>
+</test>
+<status status="PASS" start="2026-06-19T21:53:31.304621" elapsed="22.731865"/>
+</suite>
+<status status="PASS" start="2026-06-19T21:52:38.397664" elapsed="75.639764"/>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="4" fail="0" skip="0">e2e</stat>
+</tag>
+<suite>
+<stat name="E2E" id="s1" pass="4" fail="0" skip="0">E2E</stat>
+<stat name="TC E2E 01" id="s1-s1" pass="1" fail="0" skip="0">E2E.TC E2E 01</stat>
+<stat name="TC E2E 02" id="s1-s2" pass="1" fail="0" skip="0">E2E.TC E2E 02</stat>
+<stat name="TC E2E 03" id="s1-s3" pass="1" fail="0" skip="0">E2E.TC E2E 03</stat>
+<stat name="TC E2E 04" id="s1-s4" pass="1" fail="0" skip="0">E2E.TC E2E 04</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
