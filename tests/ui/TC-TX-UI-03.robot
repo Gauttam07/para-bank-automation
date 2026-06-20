@@ -16,7 +16,7 @@ TC-TX-UI-03
     Sleep    1s
     Location Should Contain    transfer
 
-    Select From List By Value  ${FROM_ACCOUNT_DROPDOWN}   14010
+    Select From List By Value  ${FROM_ACCOUNT_DROPDOWN}   13344
     Select From List By Index  ${TO_ACCOUNT_DROPDOWN}   1
     Click Transfer Button
     Sleep    2s
