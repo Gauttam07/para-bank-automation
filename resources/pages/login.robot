@@ -4,15 +4,15 @@ Resource    ../../variables/login_locators.robot
 
 *** Keywords ***
 Login User
+    Wait Until Element Is Visible    ${login_username}    10s
     Input Text    ${login_username}    Harsh
     Input Text    ${login_password}    Gauttam
     Click Button    ${login_button}
 
 login
     [Arguments]    ${id}    ${pwd}
+    Wait Until Element Is Visible    ${login_username}    10s
     Input Text    ${login_username}    ${id}
-    Sleep    1s
     Input Text    ${login_password}    ${pwd}
-    Sleep    1s
     Click Button    ${login_button}
-    Sleep    1s
+    Wait Until Page Contains    Accounts Overview    10s

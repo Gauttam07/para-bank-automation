@@ -12,12 +12,10 @@ TC-AC-UI-01
     [Documentation]    Create Savings Account
     login    ${USER_ID}    ${USER_PWD}
     Click Open New Account
-    Sleep    1s
-    Location Should Contain    openaccount
+    Wait Until Location Contains    openaccount    10s
 
     Select Account Type    1
     Select Funding Account ID    13344
-    Sleep    1s
 
     Click Open Account Button
 

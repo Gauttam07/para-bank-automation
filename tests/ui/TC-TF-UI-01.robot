@@ -15,27 +15,22 @@ TC-TF-01
 
     # Step 1: Open a Checking Account
     Click Open New Account
-    Sleep    1s
     Select Account Type    0
     Click Open Account Button
     ${checking_id}=    Get New Account Number
 
     # Step 2: Open a Savings Account
     Click Open New Account
-    Sleep    1s
     Select Account Type    1
     Click Open Account Button
     ${savings_id}=    Get New Account Number
 
     # Step 3: Transfer $50 from checking to savings
     Click Transfer Funds
-    Sleep    1s
-    Location Should Contain    transfer
+    Wait Until Location Contains    transfer    10s
 
     Enter Amount    50
     Select From Account    ${checking_id}
     Select To Account    ${savings_id}
     Click Transfer Button
-    Sleep    2s
-
-    Page Should Contain    Transfer Complete!
+    Wait Until Page Contains    Transfer Complete!    10s

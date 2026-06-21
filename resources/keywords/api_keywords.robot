@@ -40,3 +40,22 @@ Transfer Funds API
     ...    expected_status=any
 
     RETURN    ${response}
+
+Create Account API
+    [Arguments]    ${customerId}    ${accountType}    ${fromAccountId}
+    ${headers}=  Create Dictionary    Accept=application/json
+    ${response}=    POST On Session
+    ...    parabank
+    ...    /createAccount
+    ...    params=customerId=${customerId}&newAccountType=${accountType}&fromAccountId=${fromAccountId}
+    ...    headers=${headers}
+    ...    expected_status=any
+    RETURN    ${response}
+
+Verify Account Balance
+    [Arguments]    ${accountId}    ${expectedBalance}
+    ${response}=    Get Account Details    ${accountId}
+    Verify Response Code    ${response}    200
+    ${details}=    Set Variable    ${response.json()}
+    ${balance}=    Set Variable    ${details['balance']}
+    Should Be Equal As Numbers    ${balance}    ${expectedBalance}

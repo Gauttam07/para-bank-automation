@@ -10,5 +10,5 @@ TC-REG-01 Register User with Valid Details
     [Documentation]    Test user registration with valid details
     [Tags]    functional
     Register User
-    Page Should Contain    Welcome Harsh
+    Page Should Contain    Welcome ${REGISTERED_USERNAME}
     Log To Console    Successfully Registered User with Valid Details

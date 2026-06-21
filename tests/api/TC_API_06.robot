@@ -10,20 +10,29 @@ TC_API_06 Validate Destination Account Balance After Transfer
 
     ${TRANSFER_AMOUNT}=    Set Variable    10
 
-    ${response}=    Get Customer Accounts    ${CUSTOMER_ID}
-    ${accounts}=    Set Variable    ${response.json()}
+    # Step 1: Open checking and savings accounts via API
+    ${source_response}=    Create Account API    ${CUSTOMER_ID}    0    ${ACCOUNT_ID}
+    Should Be Equal As Integers    ${source_response.status_code}    200
+    ${source_json}=    Set Variable    ${source_response.json()}
+    ${source_account}=    Set Variable    ${source_json['id']}
 
-    ${source_account}=         Set Variable    ${accounts[0]['id']}
-    ${destination_account}=    Set Variable    ${accounts[1]['id']}
+    ${dest_response}=    Create Account API    ${CUSTOMER_ID}    1    ${ACCOUNT_ID}
+    Should Be Equal As Integers    ${dest_response.status_code}    200
+    ${dest_json}=    Set Variable    ${dest_response.json()}
+    ${destination_account}=    Set Variable    ${dest_json['id']}
 
-    ${destination_before}=     Set Variable    ${accounts[1]['balance']}
+    # Step 2: Fetch details of destination account before transfer
+    ${response_dest}=    Get Account Details    ${destination_account}
+    ${dest_details}=    Set Variable    ${response_dest.json()}
+    ${destination_before}=    Set Variable    ${dest_details['balance']}
 
+    # Step 3: Transfer funds
     ${transfer_response}=    Transfer Funds API  ${source_account}  ${destination_account}  ${TRANSFER_AMOUNT}
 
-    ${response}=    Get Customer Accounts    ${CUSTOMER_ID}
-    ${accounts}=    Set Variable    ${response.json()}
-
-    ${destination_after}=    Set Variable    ${accounts[1]['balance']}
+    # Step 4: Fetch destination balance after transfer and verify
+    ${response_after}=    Get Account Details    ${destination_account}
+    ${dest_details_after}=    Set Variable    ${response_after.json()}
+    ${destination_after}=    Set Variable    ${dest_details_after['balance']}
 
     ${expected}=    Evaluate  float(${destination_before}) + float(${TRANSFER_AMOUNT})
 

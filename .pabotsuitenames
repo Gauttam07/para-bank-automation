@@ -1,28 +1,8 @@
-datasources:2e5308166a9a516b28d57d81819754c68cdb1de1
-commandlineoptions:5ea3922db11a42de3fa4c89e9d9f06972f891d9e
+datasources:43806ec6fad2d3e6441c3948e8292560089c6a14
+commandlineoptions:97d170e1550eee4afc0af065b78cda302a97674c
 suitesfrom:no-suites-from-option
-file:8766c37931b7830d44653ea76ab100cd1690a6da
---suite Tests.Api.TC API 01
---suite Tests.Api.TC API 02
---suite Tests.Api.TC API 03
---suite Tests.Api.TC API 04
---suite Tests.Api.TC API 05
---suite Tests.Api.TC API 06
---suite Tests.Api.TC API 07
---suite Tests.Data-driven.Data Driven Csv
---suite Tests.E2E.TC E2E 01
---suite Tests.E2E.TC E2E 02
---suite Tests.E2E.TC E2E 03
---suite Tests.E2E.TC E2E 04
---suite Tests.Negative.Test Negative
---suite Tests.Ui.TC-AC-UI-01
---suite Tests.Ui.TC-AC-UI-02
---suite Tests.Ui.TC-AC-UI-03
---suite Tests.Ui.TC-NAV-UI-01
---suite Tests.Ui.TC-REG-UI-01
---suite Tests.Ui.TC-TF-UI-01
---suite Tests.Ui.TC-TX-UI-01
---suite Tests.Ui.TC-TX-UI-03
---suite Tests.Ui.TC-TX-UI-04
---suite Tests.Ui.TC-TX-UI-05
---suite Tests.Ui.TC-TX-UI-06
+file:0c5551746cc444aeafea945779f4df32791cbd41
+--suite E2E.TC E2E 01
+--suite E2E.TC E2E 02
+--suite E2E.TC E2E 03
+--suite E2E.TC E2E 04

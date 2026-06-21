@@ -12,12 +12,16 @@ Test Teardown    Close Application
 TC_E2E_02 Create Checking Account and Verify Customer Accounts via API
     [Documentation]    End-to-End Checking Account UI creation & API verification
     [Tags]    e2e
-    login    ${USER_ID}    ${USER_PWD}
+#    login    ${USER_ID}    ${USER_PWD}
+    Ensure User Is Logged In
     Click Open New Account
-    Sleep    1s
     Select Account Type    0
     Click Open Account Button
     ${account_id}=    Get New Account Number
-    ${response}=    Get Customer Accounts    ${CUSTOMER_ID}
+    ${account_details}=    Get Account Details    ${account_id}
+    Verify Response Code    ${account_details}    200
+    ${account_json}=    Set Variable    ${account_details.json()}
+    ${cust_id}=    Set Variable    ${account_json['customerId']}
+    ${response}=    Get Customer Accounts    ${cust_id}
     Verify Response Code    ${response}    200
     Should Contain    ${response.text}    ${account_id}

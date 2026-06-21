@@ -12,9 +12,7 @@ TC-NAV-UI-01
     login    ${USER_ID}    ${USER_PWD}
 
     Click Open New Account
-    Sleep    1s
-    Location Should Contain    openaccount
+    Wait Until Location Contains    openaccount    10s
 
     Click Transfer Funds
-    Sleep    1s
-    Location Should Contain    transfer
+    Wait Until Location Contains    transfer    10s

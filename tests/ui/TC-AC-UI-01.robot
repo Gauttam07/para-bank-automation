@@ -13,17 +13,12 @@ TC-AC-UI-02
     login    ${USER_ID}    ${USER_PWD}
 
     Click Open New Account
-    Sleep    1s
-    Location Should Contain    openaccount
+    Wait Until Location Contains    openaccount    10s
 
     Log To Console    Open_Account
 
     Select Account Type    0
-    Sleep    1s
-
     Select Funding Account ID    13344
-    Sleep    1s
-
     Click Open Account Button
 
     Page Should Contain    Account Opened!

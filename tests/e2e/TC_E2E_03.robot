@@ -13,18 +13,16 @@ Test Teardown    Close Application
 TC_E2E_03 Transfer Funds via UI and Verify Balances via API
     [Documentation]    End-to-End Funds Transfer via UI and verification via API
     [Tags]    e2e
-    login    ${USER_ID}    ${USER_PWD}
-
+#    login    ${USER_ID}    ${USER_PWD}
+    Ensure User Is Logged In
     # Step 1: Open a Checking Account
     Click Open New Account
-    Sleep    1s
     Select Account Type    0
     Click Open Account Button
     ${source_account}=    Get New Account Number
 
     # Step 2: Open a Savings Account
     Click Open New Account
-    Sleep    1s
     Select Account Type    1
     Click Open Account Button
     ${destination_account}=    Get New Account Number
@@ -37,20 +35,12 @@ TC_E2E_03 Transfer Funds via UI and Verify Balances via API
 
     # Step 4: Transfer $10 from Checking to Savings via UI
     Click Transfer Funds
-    Sleep    1s
     Enter Amount    10
     Select From Account    ${source_account}
     Select To Account    ${destination_account}
     Click Transfer Button
-    Page Should Contain    Transfer Complete!
-
-    # Step 5: Verify the new balance of the source account via API
-    ${response_after}=    Get Account Details    ${source_account}
-    Verify Response Code    ${response_after}    200
-    ${source_details_after}=    Set Variable    ${response_after.json()}
-    ${source_after}=    Set Variable    ${source_details_after['balance']}
-    Log To Console    Source After = ${source_after}
+    Wait Until Page Contains    Transfer Complete!    10s
 
     ${expected}=    Evaluate    float(${source_before}) - 10
     Log To Console    Expected = ${expected}
-    Should Be Equal As Numbers    ${source_after}    ${expected}  precision=1
+    Wait Until Keyword Succeeds    10s    1s    Verify Account Balance    ${source_account}    ${expected}

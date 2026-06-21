@@ -11,37 +11,36 @@ Test Teardown    Close Application
 
 *** Test Cases ***
 TC_E2E_04 Create New Account and Transfer Funds to It
-    [Documentation]    End-to-End creation of a checking account and transfer to it, verified via API
+    [Documentation]    End-to-End creation of two accounts and transfer between them, verified via API
     [Tags]    e2e
-    login    ${USER_ID}    ${USER_PWD}
+#    login    ${USER_ID}    ${USER_PWD}
+    Ensure User Is Logged In
 
-    # Step 1: Create a checking account
+    # Step 1: Open a Checking Account
     Click Open New Account
-    Sleep    1s
     Select Account Type    0
     Click Open Account Button
-    ${new_account_id}=    Get New Account Number
+    ${source_account}=    Get New Account Number
 
-    # Step 2: Fetch its starting balance
-    ${response_new}=    Get Account Details    ${new_account_id}
-    Verify Response Code    ${response_new}    200
-    ${new_account_details}=    Set Variable    ${response_new.json()}
-    ${starting_balance}=    Set Variable    ${new_account_details['balance']}
+    # Step 2: Open a Savings Account
+    Click Open New Account
+    Select Account Type    1
+    Click Open Account Button
+    ${destination_account}=    Get New Account Number
 
-    # Step 3: Transfer $25 to the new account from default funding account
+    # Step 3: Fetch starting balance of destination account via API
+    ${response_dest}=    Get Account Details    ${destination_account}
+    Verify Response Code    ${response_dest}    200
+    ${dest_details}=    Set Variable    ${response_dest.json()}
+    ${starting_balance}=    Set Variable    ${dest_details['balance']}
+
+    # Step 3: Transfer $25 to the new account from source account
     Click Transfer Funds
-    Sleep    1s
     Enter Amount    25
-    Select From Account    ${ACCOUNT_ID}
-    Select To Account    ${new_account_id}
+    Select From Account    ${source_account}
+    Select To Account    ${destination_account}
     Click Transfer Button
-    Page Should Contain    Transfer Complete!
-
-    # Step 4: Verify the balance has increased
-    ${response_after}=    Get Account Details    ${new_account_id}
-    Verify Response Code    ${response_after}    200
-    ${new_account_details_after}=    Set Variable    ${response_after.json()}
-    ${after_balance}=    Set Variable    ${new_account_details_after['balance']}
+    Wait Until Page Contains    Transfer Complete!    10s
 
     ${expected}=    Evaluate    float(${starting_balance}) + 25
-    Should Be Equal As Numbers    ${after_balance}    ${expected}
+    Wait Until Keyword Succeeds    10s    1s    Verify Account Balance    ${destination_account}    ${expected}

@@ -12,9 +12,9 @@ Test Teardown    Close Application
 TC_E2E_01 Create Savings Account and Verify details via API
     [Documentation]    End-to-End Savings Account UI creation & API verification
     [Tags]    e2e
-    login    ${USER_ID}    ${USER_PWD}
+#    login    ${USER_ID}    ${USER_PWD}
+    Ensure User Is Logged In
     Click Open New Account
-    Sleep    1s
     Select Account Type    1
     Click Open Account Button
     ${account_id}=    Get New Account Number

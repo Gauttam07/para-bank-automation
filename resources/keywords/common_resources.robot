@@ -39,11 +39,8 @@ Setup E2E
     Create Session To API
 Ensure User Is Logged In
     Login User
-
     ${login_success}=    Run Keyword And Return Status
-    ...    Wait Until Page Contains
-    ...    Accounts Overview
-    ...    10s
+    ...    Wait Until Page Contains    Accounts Overview    10s
 
     IF    not ${login_success}
         Go To    ${BASE_URL}

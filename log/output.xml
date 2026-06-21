@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.2 (Python 3.13.5 on win32)" generated="2026-06-21T20:49:46.538742" rpa="false" schemaversion="5">
+<suite id="s1" name="TC E2E 01" source="C:\Users\hp5cd\OneDrive\Desktop\SPRINT-CAPGE\tests\e2e\TC_E2E_01.robot">
+<kw name="Setup E2E" owner="common_resources" type="SETUP">
+<kw name="Load Environment" owner="common_resources">
+<kw name="Load Env" owner="env_loader">
+<arg>${ENV}</arg>
+<status status="PASS" start="2026-06-21T20:49:47.248536" elapsed="0.001641"/>
+</kw>
+<kw name="Get Env" owner="env_loader">
+<msg time="2026-06-21T20:49:47.250594" level="INFO">${url} = https://parabank.parasoft.com</msg>
+<var>${url}</var>
+<arg>baseurl</arg>
+<status status="PASS" start="2026-06-21T20:49:47.250392" elapsed="0.002499"/>
+</kw>
+<kw name="Get Env" owner="env_loader">
+<msg time="2026-06-21T20:49:47.253272" level="INFO">${id} = john</msg>
+<var>${id}</var>
+<arg>user_id</arg>
+<status status="PASS" start="2026-06-21T20:49:47.253070" elapsed="0.000272"/>
+</kw>
+<kw name="Get Env" owner="env_loader">
+<msg time="2026-06-21T20:49:47.253618" level="INFO">${pwd} = demo</msg>
+<var>${pwd}</var>
+<arg>user_password</arg>
+<status status="PASS" start="2026-06-21T20:49:47.253458" elapsed="0.000216"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2026-06-21T20:49:47.254805" level="INFO">${BASE_URL} = https://parabank.parasoft.com</msg>
+<arg>${BASE_URL}</arg>
+<arg>${url}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2026-06-21T20:49:47.253817" elapsed="0.001073"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2026-06-21T20:49:47.255865" level="INFO">${USER_ID} = john</msg>
+<arg>${USER_ID}</arg>
+<arg>${id}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2026-06-21T20:49:47.255020" elapsed="0.000926"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2026-06-21T20:49:47.256868" level="INFO">${USER_PWD} = demo</msg>
+<arg>${USER_PWD}</arg>
+<arg>${pwd}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2026-06-21T20:49:47.256069" elapsed="0.000875"/>
+</kw>
+<status status="PASS" start="2026-06-21T20:49:47.247880" elapsed="0.009153"/>
+</kw>
+<kw name="Create Session To API" owner="api_keywords">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-06-21T20:49:47.257524" level="INFO">Creating Session using : alias=parabank, url=https://parabank.parasoft.com/parabank/services/bank, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>parabank</arg>
+<arg>${API_BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2026-06-21T20:49:47.257363" elapsed="0.000379"/>
+</kw>
+<status status="PASS" start="2026-06-21T20:49:47.257175" elapsed="0.000661"/>
+</kw>
+<status status="PASS" start="2026-06-21T20:49:47.247518" elapsed="0.010382"/>
+</kw>
+<test id="s1-t1" name="TC_E2E_01 Create Savings Account and Verify details via API" line="12">
+<kw name="Open Application" owner="common_resources" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-06-21T20:49:47.259150" level="INFO">Opening browser 'chrome' to base url 'https://parabank.parasoft.com'.</msg>
+<arg>${BASE_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-06-21T20:49:47.258873" elapsed="6.551623"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-06-21T20:49:53.810992" elapsed="0.036643"/>
+</kw>
+<doc>opens the application</doc>
+<status status="PASS" start="2026-06-21T20:49:47.258568" elapsed="6.589305"/>
+</kw>
+<kw name="Ensure User Is Logged In" owner="common_resources">
+<kw name="Login User" owner="login">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${login_username}</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-06-21T20:49:53.848902" elapsed="0.042956"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-21T20:49:53.892477" level="INFO">Typing text 'Harsh' into text field 'xpath=//input[@name="username"]'.</msg>
+<arg>${login_username}</arg>
+<arg>Harsh</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-21T20:49:53.892132" elapsed="0.077630"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-21T20:49:53.970795" level="INFO">Typing text 'Gauttam' into text field 'xpath=//input[@name="password"]'.</msg>
+<arg>${login_password}</arg>
+<arg>Gauttam</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-21T20:49:53.970217" elapsed="0.073159"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-06-21T20:49:54.044180" level="INFO">Clicking button 'xpath=//input[@value="Log In"]'.</msg>
+<arg>${login_button}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-21T20:49:54.043664" elapsed="0.074282"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<msg time="2026-06-21T20:50:04.232085" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2026-06-21T20:50:04.232484" level="FAIL">Text 'Accounts Overview' did not appear in 10 seconds.</msg>
+<arg>Accounts Overview</arg>
+<arg>10s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="FAIL" start="2026-06-21T20:49:54.118273" elapsed="10.117952">Text 'Accounts Overview' did not appear in 10 seconds.</status>
+</kw>
+<status status="FAIL" start="2026-06-21T20:49:53.848628" elapsed="10.387916">Text 'Accounts Overview' did not appear in 10 seconds.</status>
+</kw>
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<var>${login_success}</var>
+<arg>Wait Until Page Contains</arg>
+<arg>Accounts Overview</arg>
+<arg>10s</arg>
+<doc>Runs the specified keyword and returns the status as a Boolean value.</doc>
+<status status="NOT RUN" start="2026-06-21T20:50:04.236808" elapsed="0.000150"/>
+</kw>
+<if>
+<branch type="IF" condition="not ${login_success}">
+<kw name="Go To" owner="SeleniumLibrary">
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="NOT RUN" start="2026-06-21T20:50:04.237413" elapsed="0.000113"/>
+</kw>
+<kw name="Register User" owner="registration_pages">
+<status status="NOT RUN" start="2026-06-21T20:50:04.237849" elapsed="0.000094"/>
+</kw>
+<status status="NOT RUN" start="2026-06-21T20:50:04.237157" elapsed="0.000851"/>
+</branch>
+<status status="NOT RUN" start="2026-06-21T20:50:04.237110" elapsed="0.000987"/>
+</if>
+<status status="FAIL" start="2026-06-21T20:49:53.848286" elapsed="10.389919">Text 'Accounts Overview' did not appear in 10 seconds.</status>
+</kw>
+<kw name="Click Open New Account" owner="home_page">
+<status status="NOT RUN" start="2026-06-21T20:50:04.238402" elapsed="0.000087"/>
+</kw>
+<kw name="Select Account Type" owner="open_new_account_page">
+<arg>1</arg>
+<status status="NOT RUN" start="2026-06-21T20:50:04.238769" elapsed="0.000085"/>
+</kw>
+<kw name="Click Open Account Button" owner="open_new_account_page">
+<status status="NOT RUN" start="2026-06-21T20:50:04.239004" elapsed="0.000110"/>
+</kw>
+<kw name="Get New Account Number" owner="open_new_account_page">
+<var>${account_id}</var>
+<status status="NOT RUN" start="2026-06-21T20:50:04.239333" elapsed="0.000106"/>
+</kw>
+<kw name="Get Account Details" owner="api_keywords">
+<var>${response}</var>
+<arg>${account_id}</arg>
+<status status="NOT RUN" start="2026-06-21T20:50:04.239638" elapsed="0.000101"/>
+</kw>
+<kw name="Verify Response Code" owner="api_keywords">
+<arg>${response}</arg>
+<arg>200</arg>
+<status status="NOT RUN" start="2026-06-21T20:50:04.240091" elapsed="0.000108"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${response.text}</arg>
+<arg>SAVINGS</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" start="2026-06-21T20:50:04.240387" elapsed="0.000103"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${response.text}</arg>
+<arg>${account_id}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" start="2026-06-21T20:50:04.240654" elapsed="0.000098"/>
+</kw>
+<kw name="Close Application" owner="common_resources" type="TEARDOWN">
+<kw name="Close All Browsers" owner="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2026-06-21T20:50:04.241487" elapsed="2.191905"/>
+</kw>
+<doc>closes the application</doc>
+<status status="PASS" start="2026-06-21T20:50:04.241091" elapsed="2.192623"/>
+</kw>
+<doc>End-to-End Savings Account UI creation &amp; API verification</doc>
+<tag>e2e</tag>
+<status status="FAIL" start="2026-06-21T20:49:47.257979" elapsed="19.175885">Text 'Accounts Overview' did not appear in 10 seconds.</status>
+</test>
+<status status="FAIL" start="2026-06-21T20:49:46.552990" elapsed="19.881721"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1" skip="0">e2e</stat>
+</tag>
+<suite>
+<stat name="TC E2E 01" id="s1" pass="0" fail="1" skip="0">TC E2E 01</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
