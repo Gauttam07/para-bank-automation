@@ -16,9 +16,9 @@ Get Customer Accounts
     RETURN    ${response}
 
 Get Account Details
-    [Arguments]  ${accountId}
+    [Arguments]  ${accountId}    ${expected_status}=200
     ${headers}=  Create Dictionary    Accept=application/json
-    ${response}=    GET On Session    parabank   /accounts/${accountId}  headers=${headers}
+    ${response}=    GET On Session    parabank   /accounts/${accountId}  headers=${headers}  expected_status=${expected_status}
     RETURN    ${response}
 
 Verify Response Code
@@ -59,3 +59,8 @@ Verify Account Balance
     ${details}=    Set Variable    ${response.json()}
     ${balance}=    Set Variable    ${details['balance']}
     Should Be Equal As Numbers    ${balance}    ${expectedBalance}
+
+Login API
+    [Arguments]    ${username}    ${password}
+    ${response}=    GET On Session    parabank    /login/${username}/${password}    expected_status=any
+    RETURN    ${response}

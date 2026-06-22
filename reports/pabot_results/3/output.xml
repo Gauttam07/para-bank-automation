@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.2 (Python 3.13.5 on win32)" generated="2026-06-22T19:44:42.524267" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="C:\Users\hp5cd\OneDrive\Desktop\SPRINT-CAPGE\tests">
+<suite id="s1-s1" name="Api" source="C:\Users\hp5cd\OneDrive\Desktop\SPRINT-CAPGE\tests\api">
+<suite id="s1-s1-s1" name="TC API 04" source="C:\Users\hp5cd\OneDrive\Desktop\SPRINT-CAPGE\tests\api\TC_API_04.robot">
+<kw name="Create Session To API" owner="api_keywords" type="SETUP">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-06-22T19:44:43.410783" level="INFO">Creating Session using : alias=parabank, url=https://parabank.parasoft.com/parabank/services/bank, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>parabank</arg>
+<arg>${API_BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2026-06-22T19:44:43.410550" elapsed="0.000580"/>
+</kw>
+<status status="PASS" start="2026-06-22T19:44:43.409254" elapsed="0.003310"/>
+</kw>
+<test id="s1-s1-s1-t1" name="TC_API_04 Capture Pre-Transfer Balances" line="7">
+<kw name="Create Account API" owner="api_keywords">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-06-22T19:44:43.414875" level="INFO">${headers} = {'Accept': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>Accept=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-06-22T19:44:43.414345" elapsed="0.000593"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-06-22T19:44:45.770402" level="INFO">POST Request : url=https://parabank.parasoft.com/parabank/services/bank/createAccount?customerId=12212&amp;newAccountType=0&amp;fromAccountId=13344 
+ path_url=/parabank/services/bank/createAccount?customerId=12212&amp;newAccountType=0&amp;fromAccountId=13344 
+ headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg time="2026-06-22T19:44:45.770562" level="INFO">POST Response : url=https://parabank.parasoft.com/parabank/services/bank/createAccount?customerId=12212&amp;newAccountType=0&amp;fromAccountId=13344 
+ status=200, reason=OK 
+ headers={'Date': 'Mon, 22 Jun 2026 14:14:48 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Server': 'cloudflare', 'cf-cache-status': 'DYNAMIC', 'Content-Security-Policy-Report-Only': "script-src 'unsafe-inline' 'unsafe-eval'; report-uri https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report?m=wvUIw4KGS0.jkVxtXwbL6pfHLU.sFxpIbEYsWuNlh8A-1782137687.8823848-1.0.1.1-kUeDuIQy790rDMlIqWzWCc4pY3LQx_akPzHBL0y6HvpdQ.4jOW8dYmIXZvgFLVAJNh3DvqQsnWdOlLZPWy0zbilaxQtXuwQUIBJmYrqfico.Y9fG4jtn9jicGFFIFGuUn4cBqaoMNC7GyJP9JnXyls0GTPl4UVQ8ePS3ZlBZp1flbWaImPNaLRaZ..qmrgA4; report-to cf-csp-endpoint", 'X-Content-Type-Options': 'nosniff', 'Report-To': '{"group":"cf-csp-endpoint","max_age":86400,"endpoints":[{"url":"https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report?m=wvUIw4KGS0.jkVxtXwbL6pfHLU.sFxpIbEYsWuNlh8A-1782137687.8823848-1.0.1.1-kUeDuIQy790rDMlIqWzWCc4pY3LQx_akPzHBL0y6HvpdQ.4jOW8dYmIXZvgFLVAJNh3DvqQsnWdOlLZPWy0zbilaxQtXuwQUIBJmYrqfico.Y9fG4jtn9jicGFFIFGuUn4cBqaoMNC7GyJP9JnXyls0GTPl4UVQ8ePS3ZlBZp1flbWaImPNaLRaZ..qmrgA4"}]}', 'Content-Encoding': 'gzip', 'CF-RAY': 'a0fbdc854c6be537-FRA'} 
+ body={"id":16230,"customerId":12212,"type":"CHECKING","balance":0} 
+ </msg>
+<msg time="2026-06-22T19:44:45.770644" level="INFO">C:\Users\hp5cd\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'parabank.parasoft.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-06-22T19:44:45.770802" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>parabank</arg>
+<arg>/createAccount</arg>
+<arg>params=customerId=${customerId}&amp;newAccountType=${accountType}&amp;fromAccountId=${fromAccountId}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-06-22T19:44:43.416004" elapsed="2.354828"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-06-22T19:44:45.771976" elapsed="0.000123"/>
+</return>
+<msg time="2026-06-22T19:44:45.772371" level="INFO">${source_response} = &lt;Response [200]&gt;</msg>
+<var>${source_response}</var>
+<arg>${CUSTOMER_ID}</arg>
+<arg>0</arg>
+<arg>${ACCOUNT_ID}</arg>
+<status status="PASS" start="2026-06-22T19:44:43.413916" elapsed="2.358487"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-06-22T19:44:45.773988" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${source_response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-06-22T19:44:45.773269" elapsed="0.000788"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-22T19:44:45.775588" level="INFO">${source_json} = {'id': 16230, 'customerId': 12212, 'type': 'CHECKING', 'balance': 0}</msg>
+<var>${source_json}</var>
+<arg>${source_response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-22T19:44:45.774875" elapsed="0.000749"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-22T19:44:45.777091" level="INFO">${source_account} = 16230</msg>
+<var>${source_account}</var>
+<arg>${source_json['id']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-22T19:44:45.776381" elapsed="0.000742"/>
+</kw>
+<kw name="Create Account API" owner="api_keywords">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-06-22T19:44:45.778747" level="INFO">${headers} = {'Accept': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>Accept=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-06-22T19:44:45.778330" elapsed="0.000451"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-06-22T19:44:46.208656" level="INFO">POST Request : url=https://parabank.parasoft.com/parabank/services/bank/createAccount?customerId=12212&amp;newAccountType=1&amp;fromAccountId=13344 
+ path_url=/parabank/services/bank/createAccount?customerId=12212&amp;newAccountType=1&amp;fromAccountId=13344 
+ headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg time="2026-06-22T19:44:46.208752" level="INFO">POST Response : url=https://parabank.parasoft.com/parabank/services/bank/createAccount?customerId=12212&amp;newAccountType=1&amp;fromAccountId=13344 
+ status=200, reason=OK 
+ headers={'Date': 'Mon, 22 Jun 2026 14:14:48 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Server': 'cloudflare', 'cf-cache-status': 'DYNAMIC', 'X-Content-Type-Options': 'nosniff', 'Content-Encoding': 'gzip', 'CF-RAY': 'a0fbdc89eef3e537-FRA'} 
+ body={"id":16341,"customerId":12212,"type":"SAVINGS","balance":0} 
+ </msg>
+<msg time="2026-06-22T19:44:46.208822" level="INFO">C:\Users\hp5cd\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'parabank.parasoft.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-06-22T19:44:46.209120" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>parabank</arg>
+<arg>/createAccount</arg>
+<arg>params=customerId=${customerId}&amp;newAccountType=${accountType}&amp;fromAccountId=${fromAccountId}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-06-22T19:44:45.779598" elapsed="0.429556"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-06-22T19:44:46.209987" elapsed="0.000093"/>
+</return>
+<msg time="2026-06-22T19:44:46.210293" level="INFO">${dest_response} = &lt;Response [200]&gt;</msg>
+<var>${dest_response}</var>
+<arg>${CUSTOMER_ID}</arg>
+<arg>1</arg>
+<arg>${ACCOUNT_ID}</arg>
+<status status="PASS" start="2026-06-22T19:44:45.777966" elapsed="0.432355"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-06-22T19:44:46.211662" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${dest_response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-06-22T19:44:46.211042" elapsed="0.000686"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-22T19:44:46.213030" level="INFO">${dest_json} = {'id': 16341, 'customerId': 12212, 'type': 'SAVINGS', 'balance': 0}</msg>
+<var>${dest_json}</var>
+<arg>${dest_response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-22T19:44:46.212421" elapsed="0.000644"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-22T19:44:46.214366" level="INFO">${destination_account} = 16341</msg>
+<var>${destination_account}</var>
+<arg>${dest_json['id']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-22T19:44:46.213763" elapsed="0.000633"/>
+</kw>
+<kw name="Get Account Details" owner="api_keywords">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-06-22T19:44:46.215735" level="INFO">${headers} = {'Accept': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>Accept=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-06-22T19:44:46.215454" elapsed="0.000310"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2026-06-22T19:44:46.635769" level="INFO">GET Request : url=https://parabank.parasoft.com/parabank/services/bank/accounts/16230 
+ path_url=/parabank/services/bank/accounts/16230 
+ headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2026-06-22T19:44:46.635882" level="INFO">GET Response : url=https://parabank.parasoft.com/parabank/services/bank/accounts/16230 
+ status=200, reason=OK 
+ headers={'Date': 'Mon, 22 Jun 2026 14:14:49 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Server': 'cloudflare', 'cf-cache-status': 'DYNAMIC', 'X-Content-Type-Options': 'nosniff', 'Content-Encoding': 'gzip', 'CF-RAY': 'a0fbdc8ca986e537-FRA'} 
+ body={"id":16230,"customerId":12212,"type":"CHECKING","balance":100.00} 
+ </msg>
+<msg time="2026-06-22T19:44:46.635960" level="INFO">C:\Users\hp5cd\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'parabank.parasoft.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-06-22T19:44:46.636120" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>parabank</arg>
+<arg>/accounts/${accountId}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=${expected_status}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-06-22T19:44:46.216451" elapsed="0.419704"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-06-22T19:44:46.637078" elapsed="0.000095"/>
+</return>
+<msg time="2026-06-22T19:44:46.637459" level="INFO">${response_source_details} = &lt;Response [200]&gt;</msg>
+<var>${response_source_details}</var>
+<arg>${source_account}</arg>
+<status status="PASS" start="2026-06-22T19:44:46.215137" elapsed="0.422359"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-22T19:44:46.639285" level="INFO">${source_details} = {'id': 16230, 'customerId': 12212, 'type': 'CHECKING', 'balance': 100.0}</msg>
+<var>${source_details}</var>
+<arg>${response_source_details.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-22T19:44:46.638381" elapsed="0.000935"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-22T19:44:46.640608" level="INFO">${source_balance} = 100.0</msg>
+<var>${source_balance}</var>
+<arg>${source_details['balance']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-22T19:44:46.640016" elapsed="0.000622"/>
+</kw>
+<kw name="Get Account Details" owner="api_keywords">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-06-22T19:44:46.642084" level="INFO">${headers} = {'Accept': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>Accept=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-06-22T19:44:46.641797" elapsed="0.000316"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2026-06-22T19:44:47.453047" level="INFO">GET Request : url=https://parabank.parasoft.com/parabank/services/bank/accounts/16341 
+ path_url=/parabank/services/bank/accounts/16341 
+ headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2026-06-22T19:44:47.453211" level="INFO">GET Response : url=https://parabank.parasoft.com/parabank/services/bank/accounts/16341 
+ status=200, reason=OK 
+ headers={'Date': 'Mon, 22 Jun 2026 14:14:49 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Server': 'cloudflare', 'cf-cache-status': 'DYNAMIC', 'X-Content-Type-Options': 'nosniff', 'Content-Encoding': 'gzip', 'CF-RAY': 'a0fbdc8f4bc3e537-FRA'} 
+ body={"id":16341,"customerId":12212,"type":"SAVINGS","balance":100.00} 
+ </msg>
+<msg time="2026-06-22T19:44:47.453343" level="INFO">C:\Users\hp5cd\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'parabank.parasoft.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-06-22T19:44:47.453562" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>parabank</arg>
+<arg>/accounts/${accountId}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=${expected_status}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-06-22T19:44:46.642785" elapsed="0.810837"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-06-22T19:44:47.454958" elapsed="0.000157"/>
+</return>
+<msg time="2026-06-22T19:44:47.455588" level="INFO">${response_dest_details} = &lt;Response [200]&gt;</msg>
+<var>${response_dest_details}</var>
+<arg>${destination_account}</arg>
+<status status="PASS" start="2026-06-22T19:44:46.641376" elapsed="0.814344"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-22T19:44:47.458926" level="INFO">${dest_details} = {'id': 16341, 'customerId': 12212, 'type': 'SAVINGS', 'balance': 100.0}</msg>
+<var>${dest_details}</var>
+<arg>${response_dest_details.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-22T19:44:47.457313" elapsed="0.001896"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-22T19:44:47.462933" level="INFO">${destination_balance} = 100.0</msg>
+<var>${destination_balance}</var>
+<arg>${dest_details['balance']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-22T19:44:47.461292" elapsed="0.001710"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2026-06-22T19:44:47.465601" level="INFO">${SOURCE_ACCOUNT} = 16230</msg>
+<arg>${SOURCE_ACCOUNT}</arg>
+<arg>${source_account}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2026-06-22T19:44:47.464531" elapsed="0.001162"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2026-06-22T19:44:47.467795" level="INFO">${DESTINATION_ACCOUNT} = 16341</msg>
+<arg>${DESTINATION_ACCOUNT}</arg>
+<arg>${destination_account}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2026-06-22T19:44:47.467062" elapsed="0.000837"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2026-06-22T19:44:47.471051" level="INFO">${SOURCE_BALANCE} = 100.0</msg>
+<arg>${SOURCE_BALANCE}</arg>
+<arg>${source_balance}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2026-06-22T19:44:47.470339" elapsed="0.000800"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2026-06-22T19:44:47.473541" level="INFO">${DESTINATION_BALANCE} = 100.0</msg>
+<arg>${DESTINATION_BALANCE}</arg>
+<arg>${destination_balance}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2026-06-22T19:44:47.472636" elapsed="0.001023"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${SOURCE_BALANCE}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-06-22T19:44:47.475703" elapsed="0.000820"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${DESTINATION_BALANCE}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-06-22T19:44:47.476984" elapsed="0.000759"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2026-06-22T19:44:47.481105" level="INFO">${TRANSFER_AMOUNT} = 15</msg>
+<arg>${TRANSFER_AMOUNT}</arg>
+<arg>15</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2026-06-22T19:44:47.478197" elapsed="0.003051"/>
+</kw>
+<doc>capture current balances before transfer</doc>
+<tag>api</tag>
+<status status="PASS" start="2026-06-22T19:44:43.412826" elapsed="4.069775"/>
+</test>
+<status status="PASS" start="2026-06-22T19:44:42.638414" elapsed="4.845616"/>
+</suite>
+<status status="PASS" start="2026-06-22T19:44:42.637003" elapsed="4.854095"/>
+</suite>
+<status status="PASS" start="2026-06-22T19:44:42.612795" elapsed="4.879166"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">api</stat>
+</tag>
+<suite>
+<stat name="Tests" id="s1" pass="1" fail="0" skip="0">Tests</stat>
+<stat name="Api" id="s1-s1" pass="1" fail="0" skip="0">Tests.Api</stat>
+<stat name="TC API 04" id="s1-s1-s1" pass="1" fail="0" skip="0">Tests.Api.TC API 04</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

@@ -1,8 +1,27 @@
-datasources:43806ec6fad2d3e6441c3948e8292560089c6a14
-commandlineoptions:97d170e1550eee4afc0af065b78cda302a97674c
+datasources:3efda4ec6aba6c76e817e7b0b038cf0e602af6b1
+commandlineoptions:5ea3922db11a42de3fa4c89e9d9f06972f891d9e
 suitesfrom:no-suites-from-option
-file:0c5551746cc444aeafea945779f4df32791cbd41
---suite E2E.TC E2E 01
---suite E2E.TC E2E 02
---suite E2E.TC E2E 03
---suite E2E.TC E2E 04
+file:275e1c5d4ad90216c40bc24665747047ebab703d
+--suite Tests.Api.TC API 01
+--suite Tests.Api.TC API 02
+--suite Tests.Api.TC API 03
+--suite Tests.Api.TC API 04
+--suite Tests.Api.TC API 05
+--suite Tests.Api.TC NEG API 06
+--suite Tests.Api.TC NEG API 07
+--suite Tests.E2E.TC E2E 01
+--suite Tests.E2E.TC E2E 02
+--suite Tests.E2E.TC E2E 03
+--suite Tests.E2E.TC E2E 04
+--suite Tests.Ui.TC NEG LOGN UI-01
+--suite Tests.Ui.TC NEG TF UI-01
+--suite Tests.Ui.TC NEG TF UI-03
+--suite Tests.Ui.TC NEG TF UI-04
+--suite Tests.Ui.TC NEG TF UI-05
+--suite Tests.Ui.TC NEG TF UI-06
+--suite Tests.Ui.TC-AC-UI-01
+--suite Tests.Ui.TC-AC-UI-02
+--suite Tests.Ui.TC-AC-UI-03
+--suite Tests.Ui.TC-NAV-UI-01
+--suite Tests.Ui.TC-REG-UI-01
+--suite Tests.Ui.TC-TF-UI-01
