@@ -15,4 +15,4 @@ TC_API_01 Verify Accounts
 
     Log To Console    ${body}
     Log To Console    ${response.status_code}
-    Log To Console    API_BASE_URL=${API_BASE_URL}
+
