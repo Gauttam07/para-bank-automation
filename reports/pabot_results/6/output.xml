@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.2 (Python 3.13.5 on win32)" generated="2026-06-23T15:27:46.629800" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="C:\Users\hp5cd\OneDrive\Desktop\SPRINT-CAPGE\tests">
+<suite id="s1-s1" name="Data-driven" source="C:\Users\hp5cd\OneDrive\Desktop\SPRINT-CAPGE\tests\Data-driven">
+<suite id="s1-s1-s1" name="Data Driven Csv" source="C:\Users\hp5cd\OneDrive\Desktop\SPRINT-CAPGE\tests\Data-driven\data_driven_csv.robot">
+<test id="s1-s1-s1-t1" name="Register johndoe" line="27">
+<kw name="Navigate To Parabank Register Page" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:27:47.065295" level="INFO">Opening browser 'chrome' to base url 'https://parabank.parasoft.com/parabank/index.htm'.</msg>
+<arg>${BASE_URL}</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-06-23T15:27:47.065068" elapsed="3.307251"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-06-23T15:27:50.372807" elapsed="3.111719"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//a[text()="Register"]</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-06-23T15:27:53.485147" elapsed="0.197877"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:27:53.684067" level="INFO">Clicking element 'xpath=//a[text()="Register"]'.</msg>
+<arg>xpath=//a[text()="Register"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:27:53.683557" elapsed="2.780309"/>
+</kw>
+<status status="PASS" start="2026-06-23T15:27:47.064334" elapsed="9.399910"/>
+</kw>
+<kw name="Register User">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:27:56.467778" level="INFO">Typing text 'John' into text field 'xpath=//input[@id="customer.firstName"]'.</msg>
+<arg>${FIRST_NAME_FIELD}</arg>
+<arg>${Firstname}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:27:56.466422" elapsed="2.347154"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:27:58.814865" level="INFO">Typing text 'Doe' into text field 'xpath=//input[@id="customer.lastName"]'.</msg>
+<arg>${LAST_NAME_FIELD}</arg>
+<arg>${Lastname}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:27:58.814195" elapsed="1.538613"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:28:00.354835" level="INFO">Typing text '123 Main Street' into text field 'xpath=//input[@id="customer.address.street"]'.</msg>
+<arg>${USER_ADDRESS_FIELD}</arg>
+<arg>${Address}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:28:00.353517" elapsed="0.547019"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:28:00.901826" level="INFO">Typing text 'New York' into text field 'xpath=//input[@id="customer.address.city"]'.</msg>
+<arg>${CITY_FIELD}</arg>
+<arg>${City}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:28:00.901106" elapsed="0.508245"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:28:01.410627" level="INFO">Typing text 'NY' into text field 'xpath=//input[@id="customer.address.state"]'.</msg>
+<arg>${STATE_FIELD}</arg>
+<arg>${State}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:28:01.409982" elapsed="0.230328"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:28:01.641020" level="INFO">Typing text '10001' into text field 'xpath=//input[@id="customer.address.zipCode"]'.</msg>
+<arg>${ZIPCODE_FIELD}</arg>
+<arg>${Zipcode}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:28:01.640614" elapsed="0.113502"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:28:01.755135" level="INFO">Typing text '9876543210' into text field 'xpath=//input[@id="customer.phoneNumber"]'.</msg>
+<arg>${PH_NO_FIELD}</arg>
+<arg>${Phno}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:28:01.754586" elapsed="0.192277"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:28:01.948108" level="INFO">Typing text '123456' into text field 'xpath=//input[@id="customer.ssn"]'.</msg>
+<arg>${SSN_FIELD}</arg>
+<arg>${SSN}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:28:01.947261" elapsed="0.251232"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:28:02.199352" level="INFO">Typing text 'johndoe' into text field 'xpath=//input[@id="customer.username"]'.</msg>
+<arg>${USERNAME_FIELD}</arg>
+<arg>${Username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:28:02.198850" elapsed="0.204719"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:28:02.404325" level="INFO">Typing text 'Pass@123' into text field 'xpath=//input[@id="customer.password"]'.</msg>
+<arg>${PASSWORD_FIELD}</arg>
+<arg>${Password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:28:02.403930" elapsed="0.153985"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:28:02.562656" level="INFO">Typing text 'Pass@123' into text field 'xpath=//input[@id="repeatedPassword"]'.</msg>
+<arg>${CONFIRM_FIELD}</arg>
+<arg>${Confirm}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:28:02.558332" elapsed="0.280374"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:28:02.840044" level="INFO">Clicking element 'xpath=//input[@value="Register"]'.</msg>
+<arg>${REGISTER_BUTTON}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:28:02.839298" elapsed="2.431351"/>
+</kw>
+<arg>Firstname=John</arg>
+<arg>Lastname=Doe</arg>
+<arg>Address=123 Main Street</arg>
+<arg>City=New York</arg>
+<arg>State=NY</arg>
+<arg>Zipcode=10001</arg>
+<arg>Phno=9876543210</arg>
+<arg>SSN=123456</arg>
+<arg>Username=johndoe</arg>
+<arg>Password=Pass@123</arg>
+<arg>Confirm=Pass@123</arg>
+<status status="PASS" start="2026-06-23T15:27:56.464921" elapsed="8.806119"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-06-23T15:28:05.275182" elapsed="6.207323"/>
+</kw>
+<doc>Data driven testing using csv</doc>
+<tag>datadriver</tag>
+<status status="PASS" start="2026-06-23T15:27:47.062604" elapsed="24.420276"/>
+</test>
+<test id="s1-s1-s1-t2" name="Register emmasmith" line="27">
+<kw name="Navigate To Parabank Register Page" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:28:11.503208" level="INFO">Opening browser 'chrome' to base url 'https://parabank.parasoft.com/parabank/index.htm'.</msg>
+<arg>${BASE_URL}</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-06-23T15:28:11.502280" elapsed="47.648515"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-06-23T15:28:59.151306" elapsed="0.061680"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//a[text()="Register"]</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-06-23T15:28:59.218772" elapsed="0.049325"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:28:59.269375" level="INFO">Clicking element 'xpath=//a[text()="Register"]'.</msg>
+<arg>xpath=//a[text()="Register"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:28:59.268667" elapsed="12.110534"/>
+</kw>
+<status status="PASS" start="2026-06-23T15:28:11.501040" elapsed="59.879445"/>
+</kw>
+<kw name="Register User">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:29:11.386729" level="INFO">Typing text 'Emma' into text field 'xpath=//input[@id="customer.firstName"]'.</msg>
+<arg>${FIRST_NAME_FIELD}</arg>
+<arg>${Firstname}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:29:11.384518" elapsed="0.280123"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:29:11.665655" level="INFO">Typing text 'Smith' into text field 'xpath=//input[@id="customer.lastName"]'.</msg>
+<arg>${LAST_NAME_FIELD}</arg>
+<arg>${Lastname}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:29:11.665078" elapsed="0.253063"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:29:11.920484" level="INFO">Typing text '456 Oak Avenue' into text field 'xpath=//input[@id="customer.address.street"]'.</msg>
+<arg>${USER_ADDRESS_FIELD}</arg>
+<arg>${Address}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:29:11.918805" elapsed="0.318125"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:29:12.239462" level="INFO">Typing text 'Chicago' into text field 'xpath=//input[@id="customer.address.city"]'.</msg>
+<arg>${CITY_FIELD}</arg>
+<arg>${City}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:29:12.237430" elapsed="0.178354"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:29:12.416710" level="INFO">Typing text 'IL' into text field 'xpath=//input[@id="customer.address.state"]'.</msg>
+<arg>${STATE_FIELD}</arg>
+<arg>${State}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:29:12.416232" elapsed="0.163760"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:29:12.581049" level="INFO">Typing text '60601' into text field 'xpath=//input[@id="customer.address.zipCode"]'.</msg>
+<arg>${ZIPCODE_FIELD}</arg>
+<arg>${Zipcode}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:29:12.580528" elapsed="0.172470"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:29:12.756155" level="INFO">Typing text '9876543211' into text field 'xpath=//input[@id="customer.phoneNumber"]'.</msg>
+<arg>${PH_NO_FIELD}</arg>
+<arg>${Phno}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:29:12.753877" elapsed="0.164861"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:29:12.919565" level="INFO">Typing text '567890' into text field 'xpath=//input[@id="customer.ssn"]'.</msg>
+<arg>${SSN_FIELD}</arg>
+<arg>${SSN}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:29:12.919147" elapsed="0.183473"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:29:13.103243" level="INFO">Typing text 'emmasmith' into text field 'xpath=//input[@id="customer.username"]'.</msg>
+<arg>${USERNAME_FIELD}</arg>
+<arg>${Username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:29:13.102884" elapsed="0.193193"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:29:13.297376" level="INFO">Typing text 'Pass@124' into text field 'xpath=//input[@id="customer.password"]'.</msg>
+<arg>${PASSWORD_FIELD}</arg>
+<arg>${Password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:29:13.296732" elapsed="0.163602"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:29:13.461501" level="INFO">Typing text 'Pass@124' into text field 'xpath=//input[@id="repeatedPassword"]'.</msg>
+<arg>${CONFIRM_FIELD}</arg>
+<arg>${Confirm}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:29:13.460788" elapsed="0.150220"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:29:13.611440" level="INFO">Clicking element 'xpath=//input[@value="Register"]'.</msg>
+<arg>${REGISTER_BUTTON}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:29:13.611182" elapsed="5.374197"/>
+</kw>
+<arg>Firstname=Emma</arg>
+<arg>Lastname=Smith</arg>
+<arg>Address=456 Oak Avenue</arg>
+<arg>City=Chicago</arg>
+<arg>State=IL</arg>
+<arg>Zipcode=60601</arg>
+<arg>Phno=9876543211</arg>
+<arg>SSN=567890</arg>
+<arg>Username=emmasmith</arg>
+<arg>Password=Pass@124</arg>
+<arg>Confirm=Pass@124</arg>
+<status status="PASS" start="2026-06-23T15:29:11.382271" elapsed="7.603722"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-06-23T15:29:18.987253" elapsed="2.455115"/>
+</kw>
+<doc>Data driven testing using csv</doc>
+<tag>datadriver</tag>
+<status status="PASS" start="2026-06-23T15:28:11.485380" elapsed="69.957102"/>
+</test>
+<test id="s1-s1-s1-t3" name="Register mjohnson" line="27">
+<kw name="Navigate To Parabank Register Page" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:29:21.446789" level="INFO">Opening browser 'chrome' to base url 'https://parabank.parasoft.com/parabank/index.htm'.</msg>
+<arg>${BASE_URL}</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-06-23T15:29:21.446324" elapsed="19.891853"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-06-23T15:29:41.338584" elapsed="0.089011"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//a[text()="Register"]</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-06-23T15:29:41.428163" elapsed="0.098074"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:29:41.527148" level="INFO">Clicking element 'xpath=//a[text()="Register"]'.</msg>
+<arg>xpath=//a[text()="Register"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:29:41.526672" elapsed="4.980747"/>
+</kw>
+<status status="PASS" start="2026-06-23T15:29:21.445914" elapsed="25.062123"/>
+</kw>
+<kw name="Register User">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:29:46.515498" level="INFO">Typing text 'Michael' into text field 'xpath=//input[@id="customer.firstName"]'.</msg>
+<arg>${FIRST_NAME_FIELD}</arg>
+<arg>${Firstname}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:29:46.511209" elapsed="0.497747"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:29:47.013647" level="INFO">Typing text 'Johnson' into text field 'xpath=//input[@id="customer.lastName"]'.</msg>
+<arg>${LAST_NAME_FIELD}</arg>
+<arg>${Lastname}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:29:47.009781" elapsed="0.257185"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:29:47.267788" level="INFO">Typing text '789 Pine Road' into text field 'xpath=//input[@id="customer.address.street"]'.</msg>
+<arg>${USER_ADDRESS_FIELD}</arg>
+<arg>${Address}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:29:47.267295" elapsed="0.217797"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:29:47.486675" level="INFO">Typing text 'Dallas' into text field 'xpath=//input[@id="customer.address.city"]'.</msg>
+<arg>${CITY_FIELD}</arg>
+<arg>${City}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:29:47.485406" elapsed="0.446906"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:29:47.933451" level="INFO">Typing text 'TX' into text field 'xpath=//input[@id="customer.address.state"]'.</msg>
+<arg>${STATE_FIELD}</arg>
+<arg>${State}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:29:47.932865" elapsed="0.445375"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:29:48.380212" level="INFO">Typing text '75201' into text field 'xpath=//input[@id="customer.address.zipCode"]'.</msg>
+<arg>${ZIPCODE_FIELD}</arg>
+<arg>${Zipcode}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:29:48.378716" elapsed="0.294734"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:29:48.674338" level="INFO">Typing text '9876543212' into text field 'xpath=//input[@id="customer.phoneNumber"]'.</msg>
+<arg>${PH_NO_FIELD}</arg>
+<arg>${Phno}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:29:48.673865" elapsed="0.197997"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:29:48.872628" level="INFO">Typing text '678901' into text field 'xpath=//input[@id="customer.ssn"]'.</msg>
+<arg>${SSN_FIELD}</arg>
+<arg>${SSN}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:29:48.872142" elapsed="0.100299"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:29:48.973002" level="INFO">Typing text 'mjohnson' into text field 'xpath=//input[@id="customer.username"]'.</msg>
+<arg>${USERNAME_FIELD}</arg>
+<arg>${Username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:29:48.972653" elapsed="0.107558"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:29:49.081156" level="INFO">Typing text 'Pass@125' into text field 'xpath=//input[@id="customer.password"]'.</msg>
+<arg>${PASSWORD_FIELD}</arg>
+<arg>${Password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:29:49.080604" elapsed="0.119109"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:29:49.200297" level="INFO">Typing text 'Pass@125' into text field 'xpath=//input[@id="repeatedPassword"]'.</msg>
+<arg>${CONFIRM_FIELD}</arg>
+<arg>${Confirm}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:29:49.199953" elapsed="0.106966"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:29:49.307517" level="INFO">Clicking element 'xpath=//input[@value="Register"]'.</msg>
+<arg>${REGISTER_BUTTON}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:29:49.307162" elapsed="6.492407"/>
+</kw>
+<arg>Firstname=Michael</arg>
+<arg>Lastname=Johnson</arg>
+<arg>Address=789 Pine Road</arg>
+<arg>City=Dallas</arg>
+<arg>State=TX</arg>
+<arg>Zipcode=75201</arg>
+<arg>Phno=9876543212</arg>
+<arg>SSN=678901</arg>
+<arg>Username=mjohnson</arg>
+<arg>Password=Pass@125</arg>
+<arg>Confirm=Pass@125</arg>
+<status status="PASS" start="2026-06-23T15:29:46.509903" elapsed="9.289859"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-06-23T15:29:55.800184" elapsed="2.391890"/>
+</kw>
+<doc>Data driven testing using csv</doc>
+<tag>datadriver</tag>
+<status status="PASS" start="2026-06-23T15:29:21.443476" elapsed="36.748780"/>
+</test>
+<test id="s1-s1-s1-t4" name="Register sophiaw" line="27">
+<kw name="Navigate To Parabank Register Page" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:29:58.196626" level="INFO">Opening browser 'chrome' to base url 'https://parabank.parasoft.com/parabank/index.htm'.</msg>
+<arg>${BASE_URL}</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-06-23T15:29:58.196261" elapsed="7.214074"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-06-23T15:30:05.410833" elapsed="0.083536"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//a[text()="Register"]</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-06-23T15:30:05.494692" elapsed="0.118988"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:30:05.614716" level="INFO">Clicking element 'xpath=//a[text()="Register"]'.</msg>
+<arg>xpath=//a[text()="Register"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:30:05.614135" elapsed="10.314329"/>
+</kw>
+<status status="PASS" start="2026-06-23T15:29:58.195850" elapsed="17.732872"/>
+</kw>
+<kw name="Register User">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:30:15.930131" level="INFO">Typing text 'Sophia' into text field 'xpath=//input[@id="customer.firstName"]'.</msg>
+<arg>${FIRST_NAME_FIELD}</arg>
+<arg>${Firstname}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:30:15.929730" elapsed="0.139377"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:30:16.070229" level="INFO">Typing text 'Williams' into text field 'xpath=//input[@id="customer.lastName"]'.</msg>
+<arg>${LAST_NAME_FIELD}</arg>
+<arg>${Lastname}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:30:16.069601" elapsed="0.139420"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:30:16.209490" level="INFO">Typing text '321 Maple Drive' into text field 'xpath=//input[@id="customer.address.street"]'.</msg>
+<arg>${USER_ADDRESS_FIELD}</arg>
+<arg>${Address}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:30:16.209226" elapsed="0.111836"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:30:16.321643" level="INFO">Typing text 'Seattle' into text field 'xpath=//input[@id="customer.address.city"]'.</msg>
+<arg>${CITY_FIELD}</arg>
+<arg>${City}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:30:16.321318" elapsed="0.104919"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:30:16.427116" level="INFO">Typing text 'WA' into text field 'xpath=//input[@id="customer.address.state"]'.</msg>
+<arg>${STATE_FIELD}</arg>
+<arg>${State}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:30:16.426677" elapsed="0.114463"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:30:16.541726" level="INFO">Typing text '98101' into text field 'xpath=//input[@id="customer.address.zipCode"]'.</msg>
+<arg>${ZIPCODE_FIELD}</arg>
+<arg>${Zipcode}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:30:16.541393" elapsed="0.101248"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:30:16.643362" level="INFO">Typing text '9876543213' into text field 'xpath=//input[@id="customer.phoneNumber"]'.</msg>
+<arg>${PH_NO_FIELD}</arg>
+<arg>${Phno}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:30:16.642911" elapsed="0.135402"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:30:16.779057" level="INFO">Typing text '789012' into text field 'xpath=//input[@id="customer.ssn"]'.</msg>
+<arg>${SSN_FIELD}</arg>
+<arg>${SSN}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:30:16.778570" elapsed="0.097457"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:30:16.876576" level="INFO">Typing text 'sophiaw' into text field 'xpath=//input[@id="customer.username"]'.</msg>
+<arg>${USERNAME_FIELD}</arg>
+<arg>${Username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:30:16.876224" elapsed="0.123101"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:30:17.000084" level="INFO">Typing text 'Pass@126' into text field 'xpath=//input[@id="customer.password"]'.</msg>
+<arg>${PASSWORD_FIELD}</arg>
+<arg>${Password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:30:16.999664" elapsed="0.136465"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:30:17.137197" level="INFO">Typing text 'Pass@126' into text field 'xpath=//input[@id="repeatedPassword"]'.</msg>
+<arg>${CONFIRM_FIELD}</arg>
+<arg>${Confirm}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:30:17.136569" elapsed="0.121491"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:30:17.258593" level="INFO">Clicking element 'xpath=//input[@value="Register"]'.</msg>
+<arg>${REGISTER_BUTTON}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:30:17.258288" elapsed="0.497748"/>
+</kw>
+<arg>Firstname=Sophia</arg>
+<arg>Lastname=Williams</arg>
+<arg>Address=321 Maple Drive</arg>
+<arg>City=Seattle</arg>
+<arg>State=WA</arg>
+<arg>Zipcode=98101</arg>
+<arg>Phno=9876543213</arg>
+<arg>SSN=789012</arg>
+<arg>Username=sophiaw</arg>
+<arg>Password=Pass@126</arg>
+<arg>Confirm=Pass@126</arg>
+<status status="PASS" start="2026-06-23T15:30:15.929136" elapsed="1.827187"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-06-23T15:30:17.756923" elapsed="2.306859"/>
+</kw>
+<doc>Data driven testing using csv</doc>
+<tag>datadriver</tag>
+<status status="PASS" start="2026-06-23T15:29:58.193853" elapsed="21.870106"/>
+</test>
+<test id="s1-s1-s1-t5" name="Register davidb" line="27">
+<kw name="Navigate To Parabank Register Page" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:30:20.067430" level="INFO">Opening browser 'chrome' to base url 'https://parabank.parasoft.com/parabank/index.htm'.</msg>
+<arg>${BASE_URL}</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-06-23T15:30:20.067038" elapsed="4.610822"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-06-23T15:30:24.678452" elapsed="0.052204"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//a[text()="Register"]</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-06-23T15:30:24.731270" elapsed="0.043636"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:30:24.775795" level="INFO">Clicking element 'xpath=//a[text()="Register"]'.</msg>
+<arg>xpath=//a[text()="Register"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:30:24.775355" elapsed="3.711662"/>
+</kw>
+<status status="PASS" start="2026-06-23T15:30:20.066454" elapsed="8.420778"/>
+</kw>
+<kw name="Register User">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:30:28.488980" level="INFO">Typing text 'David' into text field 'xpath=//input[@id="customer.firstName"]'.</msg>
+<arg>${FIRST_NAME_FIELD}</arg>
+<arg>${Firstname}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:30:28.488582" elapsed="0.121805"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:30:28.611035" level="INFO">Typing text 'Brown' into text field 'xpath=//input[@id="customer.lastName"]'.</msg>
+<arg>${LAST_NAME_FIELD}</arg>
+<arg>${Lastname}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:30:28.610654" elapsed="0.113282"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:30:28.724565" level="INFO">Typing text '654 Cedar Lane' into text field 'xpath=//input[@id="customer.address.street"]'.</msg>
+<arg>${USER_ADDRESS_FIELD}</arg>
+<arg>${Address}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:30:28.724153" elapsed="0.114647"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:30:28.839484" level="INFO">Typing text 'Miami' into text field 'xpath=//input[@id="customer.address.city"]'.</msg>
+<arg>${CITY_FIELD}</arg>
+<arg>${City}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:30:28.839117" elapsed="0.118792"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:30:28.958774" level="INFO">Typing text 'FL' into text field 'xpath=//input[@id="customer.address.state"]'.</msg>
+<arg>${STATE_FIELD}</arg>
+<arg>${State}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:30:28.958290" elapsed="0.146882"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:30:29.105949" level="INFO">Typing text '33101' into text field 'xpath=//input[@id="customer.address.zipCode"]'.</msg>
+<arg>${ZIPCODE_FIELD}</arg>
+<arg>${Zipcode}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:30:29.105544" elapsed="0.130566"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:30:29.237352" level="INFO">Typing text '9876543214' into text field 'xpath=//input[@id="customer.phoneNumber"]'.</msg>
+<arg>${PH_NO_FIELD}</arg>
+<arg>${Phno}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:30:29.236623" elapsed="0.107050"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:30:29.345057" level="INFO">Typing text '890123' into text field 'xpath=//input[@id="customer.ssn"]'.</msg>
+<arg>${SSN_FIELD}</arg>
+<arg>${SSN}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:30:29.344540" elapsed="0.117001"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:30:29.462188" level="INFO">Typing text 'davidb' into text field 'xpath=//input[@id="customer.username"]'.</msg>
+<arg>${USERNAME_FIELD}</arg>
+<arg>${Username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:30:29.461774" elapsed="0.138519"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:30:29.601293" level="INFO">Typing text 'Pass@127' into text field 'xpath=//input[@id="customer.password"]'.</msg>
+<arg>${PASSWORD_FIELD}</arg>
+<arg>${Password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:30:29.600689" elapsed="0.148601"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:30:29.750546" level="INFO">Typing text 'Pass@127' into text field 'xpath=//input[@id="repeatedPassword"]'.</msg>
+<arg>${CONFIRM_FIELD}</arg>
+<arg>${Confirm}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:30:29.749801" elapsed="0.162966"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:30:29.913639" level="INFO">Clicking element 'xpath=//input[@value="Register"]'.</msg>
+<arg>${REGISTER_BUTTON}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:30:29.913103" elapsed="0.645365"/>
+</kw>
+<arg>Firstname=David</arg>
+<arg>Lastname=Brown</arg>
+<arg>Address=654 Cedar Lane</arg>
+<arg>City=Miami</arg>
+<arg>State=FL</arg>
+<arg>Zipcode=33101</arg>
+<arg>Phno=9876543214</arg>
+<arg>SSN=890123</arg>
+<arg>Username=davidb</arg>
+<arg>Password=Pass@127</arg>
+<arg>Confirm=Pass@127</arg>
+<status status="PASS" start="2026-06-23T15:30:28.487734" elapsed="2.070954"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-06-23T15:30:30.559290" elapsed="2.250242"/>
+</kw>
+<doc>Data driven testing using csv</doc>
+<tag>datadriver</tag>
+<status status="PASS" start="2026-06-23T15:30:20.064713" elapsed="12.745007"/>
+</test>
+<status status="PASS" start="2026-06-23T15:27:46.703184" elapsed="166.114326"/>
+</suite>
+<status status="PASS" start="2026-06-23T15:27:46.700357" elapsed="166.123547"/>
+</suite>
+<status status="PASS" start="2026-06-23T15:27:46.631928" elapsed="166.193373"/>
+</suite>
+<statistics>
+<total>
+<stat pass="5" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="5" fail="0" skip="0">datadriver</stat>
+</tag>
+<suite>
+<stat name="Tests" id="s1" pass="5" fail="0" skip="0">Tests</stat>
+<stat name="Data-driven" id="s1-s1" pass="5" fail="0" skip="0">Tests.Data-driven</stat>
+<stat name="Data Driven Csv" id="s1-s1-s1" pass="5" fail="0" skip="0">Tests.Data-driven.Data Driven Csv</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

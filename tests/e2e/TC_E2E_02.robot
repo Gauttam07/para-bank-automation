@@ -10,7 +10,7 @@ Test Teardown    Close Application
 
 *** Test Cases ***
 TC_E2E_02 Create Checking Account and Verify Customer Accounts via API
-    [Documentation]    End-to-End Checking Account UI creation & API verification
+    [Documentation]    Create Checking Account and Verify Customer Accounts via API
     [Tags]    e2e
 #    login    ${USER_ID}    ${USER_PWD}
     Ensure User Is Logged In

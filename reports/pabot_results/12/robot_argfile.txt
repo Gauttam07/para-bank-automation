@@ -1,0 +1,16 @@
+--suite Tests.Ui.TC NEG TF UI-02
+--variable CALLER_ID:615ea3249f6d403491d54dc6fb4897c9
+--variable PABOTLIBURI:127.0.0.1:8270
+--variable PABOTEXECUTIONPOOLID:2
+--variable PABOTISLASTEXECUTIONINPOOL:0
+--variable PABOTNUMBEROFPROCESSES:5
+--variable PABOTQUEUEINDEX:12
+--variable PABOTLASTLEVEL:Tests.Ui.TC NEG TF UI-02
+--outputdir reports\pabot_results\12
+--output output.xml
+--log NONE
+--report NONE
+--xunit NONE
+--consolecolors off
+--consolemarkers off
+.\tests\

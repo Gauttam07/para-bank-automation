@@ -1,0 +1,198 @@
+[INFO]    Initialized logging in reports\pabot_results
+[INFO]    Robot Framework remote server at 127.0.0.1:8270 started.
+[DEBUG]   Storing .pabotsuitenames file
+[DEBUG]   2026-06-23 15:27:41.169922 [PID:24800] [3] [ID:2] EXECUTING Tests.Api.TC API 03
+[DEBUG]   2026-06-23 15:27:41.170444 [PID:23992] [4] [ID:1] EXECUTING Tests.Api.TC API 02
+[DEBUG]   2026-06-23 15:27:41.170709 [PID:5204] [1] [ID:4] EXECUTING Tests.Api.TC NEG API 01
+[DEBUG]   2026-06-23 15:27:41.170966 [PID:20328] [2] [ID:0] EXECUTING Tests.Api.TC API 01
+[DEBUG]   2026-06-23 15:27:41.171163 [PID:7832] [0] [ID:3] EXECUTING Tests.Api.TC API 04
+[INFO]    2026-06-23 15:27:45.700904 [PID:24800] [3] [ID:2] PASSED Tests.Api.TC API 03 in 4.5 seconds
+[DEBUG]   2026-06-23 15:27:45.711501 [PID:29252] [0] [ID:5] EXECUTING Tests.Api.TC NEG API 02
+[INFO]    2026-06-23 15:27:46.000257 [PID:23992] [4] [ID:1] PASSED Tests.Api.TC API 02 in 4.8 seconds
+[DEBUG]   2026-06-23 15:27:46.007657 [PID:19308] [1] [ID:6] EXECUTING Tests.Data-driven.Data Driven Csv
+[DEBUG]   2026-06-23 15:27:46.195837 [PID:5204] [1] [ID:4] still running Tests.Api.TC NEG API 01 after 5.0s
+[DEBUG]   2026-06-23 15:27:46.197361 [PID:7832] [0] [ID:3] still running Tests.Api.TC API 04 after 5.0s
+[DEBUG]   2026-06-23 15:27:46.202903 [PID:20328] [2] [ID:0] still running Tests.Api.TC API 01 after 5.0s
+[INFO]    2026-06-23 15:27:46.711196 [PID:20328] [2] [ID:0] PASSED Tests.Api.TC API 01 in 5.5 seconds
+[DEBUG]   2026-06-23 15:27:46.723810 [PID:29496] [2] [ID:7] EXECUTING Tests.E2E.TC E2E 01
+[INFO]    2026-06-23 15:27:48.852590 [PID:7832] [0] [ID:3] PASSED Tests.Api.TC API 04 in 7.7 seconds
+[DEBUG]   2026-06-23 15:27:48.867400 [PID:7024] [3] [ID:8] EXECUTING Tests.E2E.TC E2E 02
+[INFO]    2026-06-23 15:27:49.166005 [PID:29252] [0] [ID:5] PASSED Tests.Api.TC NEG API 02 in 3.5 seconds
+[INFO]    2026-06-23 15:27:49.170581 [PID:5204] [1] [ID:4] PASSED Tests.Api.TC NEG API 01 in 8.0 seconds
+[DEBUG]   2026-06-23 15:27:49.178071 [PID:22316] [4] [ID:9] EXECUTING Tests.E2E.TC E2E 03
+[DEBUG]   2026-06-23 15:27:49.181018 [PID:26436] [0] [ID:10] EXECUTING Tests.Ui.TC NEG LOGN UI-01
+[DEBUG]   2026-06-23 15:27:51.286295 [PID:19308] [1] [ID:6] still running Tests.Data-driven.Data Driven Csv after 5.0s
+[DEBUG]   2026-06-23 15:27:52.432949 [PID:29496] [2] [ID:7] still running Tests.E2E.TC E2E 01 after 5.0s
+[DEBUG]   2026-06-23 15:27:54.176582 [PID:7024] [3] [ID:8] still running Tests.E2E.TC E2E 02 after 5.0s
+[DEBUG]   2026-06-23 15:27:54.481212 [PID:26436] [0] [ID:10] still running Tests.Ui.TC NEG LOGN UI-01 after 5.0s
+[DEBUG]   2026-06-23 15:27:54.531566 [PID:22316] [4] [ID:9] still running Tests.E2E.TC E2E 03 after 5.0s
+[DEBUG]   2026-06-23 15:28:01.936506 [PID:19308] [1] [ID:6] still running Tests.Data-driven.Data Driven Csv after 15.0s
+[DEBUG]   2026-06-23 15:28:03.966782 [PID:29496] [2] [ID:7] still running Tests.E2E.TC E2E 01 after 15.0s
+[DEBUG]   2026-06-23 15:28:04.777157 [PID:7024] [3] [ID:8] still running Tests.E2E.TC E2E 02 after 15.0s
+[DEBUG]   2026-06-23 15:28:05.081593 [PID:26436] [0] [ID:10] still running Tests.Ui.TC NEG LOGN UI-01 after 15.0s
+[DEBUG]   2026-06-23 15:28:05.159025 [PID:22316] [4] [ID:9] still running Tests.E2E.TC E2E 03 after 15.0s
+[INFO]    2026-06-23 15:28:12.401254 [PID:26436] [0] [ID:10] PASSED Tests.Ui.TC NEG LOGN UI-01 in 23.2 seconds
+[DEBUG]   2026-06-23 15:28:12.461604 [PID:29932] [1] [ID:11] EXECUTING Tests.Ui.TC NEG TF UI-01
+[DEBUG]   2026-06-23 15:28:17.586494 [PID:29932] [1] [ID:11] still running Tests.Ui.TC NEG TF UI-01 after 5.0s
+[DEBUG]   2026-06-23 15:28:17.629855 [PID:19308] [1] [ID:6] still running Tests.Data-driven.Data Driven Csv after 30.0s
+[DEBUG]   2026-06-23 15:28:20.033085 [PID:29496] [2] [ID:7] still running Tests.E2E.TC E2E 01 after 30.0s
+[DEBUG]   2026-06-23 15:28:20.301084 [PID:7024] [3] [ID:8] still running Tests.E2E.TC E2E 02 after 30.0s
+[DEBUG]   2026-06-23 15:28:20.670824 [PID:22316] [4] [ID:9] still running Tests.E2E.TC E2E 03 after 30.0s
+[DEBUG]   2026-06-23 15:28:27.637690 [PID:29932] [1] [ID:11] still running Tests.Ui.TC NEG TF UI-01 after 15.0s
+[DEBUG]   2026-06-23 15:28:37.726080 [PID:19308] [1] [ID:6] still running Tests.Data-driven.Data Driven Csv after 50.0s
+[DEBUG]   2026-06-23 15:28:40.146072 [PID:29496] [2] [ID:7] still running Tests.E2E.TC E2E 01 after 50.0s
+[DEBUG]   2026-06-23 15:28:40.392150 [PID:7024] [3] [ID:8] still running Tests.E2E.TC E2E 02 after 50.0s
+[DEBUG]   2026-06-23 15:28:40.782179 [PID:22316] [4] [ID:9] still running Tests.E2E.TC E2E 03 after 50.0s
+[DEBUG]   2026-06-23 15:28:42.707284 [PID:29932] [1] [ID:11] still running Tests.Ui.TC NEG TF UI-01 after 30.0s
+[INFO]    2026-06-23 15:28:45.421444 [PID:22316] [4] [ID:9] PASSED Tests.E2E.TC E2E 03 in 56.2 seconds
+[DEBUG]   2026-06-23 15:28:45.436387 [PID:13728] [2] [ID:12] EXECUTING Tests.Ui.TC NEG TF UI-02
+[DEBUG]   2026-06-23 15:28:50.479083 [PID:13728] [2] [ID:12] still running Tests.Ui.TC NEG TF UI-02 after 5.0s
+[INFO]    2026-06-23 15:28:55.206437 [PID:29932] [1] [ID:11] Execution failed in Tests.Ui.TC NEG TF UI-01 with 1 failing test(s)
+==============================================================================
+Tests
+==============================================================================
+Tests.Ui
+==============================================================================
+Tests.Ui.TC NEG TF UI-01
+==============================================================================
+TC_NEG_TF_UI-01 :: Verify UI Validation for Negative Amount in Tra... Account ID = 22002
+Account ID = 22113
+| FAIL |
+Text 'Transfer Complete!' did not disappear in 10 seconds.
+------------------------------------------------------------------------------
+Tests.Ui.TC NEG TF UI-01                                              | FAIL |
+1 test, 0 passed, 1 failed
+==============================================================================
+Tests.Ui                                                              | FAIL |
+1 test, 0 passed, 1 failed
+==============================================================================
+Tests                                                                 | FAIL |
+1 test, 0 passed, 1 failed
+==============================================================================
+Output:  C:\Users\hp5cd\OneDrive\Desktop\SPRINT-CAPGE\reports\pabot_results\11\output.xml
+[DEBUG]   2026-06-23 15:28:55.217902 [PID:28736] [3] [ID:13] EXECUTING Tests.Ui.TC NEG TF UI-03
+[DEBUG]   2026-06-23 15:29:00.242335 [PID:28736] [3] [ID:13] still running Tests.Ui.TC NEG TF UI-03 after 5.0s
+[DEBUG]   2026-06-23 15:29:00.527982 [PID:13728] [2] [ID:12] still running Tests.Ui.TC NEG TF UI-02 after 15.0s
+[DEBUG]   2026-06-23 15:29:02.873984 [PID:19308] [1] [ID:6] still running Tests.Data-driven.Data Driven Csv after 75.0s
+[DEBUG]   2026-06-23 15:29:05.383274 [PID:29496] [2] [ID:7] still running Tests.E2E.TC E2E 01 after 75.0s
+[DEBUG]   2026-06-23 15:29:05.537002 [PID:7024] [3] [ID:8] still running Tests.E2E.TC E2E 02 after 75.0s
+[DEBUG]   2026-06-23 15:29:10.295031 [PID:28736] [3] [ID:13] still running Tests.Ui.TC NEG TF UI-03 after 15.0s
+[DEBUG]   2026-06-23 15:29:15.627066 [PID:13728] [2] [ID:12] still running Tests.Ui.TC NEG TF UI-02 after 30.0s
+[INFO]    2026-06-23 15:29:21.255605 [PID:13728] [2] [ID:12] PASSED Tests.Ui.TC NEG TF UI-02 in 35.8 seconds
+[DEBUG]   2026-06-23 15:29:21.265077 [PID:29152] [4] [ID:14] EXECUTING Tests.Ui.TC NEG TF UI-04
+[INFO]    2026-06-23 15:29:21.578076 [PID:28736] [3] [ID:13] PASSED Tests.Ui.TC NEG TF UI-03 in 26.4 seconds
+[DEBUG]   2026-06-23 15:29:21.589701 [PID:26304] [0] [ID:15] EXECUTING Tests.Ui.TC NEG TF UI-05
+[DEBUG]   2026-06-23 15:29:26.346527 [PID:29152] [4] [ID:14] still running Tests.Ui.TC NEG TF UI-04 after 5.0s
+[DEBUG]   2026-06-23 15:29:26.662378 [PID:26304] [0] [ID:15] still running Tests.Ui.TC NEG TF UI-05 after 5.0s
+[INFO]    2026-06-23 15:29:28.192018 [PID:7024] [3] [ID:8] Execution failed in Tests.E2E.TC E2E 02 with 1 failing test(s)
+==============================================================================
+Tests
+==============================================================================
+Tests.E2E
+==============================================================================
+Tests.E2E.TC E2E 02
+==============================================================================
+TC_E2E_02 Create Checking Account and Verify Customer Accounts via... Current URL: https://parabank.parasoft.com/parabank/index.htm
+| FAIL |
+Text 'Your account was created successfully. You are now logged in.' did not appear in 10 seconds.
+------------------------------------------------------------------------------
+Tests.E2E.TC E2E 02                                                   | FAIL |
+1 test, 0 passed, 1 failed
+==============================================================================
+Tests.E2E                                                             | FAIL |
+1 test, 0 passed, 1 failed
+==============================================================================
+Tests                                                                 | FAIL |
+1 test, 0 passed, 1 failed
+==============================================================================
+Output:  C:\Users\hp5cd\OneDrive\Desktop\SPRINT-CAPGE\reports\pabot_results\8\output.xml
+[DEBUG]   2026-06-23 15:29:28.202857 [PID:28976] [1] [ID:16] EXECUTING Tests.Ui.TC-AC-UI-01
+[DEBUG]   2026-06-23 15:29:33.125900 [PID:19308] [1] [ID:6] still running Tests.Data-driven.Data Driven Csv after 105.0s
+[DEBUG]   2026-06-23 15:29:33.228492 [PID:28976] [1] [ID:16] still running Tests.Ui.TC-AC-UI-01 after 5.0s
+[INFO]    2026-06-23 15:29:33.553097 [PID:29496] [2] [ID:7] PASSED Tests.E2E.TC E2E 01 in 106.8 seconds
+[DEBUG]   2026-06-23 15:29:33.563566 [PID:26544] [2] [ID:17] EXECUTING Tests.Ui.TC-AC-UI-02
+[DEBUG]   2026-06-23 15:29:36.464395 [PID:29152] [4] [ID:14] still running Tests.Ui.TC NEG TF UI-04 after 15.0s
+[DEBUG]   2026-06-23 15:29:36.764753 [PID:26304] [0] [ID:15] still running Tests.Ui.TC NEG TF UI-05 after 15.0s
+[DEBUG]   2026-06-23 15:29:38.808328 [PID:26544] [2] [ID:17] still running Tests.Ui.TC-AC-UI-02 after 5.0s
+[DEBUG]   2026-06-23 15:29:43.362176 [PID:28976] [1] [ID:16] still running Tests.Ui.TC-AC-UI-01 after 15.0s
+[DEBUG]   2026-06-23 15:29:48.949487 [PID:26544] [2] [ID:17] still running Tests.Ui.TC-AC-UI-02 after 15.0s
+[INFO]    2026-06-23 15:29:51.171734 [PID:26544] [2] [ID:17] PASSED Tests.Ui.TC-AC-UI-02 in 17.6 seconds
+[DEBUG]   2026-06-23 15:29:51.182683 [PID:28584] [3] [ID:18] EXECUTING Tests.Ui.TC-AC-UI-03
+[DEBUG]   2026-06-23 15:29:51.603680 [PID:29152] [4] [ID:14] still running Tests.Ui.TC NEG TF UI-04 after 30.0s
+[DEBUG]   2026-06-23 15:29:51.904799 [PID:26304] [0] [ID:15] still running Tests.Ui.TC NEG TF UI-05 after 30.0s
+[DEBUG]   2026-06-23 15:29:56.451947 [PID:28584] [3] [ID:18] still running Tests.Ui.TC-AC-UI-03 after 5.0s
+[INFO]    2026-06-23 15:29:56.580824 [PID:28976] [1] [ID:16] PASSED Tests.Ui.TC-AC-UI-01 in 28.4 seconds
+[DEBUG]   2026-06-23 15:29:56.597745 [PID:15408] [4] [ID:19] EXECUTING Tests.Ui.TC-NAV-UI-01
+[DEBUG]   2026-06-23 15:30:01.715132 [PID:15408] [4] [ID:19] still running Tests.Ui.TC-NAV-UI-01 after 5.0s
+[INFO]    2026-06-23 15:30:02.947459 [PID:26304] [0] [ID:15] Execution failed in Tests.Ui.TC NEG TF UI-05 with 1 failing test(s)
+==============================================================================
+Tests
+==============================================================================
+Tests.Ui
+==============================================================================
+Tests.Ui.TC NEG TF UI-05
+==============================================================================
+TC_NEG_TF_UI-06 :: Validate transfer funds to same account give er... Account ID = 23778
+| FAIL |
+Text 'Transfer Complete!' did not disappear in 5 seconds.
+------------------------------------------------------------------------------
+Tests.Ui.TC NEG TF UI-05                                              | FAIL |
+1 test, 0 passed, 1 failed
+==============================================================================
+Tests.Ui                                                              | FAIL |
+1 test, 0 passed, 1 failed
+==============================================================================
+Tests                                                                 | FAIL |
+1 test, 0 passed, 1 failed
+==============================================================================
+Output:  C:\Users\hp5cd\OneDrive\Desktop\SPRINT-CAPGE\reports\pabot_results\15\output.xml
+[DEBUG]   2026-06-23 15:30:02.962898 [PID:2396] [0] [ID:20] EXECUTING Tests.Ui.TC-REG-UI-01
+[DEBUG]   2026-06-23 15:30:07.433228 [PID:28584] [3] [ID:18] still running Tests.Ui.TC-AC-UI-03 after 15.0s
+[DEBUG]   2026-06-23 15:30:08.035509 [PID:2396] [0] [ID:20] still running Tests.Ui.TC-REG-UI-01 after 5.0s
+[DEBUG]   2026-06-23 15:30:08.749156 [PID:19308] [1] [ID:6] still running Tests.Data-driven.Data Driven Csv after 140.0s
+[INFO]    2026-06-23 15:30:09.598260 [PID:29152] [4] [ID:14] Execution failed in Tests.Ui.TC NEG TF UI-04 with 1 failing test(s)
+==============================================================================
+Tests
+==============================================================================
+Tests.Ui
+==============================================================================
+Tests.Ui.TC NEG TF UI-04
+==============================================================================
+TC_NEG_TF_UI-05 :: Verify UI Error Message for Transfer Amount Exc... Account ID = 23889
+Account ID = 24111
+| FAIL |
+Text 'Transfer Complete!' did not disappear in 5 seconds.
+------------------------------------------------------------------------------
+Tests.Ui.TC NEG TF UI-04                                              | FAIL |
+1 test, 0 passed, 1 failed
+==============================================================================
+Tests.Ui                                                              | FAIL |
+1 test, 0 passed, 1 failed
+==============================================================================
+Tests                                                                 | FAIL |
+1 test, 0 passed, 1 failed
+==============================================================================
+Output:  C:\Users\hp5cd\OneDrive\Desktop\SPRINT-CAPGE\reports\pabot_results\14\output.xml
+[DEBUG]   2026-06-23 15:30:09.613676 [PID:10776] [1] [ID:21] EXECUTING Tests.Ui.TC-TF-UI-01
+[DEBUG]   2026-06-23 15:30:11.878779 [PID:15408] [4] [ID:19] still running Tests.Ui.TC-NAV-UI-01 after 15.0s
+[INFO]    2026-06-23 15:30:13.521821 [PID:15408] [4] [ID:19] PASSED Tests.Ui.TC-NAV-UI-01 in 16.9 seconds
+[DEBUG]   2026-06-23 15:30:14.697282 [PID:10776] [1] [ID:21] still running Tests.Ui.TC-TF-UI-01 after 5.0s
+[INFO]    2026-06-23 15:30:17.040280 [PID:28584] [3] [ID:18] PASSED Tests.Ui.TC-AC-UI-03 in 25.9 seconds
+[DEBUG]   2026-06-23 15:30:18.153381 [PID:2396] [0] [ID:20] still running Tests.Ui.TC-REG-UI-01 after 15.0s
+[INFO]    2026-06-23 15:30:21.391482 [PID:2396] [0] [ID:20] PASSED Tests.Ui.TC-REG-UI-01 in 18.4 seconds
+[DEBUG]   2026-06-23 15:30:24.769256 [PID:10776] [1] [ID:21] still running Tests.Ui.TC-TF-UI-01 after 15.0s
+[INFO]    2026-06-23 15:30:33.295178 [PID:19308] [1] [ID:6] PASSED Tests.Data-driven.Data Driven Csv in 167.3 seconds
+[DEBUG]   2026-06-23 15:30:39.829331 [PID:10776] [1] [ID:21] still running Tests.Ui.TC-TF-UI-01 after 30.0s
+[INFO]    2026-06-23 15:30:50.070104 [PID:10776] [1] [ID:21] PASSED Tests.Ui.TC-TF-UI-01 in 40.5 seconds
+[INFO]    26 tests, 22 passed, 4 failed, 0 skipped.
+[INFO]    ===================================================
+[INFO]    Output:  C:\Users\hp5cd\OneDrive\Desktop\SPRINT-CAPGE\reports\output.xml
+[INFO]    Log:     C:\Users\hp5cd\OneDrive\Desktop\SPRINT-CAPGE\reports\log.html
+[INFO]    Report:  C:\Users\hp5cd\OneDrive\Desktop\SPRINT-CAPGE\reports\report.html
+[DEBUG]   Finalizing Pabot execution...
+[DEBUG]   Stopping PabotLib process
+[INFO]    Robot Framework remote server at 127.0.0.1:8270 stopped.
+[DEBUG]   PabotLib process stopped
+[INFO]    Total testing: 13 minutes 49.10 seconds
+[INFO]    Elapsed time:  3 minutes 11.15 seconds
+[DEBUG]   Logs flushed successfully.

@@ -1,0 +1,16 @@
+--suite Tests.E2E.TC E2E 03
+--variable CALLER_ID:861a97df1a244bf7ae209c712da632cc
+--variable PABOTLIBURI:127.0.0.1:8270
+--variable PABOTEXECUTIONPOOLID:4
+--variable PABOTISLASTEXECUTIONINPOOL:0
+--variable PABOTNUMBEROFPROCESSES:5
+--variable PABOTQUEUEINDEX:9
+--variable PABOTLASTLEVEL:Tests.E2E
+--outputdir reports\pabot_results\9
+--output output.xml
+--log NONE
+--report NONE
+--xunit NONE
+--consolecolors off
+--consolemarkers off
+.\tests\

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.2 (Python 3.13.5 on win32)" generated="2026-06-23T15:27:41.989513" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="C:\Users\hp5cd\OneDrive\Desktop\SPRINT-CAPGE\tests">
+<suite id="s1-s1" name="Api" source="C:\Users\hp5cd\OneDrive\Desktop\SPRINT-CAPGE\tests\api">
+<suite id="s1-s1-s1" name="TC NEG API 01" source="C:\Users\hp5cd\OneDrive\Desktop\SPRINT-CAPGE\tests\api\TC_NEG_API_01.robot">
+<kw name="Create Session To API" owner="api_keywords" type="SETUP">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-06-23T15:27:43.333092" level="INFO">Creating Session using : alias=parabank, url=https://parabank.parasoft.com/parabank/services/bank, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>parabank</arg>
+<arg>${API_BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2026-06-23T15:27:43.332706" elapsed="0.000812"/>
+</kw>
+<status status="PASS" start="2026-06-23T15:27:43.330925" elapsed="0.002804"/>
+</kw>
+<test id="s1-s1-s1-t1" name="TC_NEG_API_06 Invalid Account ID via API" line="7">
+<kw name="Get Account Details" owner="api_keywords">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-06-23T15:27:43.336487" level="INFO">${headers} = {'Accept': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>Accept=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-06-23T15:27:43.335907" elapsed="0.000635"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2026-06-23T15:27:48.493918" level="INFO">GET Request : url=https://parabank.parasoft.com/parabank/services/bank/accounts/000000 
+ path_url=/parabank/services/bank/accounts/000000 
+ headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2026-06-23T15:27:48.494334" level="INFO">GET Response : url=https://parabank.parasoft.com/parabank/services/bank/accounts/000000 
+ status=400, reason=Bad Request 
+ headers={'Date': 'Tue, 23 Jun 2026 09:57:52 GMT', 'Content-Type': 'text/plain;charset=UTF-8', 'Content-Length': '25', 'Connection': 'keep-alive', 'Server': 'cloudflare', 'cf-cache-status': 'DYNAMIC', 'X-Content-Type-Options': 'nosniff', 'CF-RAY': 'a102a1876f04d3bd-FRA'} 
+ body=Could not find account #0 
+ </msg>
+<msg time="2026-06-23T15:27:48.494506" level="INFO">C:\Users\hp5cd\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'parabank.parasoft.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-06-23T15:27:48.494870" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<var>${response}</var>
+<arg>parabank</arg>
+<arg>/accounts/${accountId}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=${expected_status}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-06-23T15:27:43.336706" elapsed="5.158222"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-06-23T15:27:48.495245" elapsed="0.000214"/>
+</return>
+<msg time="2026-06-23T15:27:48.495870" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<var>${response}</var>
+<arg>000000</arg>
+<arg>expected_status=any</arg>
+<status status="PASS" start="2026-06-23T15:27:43.335313" elapsed="5.160633"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Response status: ${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-06-23T15:27:48.496362" elapsed="0.003913"/>
+</kw>
+<kw name="Should Not Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-06-23T15:27:48.503161" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are equal after converting them to integers.</doc>
+<status status="PASS" start="2026-06-23T15:27:48.500801" elapsed="0.002605"/>
+</kw>
+<doc>Call GET /accounts/000000 with a fake account ID — expect a 4xx response</doc>
+<tag>API</tag>
+<tag>negative</tag>
+<status status="PASS" start="2026-06-23T15:27:43.334607" elapsed="5.169231"/>
+</test>
+<status status="PASS" start="2026-06-23T15:27:42.058887" elapsed="6.446172"/>
+</suite>
+<status status="PASS" start="2026-06-23T15:27:42.057058" elapsed="6.448995"/>
+</suite>
+<status status="PASS" start="2026-06-23T15:27:41.992316" elapsed="6.514401"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">API</stat>
+<stat pass="1" fail="0" skip="0">negative</stat>
+</tag>
+<suite>
+<stat name="Tests" id="s1" pass="1" fail="0" skip="0">Tests</stat>
+<stat name="Api" id="s1-s1" pass="1" fail="0" skip="0">Tests.Api</stat>
+<stat name="TC NEG API 01" id="s1-s1-s1" pass="1" fail="0" skip="0">Tests.Api.TC NEG API 01</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

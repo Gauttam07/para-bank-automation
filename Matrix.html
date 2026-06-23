@@ -1,0 +1,3070 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Robot Metrics</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
+  <style>
+    body {
+      font-family: -apple-system, sans-serif;
+      background-color: #eeeeee;
+      display: flex;
+    }
+
+    .tablecard {
+      background-color: white;
+      font-size: 14px;
+    }
+
+    .sidebar {
+      width: 80px;
+      background-color: #343a40;
+      color: white;
+      min-height: 100vh;
+      text-align: center;
+      position: fixed;
+    }
+
+    .section {
+      padding-left: 80px;
+    }
+
+    .sidebar .brand {
+      font-size: 16px;
+      padding: 15px 0;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .sidebar .nav-link {
+      color: #ccc;
+      padding: 15px 0;
+      cursor: pointer;
+    }
+
+    .sidebar .nav-link:hover,
+    .sidebar .nav-link.active {
+      color: white;
+      background-color: #495057;
+    }
+
+    .sidebar .icon {
+      font-size: 24px;
+    }
+
+    .sidebar .count {
+      font-size: 12px;
+      color: #ccc;
+    }
+
+    .content {
+      flex-grow: 1;
+      padding: 20px;
+    }
+
+    .loader {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      background-color: rgb(249, 249, 249);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .loader i {
+      font-size: 60px;
+      color: #333;
+    }
+
+    .hide {
+      display: none;
+    }
+
+    tfoot input {
+      width: 100%;
+      padding: 3px;
+      box-sizing: border-box;
+    }
+
+    tfoot {
+      display: table-header-group;
+    }
+
+    .dt-button {
+      border: none;
+      color: #fff;
+      margin: 5px;
+      border-radius: 12px;
+      cursor: pointer;
+      padding-left: 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .dt-button.copyButton {
+      background-color: seashell;
+    }
+
+    .dt-button.csvButton {
+      background-color: cornsilk;
+    }
+
+    .dt-button.excelButton {
+      background-color: lavender;
+    }
+
+    .dt-button.printButton {
+      background-color: whitesmoke;
+    }
+
+    .dt-button.colviButton {
+      background-color: gainsboro;
+    }
+
+    th,
+    td {
+      text-align: center;
+      max-width: 100px;
+    }
+
+    .dt-buttons {
+      margin-left: 5px;
+    }
+
+    .row {
+      padding: 5px;
+    }
+
+    .rowcard {
+      padding: 10px;
+      border-radius: 15px;
+      background-color: white;
+    }
+
+    .card-header-new {
+      font-weight: bold;
+      color: gray;
+      padding-left: 5px;
+    }
+
+    .card-table,
+    .suite-table,
+    .ecard-table,
+    .table {
+      width: 100%;
+    }
+
+    .suite-table th {
+      width: 25%;
+      color: #666;
+    }
+
+    .ecard-table tr,
+    .table tr {
+      height: 25px;
+      padding-left: 5px;
+    }
+
+    .table td,
+    .table tr {
+      font-style: italic;
+      font-size: 14px;
+    }
+
+    .ecard-table tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    .card-table tr {
+      height: 25px;
+    }
+
+    .card-table td {
+      width: 50%;
+    }
+
+    .card-table tr:first-child {
+      font-size: 30px;
+    }
+
+    .card-table tr:last-child {
+      font-size: 10px;
+      color: gray;
+    }
+
+    .total {
+      color: brown;
+    }
+
+    .pass,
+    .text-success {
+      color: green;
+    }
+
+    .fail,
+    .text-danger {
+      color: red;
+    }
+
+    .skip,
+    .text-warning {
+      color: orange;
+    }
+
+    .td_left {
+      word-wrap: break-word;
+      max-width: 250px;
+      white-space: normal;
+      text-align: left;
+    }
+
+    .suite-list,
+    .suite-details {
+      padding: 10px;
+    }
+
+    .scroll {
+      height: 800px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      overflow-y: auto;
+      padding: 10px;
+    }
+
+    .suite-card,
+    .test-item {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease;
+      cursor: pointer;
+    }
+
+    .suite-card:hover,
+    .test-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-body {
+      padding: 15px;
+    }
+
+    .suite-card.pass .card-body,
+    .test-item.pass .card-body {
+      border-left: 5px solid green;
+    }
+
+    .suite-card.fail .card-body,
+    .test-item.fail .card-body {
+      border-left: 5px solid red;
+    }
+
+    .suite-card.skip .card-body,
+    .test-item.skip .card-body {
+      border-left: 5px solid orange;
+    }
+
+    .test-details p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .keyword-item {
+      padding-left: 20px;
+      font-size: 0.85rem;
+      color: #d9534f;
+    }
+
+    .col-md-4,
+    .col-md-8 {
+      overflow-y: auto;
+    }
+
+    .suite-tracker {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #fff;
+      padding: 15px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .suite-card {
+      margin-bottom: 10px;
+      padding: 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .suite-card.pass {
+      background-color: #e6f4ea;
+      color: #2e7d32;
+    }
+
+    .suite-card.fail {
+      background-color: #ffebee;
+      color: #c62828;
+    }
+
+    .suite-card.skip {
+      background-color: #fff3e0;
+      color: #ef6c00;
+    }
+
+    .filter-buttons button {
+      padding: 8px 12px;
+      margin-right: 5px;
+      border: 1px solid #ddd;
+      background-color: #f0f0f0;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .filter-buttons button:hover {
+      background-color: #ddd;
+    }
+
+    .search-container input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+    }
+
+    .error-message-box {
+      border-left: 5px solid #f5c2c7;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 4px;
+      color: #842029;
+      font-size: 0.85rem;
+    }
+
+    .title {
+      word-wrap: break-word;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="loader">
+    <i class="fa fa-spinner fa-spin"></i>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar d-flex flex-column">
+    <div class="brand" style="color:darkgoldenrod">Metrics</div>
+    <a class="nav-link" data-target="dashboard" href="#dashboard" style="color:teal">
+      <i class="icon fas fa-tachometer-alt"></i>
+      <div class="count">Dashboard</div>
+    </a>
+    <a class="nav-link" data-target="suite" href="#suite" style="color: skyblue">
+      <i class="icon fas fa-folder"></i>
+      <div class="count">Suite</div>
+    </a>
+    <a class="nav-link" data-target="test" href="#test" style="color:green">
+      <i class="icon fas fa-vial"></i>
+      <div class="count">Test</div>
+    </a>
+    <a class="nav-link" data-target="kwtimes" href="#kwtimes" style="color:tomato">
+      <i class="icon fas fa-stopwatch"></i>
+      <div class="count">KW Times</div>
+    </a>
+    <a class="nav-link" data-target="details" href="#details" style="color:burlywood">
+      <i class="icon fas fa-info-circle"></i>
+      <div class="count">Details</div>
+    </a>
+  </div>
+
+  <!-- Content Area -->
+  <div class="content">
+
+    <div class="section" id="dashboard">
+      <h2 style="color:silver">Dashboard</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="col-md-12 rowcard">
+            <span class="card-header-new">Test Status:</span>
+            <div class="col-md-12" style="display: flex; align-items: center; justify-content: center;">
+              <div id="testPie"></div>
+            </div>
+            <div class="col-md-12">
+              <table class="card-table">
+                <tr>
+                  <td class="total">21</td>
+                  <td class="pass">18</td>
+                </tr>
+                <tr>
+                  <td>Total</td>
+                  <td>Pass</td>
+                </tr>
+              </table>
+              <table class="card-table">
+                <tr>
+                  <td class="fail">3</td>
+                  <td class="skip">0</td>
+                </tr>
+                <tr>
+                  <td>Fail</td>
+                  <td>Skip</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="col-md-12">
+            <div class="col-md-12 rowcard">
+              <span class="card-header-new">Suite Status:</span>
+              <div class="col-md-12">
+                <div id="suitePie"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row"></div>
+
+          <div class="col-md-12">
+            <div class="col-md-12 rowcard">
+              <span class="card-header-new">Keyword Status:</span>
+              <div class="col-md-12">
+                <div id="keywordPie"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="col-md-12 rowcard">
+            <span class="card-header-new">Execution Duration (m):</span>
+            <table class="table">
+              <tr>
+                <th>Type</th>
+                <th>Min</th>
+                <th>Max</th>
+                <th>Avg</th>
+              </tr>
+              <tr>
+                <td class="suite-list" style="text-align: left;">Suite</td>
+                <td class="suite-list">0.09</td>
+                <td class="suite-list">1.56</td>
+                <td class="suite-list">0.67</td>
+              </tr>
+              <tr>
+                <td class="suite-list" style="text-align: left;">Test</td>
+                <td class="suite-list">0.02</td>
+                <td class="suite-list">1.44</td>
+                <td class="suite-list">0.59</td>
+              </tr>
+            </table>
+          </div>
+          <div class="row"></div>
+          <div class="col-md-12 rowcard">
+            <span class="card-header-new">Execution Info:</span>
+            <table class="table">
+              <tr>
+                <th>Action</th>
+                <th>Time</th>
+              </tr>
+              <tr>
+                <td class="suite-list" style="text-align: left;">Start Time</td>
+                <td>2026-06-23 11:55:26.845000</td>
+              </tr>
+              <tr>
+                <td class="suite-list" style="text-align: left;">End Time</td>
+                <td>2026-06-23 11:59:28.820000</td>
+              </tr>
+              <tr>
+                <td class="suite-list" style="text-align: left;">Duration</td>
+                <td>0 days 00:04:01.975000</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+
+        <div class="row"></div>
+
+      </div>
+      <div class="row"></div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="col-md-12 rowcard">
+            <span class="card-header-new">Top 10 Failed Suites:</span>
+            <div class="col-md-12">
+              <div id="suiteFailureLineID"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="col-md-12 rowcard">
+            <span class="card-header-new">Test Count By Elapsed Time:</span>
+            <div class="col-md-12">
+              <div id="testExecutionTrends"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row"></div>
+      </div>
+    </div>
+
+    <!-- Suite Data -->
+    <div class="section" id="suite">
+      <h2 style="color:silver">Suite Metrics</h2>
+      <div class="row"></div>
+      <table id="sm" class="display tablecard" style="width:100%">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Total</th>
+            <th>Pass</th>
+            <th>Fail</th>
+            <th>Skip</th>
+            <th>Time (s)</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th><input type="text" placeholder="Search Name" /></th>
+            <th><input type="text" placeholder="Search Status" /></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </tfoot>
+        <tbody>
+
+          <tr>
+            <td class="td_left" data-toggle="tooltip" title="Tests.Api.TC API 01"
+              onclick="openInNewTab('log.html#s1-s1-s1','#s1-s1-s1')"
+              style="cursor: pointer; color:blue;">
+              Tests.Api.TC API 01</td>
+
+            <td style="color: green">PASS</td>
+
+            <td>1</td>
+            <td style="color: green">1</td>
+            <td style="color: red">0</td>
+            <td style="color: orange">0</td>
+            <td>6.27</td>
+          </tr>
+
+          <tr>
+            <td class="td_left" data-toggle="tooltip" title="Tests.Api.TC API 02"
+              onclick="openInNewTab('log.html#s1-s1-s2','#s1-s1-s2')"
+              style="cursor: pointer; color:blue;">
+              Tests.Api.TC API 02</td>
+
+            <td style="color: green">PASS</td>
+
+            <td>1</td>
+            <td style="color: green">1</td>
+            <td style="color: red">0</td>
+            <td style="color: orange">0</td>
+            <td>13.21</td>
+          </tr>
+
+          <tr>
+            <td class="td_left" data-toggle="tooltip" title="Tests.Api.TC API 03"
+              onclick="openInNewTab('log.html#s1-s1-s3','#s1-s1-s3')"
+              style="cursor: pointer; color:blue;">
+              Tests.Api.TC API 03</td>
+
+            <td style="color: green">PASS</td>
+
+            <td>1</td>
+            <td style="color: green">1</td>
+            <td style="color: red">0</td>
+            <td style="color: orange">0</td>
+            <td>14.64</td>
+          </tr>
+
+          <tr>
+            <td class="td_left" data-toggle="tooltip" title="Tests.Api.TC API 04"
+              onclick="openInNewTab('log.html#s1-s1-s4','#s1-s1-s4')"
+              style="cursor: pointer; color:blue;">
+              Tests.Api.TC API 04</td>
+
+            <td style="color: green">PASS</td>
+
+            <td>1</td>
+            <td style="color: green">1</td>
+            <td style="color: red">0</td>
+            <td style="color: orange">0</td>
+            <td>16.4</td>
+          </tr>
+
+          <tr>
+            <td class="td_left" data-toggle="tooltip" title="Tests.Api.TC NEG API 01"
+              onclick="openInNewTab('log.html#s1-s1-s5','#s1-s1-s5')"
+              style="cursor: pointer; color:blue;">
+              Tests.Api.TC NEG API 01</td>
+
+            <td style="color: green">PASS</td>
+
+            <td>1</td>
+            <td style="color: green">1</td>
+            <td style="color: red">0</td>
+            <td style="color: orange">0</td>
+            <td>5.4</td>
+          </tr>
+
+          <tr>
+            <td class="td_left" data-toggle="tooltip" title="Tests.Api.TC NEG API 02"
+              onclick="openInNewTab('log.html#s1-s1-s6','#s1-s1-s6')"
+              style="cursor: pointer; color:blue;">
+              Tests.Api.TC NEG API 02</td>
+
+            <td style="color: green">PASS</td>
+
+            <td>1</td>
+            <td style="color: green">1</td>
+            <td style="color: red">0</td>
+            <td style="color: orange">0</td>
+            <td>7.45</td>
+          </tr>
+
+          <tr>
+            <td class="td_left" data-toggle="tooltip" title="Tests.E2E.TC E2E 01"
+              onclick="openInNewTab('log.html#s1-s2-s1','#s1-s2-s1')"
+              style="cursor: pointer; color:blue;">
+              Tests.E2E.TC E2E 01</td>
+
+            <td style="color: green">PASS</td>
+
+            <td>1</td>
+            <td style="color: green">1</td>
+            <td style="color: red">0</td>
+            <td style="color: orange">0</td>
+            <td>67.63</td>
+          </tr>
+
+          <tr>
+            <td class="td_left" data-toggle="tooltip" title="Tests.E2E.TC E2E 02"
+              onclick="openInNewTab('log.html#s1-s2-s2','#s1-s2-s2')"
+              style="cursor: pointer; color:blue;">
+              Tests.E2E.TC E2E 02</td>
+
+            <td style="color: green">PASS</td>
+
+            <td>1</td>
+            <td style="color: green">1</td>
+            <td style="color: red">0</td>
+            <td style="color: orange">0</td>
+            <td>65.35</td>
+          </tr>
+
+          <tr>
+            <td class="td_left" data-toggle="tooltip" title="Tests.E2E.TC E2E 03"
+              onclick="openInNewTab('log.html#s1-s2-s3','#s1-s2-s3')"
+              style="cursor: pointer; color:blue;">
+              Tests.E2E.TC E2E 03</td>
+
+            <td style="color: green">PASS</td>
+
+            <td>1</td>
+            <td style="color: green">1</td>
+            <td style="color: red">0</td>
+            <td style="color: orange">0</td>
+            <td>90.08</td>
+          </tr>
+
+          <tr>
+            <td class="td_left" data-toggle="tooltip" title="Tests.Ui.TC NEG LOGN UI-01"
+              onclick="openInNewTab('log.html#s1-s3-s1','#s1-s3-s1')"
+              style="cursor: pointer; color:blue;">
+              Tests.Ui.TC NEG LOGN UI-01</td>
+
+            <td style="color: green">PASS</td>
+
+            <td>1</td>
+            <td style="color: green">1</td>
+            <td style="color: red">0</td>
+            <td style="color: orange">0</td>
+            <td>20.24</td>
+          </tr>
+
+          <tr>
+            <td class="td_left" data-toggle="tooltip" title="Tests.Ui.TC NEG TF UI-01"
+              onclick="openInNewTab('log.html#s1-s3-s2','#s1-s3-s2')"
+              style="cursor: pointer; color:blue;">
+              Tests.Ui.TC NEG TF UI-01</td>
+
+            <td style="color: red">FAIL</td>
+
+            <td>1</td>
+            <td style="color: green">0</td>
+            <td style="color: red">1</td>
+            <td style="color: orange">0</td>
+            <td>59.91</td>
+          </tr>
+
+          <tr>
+            <td class="td_left" data-toggle="tooltip" title="Tests.Ui.TC NEG TF UI-02"
+              onclick="openInNewTab('log.html#s1-s3-s3','#s1-s3-s3')"
+              style="cursor: pointer; color:blue;">
+              Tests.Ui.TC NEG TF UI-02</td>
+
+            <td style="color: green">PASS</td>
+
+            <td>1</td>
+            <td style="color: green">1</td>
+            <td style="color: red">0</td>
+            <td style="color: orange">0</td>
+            <td>47.24</td>
+          </tr>
+
+          <tr>
+            <td class="td_left" data-toggle="tooltip" title="Tests.Ui.TC NEG TF UI-03"
+              onclick="openInNewTab('log.html#s1-s3-s4','#s1-s3-s4')"
+              style="cursor: pointer; color:blue;">
+              Tests.Ui.TC NEG TF UI-03</td>
+
+            <td style="color: green">PASS</td>
+
+            <td>1</td>
+            <td style="color: green">1</td>
+            <td style="color: red">0</td>
+            <td style="color: orange">0</td>
+            <td>44.2</td>
+          </tr>
+
+          <tr>
+            <td class="td_left" data-toggle="tooltip" title="Tests.Ui.TC NEG TF UI-04"
+              onclick="openInNewTab('log.html#s1-s3-s5','#s1-s3-s5')"
+              style="cursor: pointer; color:blue;">
+              Tests.Ui.TC NEG TF UI-04</td>
+
+            <td style="color: red">FAIL</td>
+
+            <td>1</td>
+            <td style="color: green">0</td>
+            <td style="color: red">1</td>
+            <td style="color: orange">0</td>
+            <td>93.9</td>
+          </tr>
+
+          <tr>
+            <td class="td_left" data-toggle="tooltip" title="Tests.Ui.TC NEG TF UI-05"
+              onclick="openInNewTab('log.html#s1-s3-s6','#s1-s3-s6')"
+              style="cursor: pointer; color:blue;">
+              Tests.Ui.TC NEG TF UI-05</td>
+
+            <td style="color: red">FAIL</td>
+
+            <td>1</td>
+            <td style="color: green">0</td>
+            <td style="color: red">1</td>
+            <td style="color: orange">0</td>
+            <td>64.75</td>
+          </tr>
+
+          <tr>
+            <td class="td_left" data-toggle="tooltip" title="Tests.Ui.TC-AC-UI-01"
+              onclick="openInNewTab('log.html#s1-s3-s7','#s1-s3-s7')"
+              style="cursor: pointer; color:blue;">
+              Tests.Ui.TC-AC-UI-01</td>
+
+            <td style="color: green">PASS</td>
+
+            <td>1</td>
+            <td style="color: green">1</td>
+            <td style="color: red">0</td>
+            <td style="color: orange">0</td>
+            <td>35.97</td>
+          </tr>
+
+          <tr>
+            <td class="td_left" data-toggle="tooltip" title="Tests.Ui.TC-AC-UI-02"
+              onclick="openInNewTab('log.html#s1-s3-s8','#s1-s3-s8')"
+              style="cursor: pointer; color:blue;">
+              Tests.Ui.TC-AC-UI-02</td>
+
+            <td style="color: green">PASS</td>
+
+            <td>1</td>
+            <td style="color: green">1</td>
+            <td style="color: red">0</td>
+            <td style="color: orange">0</td>
+            <td>44.14</td>
+          </tr>
+
+          <tr>
+            <td class="td_left" data-toggle="tooltip" title="Tests.Ui.TC-AC-UI-03"
+              onclick="openInNewTab('log.html#s1-s3-s9','#s1-s3-s9')"
+              style="cursor: pointer; color:blue;">
+              Tests.Ui.TC-AC-UI-03</td>
+
+            <td style="color: green">PASS</td>
+
+            <td>1</td>
+            <td style="color: green">1</td>
+            <td style="color: red">0</td>
+            <td style="color: orange">0</td>
+            <td>51.83</td>
+          </tr>
+
+          <tr>
+            <td class="td_left" data-toggle="tooltip" title="Tests.Ui.TC-NAV-UI-01"
+              onclick="openInNewTab('log.html#s1-s3-s10','#s1-s3-s10')"
+              style="cursor: pointer; color:blue;">
+              Tests.Ui.TC-NAV-UI-01</td>
+
+            <td style="color: green">PASS</td>
+
+            <td>1</td>
+            <td style="color: green">1</td>
+            <td style="color: red">0</td>
+            <td style="color: orange">0</td>
+            <td>31.98</td>
+          </tr>
+
+          <tr>
+            <td class="td_left" data-toggle="tooltip" title="Tests.Ui.TC-REG-UI-01"
+              onclick="openInNewTab('log.html#s1-s3-s11','#s1-s3-s11')"
+              style="cursor: pointer; color:blue;">
+              Tests.Ui.TC-REG-UI-01</td>
+
+            <td style="color: green">PASS</td>
+
+            <td>1</td>
+            <td style="color: green">1</td>
+            <td style="color: red">0</td>
+            <td style="color: orange">0</td>
+            <td>33.53</td>
+          </tr>
+
+          <tr>
+            <td class="td_left" data-toggle="tooltip" title="Tests.Ui.TC-TF-UI-01"
+              onclick="openInNewTab('log.html#s1-s3-s12','#s1-s3-s12')"
+              style="cursor: pointer; color:blue;">
+              Tests.Ui.TC-TF-UI-01</td>
+
+            <td style="color: green">PASS</td>
+
+            <td>1</td>
+            <td style="color: green">1</td>
+            <td style="color: red">0</td>
+            <td style="color: orange">0</td>
+            <td>35.81</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Test Case Data -->
+    <div class="section" id="test">
+      <h2 style="color:silver">Test Metrics</h2>
+      <div class="row"></div>
+      <table id="tm" class="display tablecard" style="width:100%">
+        <thead>
+          <tr>
+            <th style="width: 20%;">Suite Name</th>
+            <th style="width: 20%;">Test Name</th>
+            <th style="width: 10%;">Status</th>
+            <th style="width: 10%;">Time (s)</th>
+            <th style="width: 20%;">Message</th>
+            <th style="width: 20%;" class="hide">Tags</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th><input type="text" placeholder="Search Suite" /></th>
+            <th><input type="text" placeholder="Search Name" /></th>
+            <th><input type="text" placeholder="Search Status" /></th>
+            <th></th>
+            <th><input type="text" placeholder="Search Message" /></th>
+            <th class="hide"></th>
+          </tr>
+        </tfoot>
+        <tbody>
+
+          <tr>
+            <td class="td_left" style="width: 200px;">robot.result.TestSuite(name='TC API 01')</td>
+            <td class="td_left" data-toggle="tooltip" title="TC_API_01 Verify Accounts"
+              onclick="openInNewTab('log.html#s1-s1-s1-t1','#s1-s1-s1-t1')"
+              style="cursor: pointer; color:blue;width: 200px;">
+              TC_API_01 Verify Accounts</td>
+
+            <td style="color:green">PASS</td>
+
+            <td>6.26</td>
+            <td class="td_left" style="font-size: 12px"></td>
+            <td class="hide td_left">[api]
+            </td>
+          </tr>
+
+          <tr>
+            <td class="td_left" style="width: 200px;">robot.result.TestSuite(name='TC API 02')</td>
+            <td class="td_left" data-toggle="tooltip" title="TC_API_02 verify newly created account"
+              onclick="openInNewTab('log.html#s1-s1-s2-t1','#s1-s1-s2-t1')"
+              style="cursor: pointer; color:blue;width: 200px;">
+              TC_API_02 verify newly created account</td>
+
+            <td style="color:green">PASS</td>
+
+            <td>1.15</td>
+            <td class="td_left" style="font-size: 12px"></td>
+            <td class="hide td_left">[api]
+            </td>
+          </tr>
+
+          <tr>
+            <td class="td_left" style="width: 200px;">robot.result.TestSuite(name='TC API 03')</td>
+            <td class="td_left" data-toggle="tooltip" title="TC_API_03 Validate account details"
+              onclick="openInNewTab('log.html#s1-s1-s3-t1','#s1-s1-s3-t1')"
+              style="cursor: pointer; color:blue;width: 200px;">
+              TC_API_03 Validate account details</td>
+
+            <td style="color:green">PASS</td>
+
+            <td>2.57</td>
+            <td class="td_left" style="font-size: 12px"></td>
+            <td class="hide td_left">[api]
+            </td>
+          </tr>
+
+          <tr>
+            <td class="td_left" style="width: 200px;">robot.result.TestSuite(name='TC API 04')</td>
+            <td class="td_left" data-toggle="tooltip" title="TC_API_04 Capture Pre-Transfer Balances"
+              onclick="openInNewTab('log.html#s1-s1-s4-t1','#s1-s1-s4-t1')"
+              style="cursor: pointer; color:blue;width: 200px;">
+              TC_API_04 Capture Pre-Transfer Balances</td>
+
+            <td style="color:green">PASS</td>
+
+            <td>4.34</td>
+            <td class="td_left" style="font-size: 12px"></td>
+            <td class="hide td_left">[api]
+            </td>
+          </tr>
+
+          <tr>
+            <td class="td_left" style="width: 200px;">robot.result.TestSuite(name='TC NEG API 01')</td>
+            <td class="td_left" data-toggle="tooltip" title="TC_NEG_API_06 Invalid Account ID via API"
+              onclick="openInNewTab('log.html#s1-s1-s5-t1','#s1-s1-s5-t1')"
+              style="cursor: pointer; color:blue;width: 200px;">
+              TC_NEG_API_06 Invalid Account ID via API</td>
+
+            <td style="color:green">PASS</td>
+
+            <td>1.69</td>
+            <td class="td_left" style="font-size: 12px"></td>
+            <td class="hide td_left">[API, negative]
+            </td>
+          </tr>
+
+          <tr>
+            <td class="td_left" style="width: 200px;">robot.result.TestSuite(name='TC NEG API 02')</td>
+            <td class="td_left" data-toggle="tooltip" title="TC_NEG_API_07 Login API with Invalid Credentials"
+              onclick="openInNewTab('log.html#s1-s1-s6-t1','#s1-s1-s6-t1')"
+              style="cursor: pointer; color:blue;width: 200px;">
+              TC_NEG_API_07 Login API with Invalid Credentials</td>
+
+            <td style="color:green">PASS</td>
+
+            <td>5.16</td>
+            <td class="td_left" style="font-size: 12px"></td>
+            <td class="hide td_left">[API, negative]
+            </td>
+          </tr>
+
+          <tr>
+            <td class="td_left" style="width: 200px;">robot.result.TestSuite(name='TC E2E 01')</td>
+            <td class="td_left" data-toggle="tooltip" title="TC_E2E_01 Create Savings Account and Verify details via API"
+              onclick="openInNewTab('log.html#s1-s2-s1-t1','#s1-s2-s1-t1')"
+              style="cursor: pointer; color:blue;width: 200px;">
+              TC_E2E_01 Create Savings Account and Verify details via API</td>
+
+            <td style="color:green">PASS</td>
+
+            <td>65.64</td>
+            <td class="td_left" style="font-size: 12px"></td>
+            <td class="hide td_left">[e2e]
+            </td>
+          </tr>
+
+          <tr>
+            <td class="td_left" style="width: 200px;">robot.result.TestSuite(name='TC E2E 02')</td>
+            <td class="td_left" data-toggle="tooltip" title="TC_E2E_02 Create Checking Account and Verify Customer Accounts via API"
+              onclick="openInNewTab('log.html#s1-s2-s2-t1','#s1-s2-s2-t1')"
+              style="cursor: pointer; color:blue;width: 200px;">
+              TC_E2E_02 Create Checking Account and Verify Customer Accounts via API</td>
+
+            <td style="color:green">PASS</td>
+
+            <td>63.03</td>
+            <td class="td_left" style="font-size: 12px"></td>
+            <td class="hide td_left">[e2e]
+            </td>
+          </tr>
+
+          <tr>
+            <td class="td_left" style="width: 200px;">robot.result.TestSuite(name='TC E2E 03')</td>
+            <td class="td_left" data-toggle="tooltip" title="TC_E2E_03 Transfer Funds via UI and Verify Balances via API"
+              onclick="openInNewTab('log.html#s1-s2-s3-t1','#s1-s2-s3-t1')"
+              style="cursor: pointer; color:blue;width: 200px;">
+              TC_E2E_03 Transfer Funds via UI and Verify Balances via API</td>
+
+            <td style="color:green">PASS</td>
+
+            <td>85.89</td>
+            <td class="td_left" style="font-size: 12px"></td>
+            <td class="hide td_left">[e2e]
+            </td>
+          </tr>
+
+          <tr>
+            <td class="td_left" style="width: 200px;">robot.result.TestSuite(name='TC NEG LOGN UI-01')</td>
+            <td class="td_left" data-toggle="tooltip" title="TC_NEG_LOGN_UI-01"
+              onclick="openInNewTab('log.html#s1-s3-s1-t1','#s1-s3-s1-t1')"
+              style="cursor: pointer; color:blue;width: 200px;">
+              TC_NEG_LOGN_UI-01</td>
+
+            <td style="color:green">PASS</td>
+
+            <td>13.0</td>
+            <td class="td_left" style="font-size: 12px"></td>
+            <td class="hide td_left">[negative, UI]
+            </td>
+          </tr>
+
+          <tr>
+            <td class="td_left" style="width: 200px;">robot.result.TestSuite(name='TC NEG TF UI-01')</td>
+            <td class="td_left" data-toggle="tooltip" title="TC_NEG_TF_UI-01"
+              onclick="openInNewTab('log.html#s1-s3-s2-t1','#s1-s3-s2-t1')"
+              style="cursor: pointer; color:blue;width: 200px;">
+              TC_NEG_TF_UI-01</td>
+
+            <td style="color:red">FAIL</td>
+
+            <td>54.67</td>
+            <td class="td_left" style="font-size: 12px">Text 'Transfer Complete!' did not disappear in 10 seconds.</td>
+            <td class="hide td_left">[known-bug, negative, UI]
+            </td>
+          </tr>
+
+          <tr>
+            <td class="td_left" style="width: 200px;">robot.result.TestSuite(name='TC NEG TF UI-02')</td>
+            <td class="td_left" data-toggle="tooltip" title="TC_NEG_TF_UI-03"
+              onclick="openInNewTab('log.html#s1-s3-s3-t1','#s1-s3-s3-t1')"
+              style="cursor: pointer; color:blue;width: 200px;">
+              TC_NEG_TF_UI-03</td>
+
+            <td style="color:green">PASS</td>
+
+            <td>44.51</td>
+            <td class="td_left" style="font-size: 12px"></td>
+            <td class="hide td_left">[]
+            </td>
+          </tr>
+
+          <tr>
+            <td class="td_left" style="width: 200px;">robot.result.TestSuite(name='TC NEG TF UI-03')</td>
+            <td class="td_left" data-toggle="tooltip" title="TC_NEG_TF_UI-04"
+              onclick="openInNewTab('log.html#s1-s3-s4-t1','#s1-s3-s4-t1')"
+              style="cursor: pointer; color:blue;width: 200px;">
+              TC_NEG_TF_UI-04</td>
+
+            <td style="color:green">PASS</td>
+
+            <td>41.48</td>
+            <td class="td_left" style="font-size: 12px"></td>
+            <td class="hide td_left">[]
+            </td>
+          </tr>
+
+          <tr>
+            <td class="td_left" style="width: 200px;">robot.result.TestSuite(name='TC NEG TF UI-04')</td>
+            <td class="td_left" data-toggle="tooltip" title="TC_NEG_TF_UI-05"
+              onclick="openInNewTab('log.html#s1-s3-s5-t1','#s1-s3-s5-t1')"
+              style="cursor: pointer; color:blue;width: 200px;">
+              TC_NEG_TF_UI-05</td>
+
+            <td style="color:red">FAIL</td>
+
+            <td>86.22</td>
+            <td class="td_left" style="font-size: 12px">Text 'Transfer Complete!' did not disappear in 5 seconds.</td>
+            <td class="hide td_left">[]
+            </td>
+          </tr>
+
+          <tr>
+            <td class="td_left" style="width: 200px;">robot.result.TestSuite(name='TC NEG TF UI-05')</td>
+            <td class="td_left" data-toggle="tooltip" title="TC_NEG_TF_UI-06"
+              onclick="openInNewTab('log.html#s1-s3-s6-t1','#s1-s3-s6-t1')"
+              style="cursor: pointer; color:blue;width: 200px;">
+              TC_NEG_TF_UI-06</td>
+
+            <td style="color:red">FAIL</td>
+
+            <td>56.41</td>
+            <td class="td_left" style="font-size: 12px">Text 'Transfer Complete!' did not disappear in 5 seconds.</td>
+            <td class="hide td_left">[]
+            </td>
+          </tr>
+
+          <tr>
+            <td class="td_left" style="width: 200px;">robot.result.TestSuite(name='TC-AC-UI-01')</td>
+            <td class="td_left" data-toggle="tooltip" title="TC-AC-UI-01 Create New Account with Valid Data"
+              onclick="openInNewTab('log.html#s1-s3-s7-t1','#s1-s3-s7-t1')"
+              style="cursor: pointer; color:blue;width: 200px;">
+              TC-AC-UI-01 Create New Account with Valid Data</td>
+
+            <td style="color:green">PASS</td>
+
+            <td>34.11</td>
+            <td class="td_left" style="font-size: 12px"></td>
+            <td class="hide td_left">[]
+            </td>
+          </tr>
+
+          <tr>
+            <td class="td_left" style="width: 200px;">robot.result.TestSuite(name='TC-AC-UI-02')</td>
+            <td class="td_left" data-toggle="tooltip" title="TC-AC-UI-01"
+              onclick="openInNewTab('log.html#s1-s3-s8-t1','#s1-s3-s8-t1')"
+              style="cursor: pointer; color:blue;width: 200px;">
+              TC-AC-UI-01</td>
+
+            <td style="color:green">PASS</td>
+
+            <td>41.87</td>
+            <td class="td_left" style="font-size: 12px"></td>
+            <td class="hide td_left">[]
+            </td>
+          </tr>
+
+          <tr>
+            <td class="td_left" style="width: 200px;">robot.result.TestSuite(name='TC-AC-UI-03')</td>
+            <td class="td_left" data-toggle="tooltip" title="TC-AC-UI-03"
+              onclick="openInNewTab('log.html#s1-s3-s9-t1','#s1-s3-s9-t1')"
+              style="cursor: pointer; color:blue;width: 200px;">
+              TC-AC-UI-03</td>
+
+            <td style="color:green">PASS</td>
+
+            <td>48.53</td>
+            <td class="td_left" style="font-size: 12px"></td>
+            <td class="hide td_left">[]
+            </td>
+          </tr>
+
+          <tr>
+            <td class="td_left" style="width: 200px;">robot.result.TestSuite(name='TC-NAV-UI-01')</td>
+            <td class="td_left" data-toggle="tooltip" title="TC-NAV-UI-01"
+              onclick="openInNewTab('log.html#s1-s3-s10-t1','#s1-s3-s10-t1')"
+              style="cursor: pointer; color:blue;width: 200px;">
+              TC-NAV-UI-01</td>
+
+            <td style="color:green">PASS</td>
+
+            <td>30.37</td>
+            <td class="td_left" style="font-size: 12px"></td>
+            <td class="hide td_left">[]
+            </td>
+          </tr>
+
+          <tr>
+            <td class="td_left" style="width: 200px;">robot.result.TestSuite(name='TC-REG-UI-01')</td>
+            <td class="td_left" data-toggle="tooltip" title="TC-REG-01 Register User with Valid Details"
+              onclick="openInNewTab('log.html#s1-s3-s11-t1','#s1-s3-s11-t1')"
+              style="cursor: pointer; color:blue;width: 200px;">
+              TC-REG-01 Register User with Valid Details</td>
+
+            <td style="color:green">PASS</td>
+
+            <td>26.89</td>
+            <td class="td_left" style="font-size: 12px"></td>
+            <td class="hide td_left">[functional]
+            </td>
+          </tr>
+
+          <tr>
+            <td class="td_left" style="width: 200px;">robot.result.TestSuite(name='TC-TF-UI-01')</td>
+            <td class="td_left" data-toggle="tooltip" title="TC-TF-01"
+              onclick="openInNewTab('log.html#s1-s3-s12-t1','#s1-s3-s12-t1')"
+              style="cursor: pointer; color:blue;width: 200px;">
+              TC-TF-01</td>
+
+            <td style="color:green">PASS</td>
+
+            <td>32.42</td>
+            <td class="td_left" style="font-size: 12px"></td>
+            <td class="hide td_left">[]
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Keyword Average -->
+    <div class="section" id="kwtimes">
+      <h2 style="color:silver">KW Times Metrics</h2>
+      <div class="row"></div>
+      <table id="kmt" class="display tablecard" style="width:100%">
+        <thead>
+          <tr>
+            <th>Keyword Name</th>
+            <th>Times</th>
+            <th>Fail Count</th>
+            <th>Min Duration(s)</th>
+            <th>Max Duration(s)</th>
+            <th>Average Duration(s)</th>
+          </tr>
+        </thead>
+        <tbody>
+
+
+          <tr>
+            <td class="td_left">Click Accounts Overview Link</td>
+            <td>1</td>
+            <td>0</td>
+            <td>3.98</td>
+            <td>3.98</td>
+            <td>3.98</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Click Open Account Button</td>
+            <td>19</td>
+            <td>0</td>
+            <td>0.27</td>
+            <td>2.16</td>
+            <td>0.75</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Click Open New Account</td>
+            <td>20</td>
+            <td>0</td>
+            <td>0.63</td>
+            <td>4.66</td>
+            <td>1.93</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Click Transfer Button</td>
+            <td>7</td>
+            <td>0</td>
+            <td>0.24</td>
+            <td>3.71</td>
+            <td>1.02</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Click Transfer Funds</td>
+            <td>8</td>
+            <td>0</td>
+            <td>0.75</td>
+            <td>4.39</td>
+            <td>1.78</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Close Application</td>
+            <td>15</td>
+            <td>0</td>
+            <td>3.09</td>
+            <td>17.9</td>
+            <td>7.07</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Create Account API</td>
+            <td>2</td>
+            <td>0</td>
+            <td>0.41</td>
+            <td>2.73</td>
+            <td>1.57</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Create Session</td>
+            <td>9</td>
+            <td>0</td>
+            <td>0.0</td>
+            <td>0.01</td>
+            <td>0.0</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Create Session To API</td>
+            <td>9</td>
+            <td>0</td>
+            <td>0.0</td>
+            <td>0.01</td>
+            <td>0.01</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Dropdown Should Have Options</td>
+            <td>31</td>
+            <td>12</td>
+            <td>0.08</td>
+            <td>7.12</td>
+            <td>2.16</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Ensure User Is Logged In</td>
+            <td>3</td>
+            <td>0</td>
+            <td>31.75</td>
+            <td>39.47</td>
+            <td>34.59</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Enter Amount</td>
+            <td>6</td>
+            <td>0</td>
+            <td>0.28</td>
+            <td>1.2</td>
+            <td>0.72</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">GET On Session</td>
+            <td>12</td>
+            <td>0</td>
+            <td>0.37</td>
+            <td>6.22</td>
+            <td>2.5</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Get Account Details</td>
+            <td>7</td>
+            <td>0</td>
+            <td>0.38</td>
+            <td>5.14</td>
+            <td>2.12</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Get Customer Accounts</td>
+            <td>4</td>
+            <td>0</td>
+            <td>0.41</td>
+            <td>6.23</td>
+            <td>2.58</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Get Env</td>
+            <td>45</td>
+            <td>0</td>
+            <td>0.0</td>
+            <td>0.01</td>
+            <td>0.0</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Get New Account Number</td>
+            <td>15</td>
+            <td>0</td>
+            <td>0.41</td>
+            <td>3.73</td>
+            <td>1.16</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Load Env</td>
+            <td>15</td>
+            <td>0</td>
+            <td>0.01</td>
+            <td>0.03</td>
+            <td>0.01</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Load Environment</td>
+            <td>15</td>
+            <td>0</td>
+            <td>0.04</td>
+            <td>0.32</td>
+            <td>0.09</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Login API</td>
+            <td>1</td>
+            <td>0</td>
+            <td>5.14</td>
+            <td>5.14</td>
+            <td>5.14</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Login User</td>
+            <td>3</td>
+            <td>0</td>
+            <td>2.45</td>
+            <td>7.4</td>
+            <td>4.99</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Login With Credentials</td>
+            <td>1</td>
+            <td>0</td>
+            <td>3.07</td>
+            <td>3.07</td>
+            <td>3.07</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Open Application</td>
+            <td>15</td>
+            <td>0</td>
+            <td>5.87</td>
+            <td>20.95</td>
+            <td>11.24</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">POST On Session</td>
+            <td>2</td>
+            <td>0</td>
+            <td>0.4</td>
+            <td>2.72</td>
+            <td>1.56</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Register User</td>
+            <td>4</td>
+            <td>0</td>
+            <td>9.05</td>
+            <td>17.19</td>
+            <td>14.45</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Select Account Type</td>
+            <td>19</td>
+            <td>0</td>
+            <td>1.75</td>
+            <td>9.91</td>
+            <td>5.1</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Select From Account</td>
+            <td>7</td>
+            <td>0</td>
+            <td>0.28</td>
+            <td>3.44</td>
+            <td>1.54</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Select Funding Account ID</td>
+            <td>4</td>
+            <td>0</td>
+            <td>0.23</td>
+            <td>0.78</td>
+            <td>0.52</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Select To Account</td>
+            <td>7</td>
+            <td>0</td>
+            <td>0.22</td>
+            <td>2.05</td>
+            <td>0.9</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Setup E2E</td>
+            <td>3</td>
+            <td>0</td>
+            <td>0.07</td>
+            <td>0.09</td>
+            <td>0.08</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Verify Account Balance</td>
+            <td>1</td>
+            <td>0</td>
+            <td>1.22</td>
+            <td>1.22</td>
+            <td>1.22</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Verify Login Error Is Shown</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0.27</td>
+            <td>0.27</td>
+            <td>0.27</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">Verify Response Code</td>
+            <td>5</td>
+            <td>0</td>
+            <td>0.01</td>
+            <td>0.07</td>
+            <td>0.03</td>
+          </tr>
+
+          <tr>
+            <td class="td_left">login</td>
+            <td>10</td>
+            <td>0</td>
+            <td>3.78</td>
+            <td>15.16</td>
+            <td>7.76</td>
+          </tr>
+
+
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section" id="details">
+      <h2 style="color:silver">Details</h2>
+      <div class="search-container">
+        <input type="text" hidden id="suiteSearch" placeholder="Search suites..." onkeyup="filterSuites()">
+      </div>
+
+      <!-- Status Filter Buttons -->
+      <div class="filter-buttons">
+        <button class="total" onclick="filterByStatus('all')">All</button>
+        <button class="pass" onclick="filterByStatus('pass')">Pass</button>
+        <button class="fail" onclick="filterByStatus('fail')">Fail</button>
+        <button class="skip" onclick="filterByStatus('skip')">Skip</button>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4 scroll suite-tracker">
+          <div class="suite-list" id="suiteList">
+
+
+
+
+
+
+            <div class="card suite-card pass" id="s1-s1-s1"
+              data-status="pass" onclick="updateDetails('s1-s1-s1')">
+              <div class="title">Tests.Api.TC API 01</div>
+            </div>
+
+
+
+            <div class="card suite-card pass" id="s1-s1-s2"
+              data-status="pass" onclick="updateDetails('s1-s1-s2')">
+              <div class="title">Tests.Api.TC API 02</div>
+            </div>
+
+
+
+            <div class="card suite-card pass" id="s1-s1-s3"
+              data-status="pass" onclick="updateDetails('s1-s1-s3')">
+              <div class="title">Tests.Api.TC API 03</div>
+            </div>
+
+
+
+            <div class="card suite-card pass" id="s1-s1-s4"
+              data-status="pass" onclick="updateDetails('s1-s1-s4')">
+              <div class="title">Tests.Api.TC API 04</div>
+            </div>
+
+
+
+            <div class="card suite-card pass" id="s1-s1-s5"
+              data-status="pass" onclick="updateDetails('s1-s1-s5')">
+              <div class="title">Tests.Api.TC NEG API 01</div>
+            </div>
+
+
+
+            <div class="card suite-card pass" id="s1-s1-s6"
+              data-status="pass" onclick="updateDetails('s1-s1-s6')">
+              <div class="title">Tests.Api.TC NEG API 02</div>
+            </div>
+
+
+
+
+
+            <div class="card suite-card pass" id="s1-s2-s1"
+              data-status="pass" onclick="updateDetails('s1-s2-s1')">
+              <div class="title">Tests.E2E.TC E2E 01</div>
+            </div>
+
+
+
+            <div class="card suite-card pass" id="s1-s2-s2"
+              data-status="pass" onclick="updateDetails('s1-s2-s2')">
+              <div class="title">Tests.E2E.TC E2E 02</div>
+            </div>
+
+
+
+            <div class="card suite-card pass" id="s1-s2-s3"
+              data-status="pass" onclick="updateDetails('s1-s2-s3')">
+              <div class="title">Tests.E2E.TC E2E 03</div>
+            </div>
+
+
+
+
+
+            <div class="card suite-card pass" id="s1-s3-s1"
+              data-status="pass" onclick="updateDetails('s1-s3-s1')">
+              <div class="title">Tests.Ui.TC NEG LOGN UI-01</div>
+            </div>
+
+
+
+            <div class="card suite-card fail" id="s1-s3-s2"
+              data-status="fail" onclick="updateDetails('s1-s3-s2')">
+              <div class="title">Tests.Ui.TC NEG TF UI-01</div>
+            </div>
+
+
+
+            <div class="card suite-card pass" id="s1-s3-s3"
+              data-status="pass" onclick="updateDetails('s1-s3-s3')">
+              <div class="title">Tests.Ui.TC NEG TF UI-02</div>
+            </div>
+
+
+
+            <div class="card suite-card pass" id="s1-s3-s4"
+              data-status="pass" onclick="updateDetails('s1-s3-s4')">
+              <div class="title">Tests.Ui.TC NEG TF UI-03</div>
+            </div>
+
+
+
+            <div class="card suite-card fail" id="s1-s3-s5"
+              data-status="fail" onclick="updateDetails('s1-s3-s5')">
+              <div class="title">Tests.Ui.TC NEG TF UI-04</div>
+            </div>
+
+
+
+            <div class="card suite-card fail" id="s1-s3-s6"
+              data-status="fail" onclick="updateDetails('s1-s3-s6')">
+              <div class="title">Tests.Ui.TC NEG TF UI-05</div>
+            </div>
+
+
+
+            <div class="card suite-card pass" id="s1-s3-s7"
+              data-status="pass" onclick="updateDetails('s1-s3-s7')">
+              <div class="title">Tests.Ui.TC-AC-UI-01</div>
+            </div>
+
+
+
+            <div class="card suite-card pass" id="s1-s3-s8"
+              data-status="pass" onclick="updateDetails('s1-s3-s8')">
+              <div class="title">Tests.Ui.TC-AC-UI-02</div>
+            </div>
+
+
+
+            <div class="card suite-card pass" id="s1-s3-s9"
+              data-status="pass" onclick="updateDetails('s1-s3-s9')">
+              <div class="title">Tests.Ui.TC-AC-UI-03</div>
+            </div>
+
+
+
+            <div class="card suite-card pass" id="s1-s3-s10"
+              data-status="pass" onclick="updateDetails('s1-s3-s10')">
+              <div class="title">Tests.Ui.TC-NAV-UI-01</div>
+            </div>
+
+
+
+            <div class="card suite-card pass" id="s1-s3-s11"
+              data-status="pass" onclick="updateDetails('s1-s3-s11')">
+              <div class="title">Tests.Ui.TC-REG-UI-01</div>
+            </div>
+
+
+
+            <div class="card suite-card pass" id="s1-s3-s12"
+              data-status="pass" onclick="updateDetails('s1-s3-s12')">
+              <div class="title">Tests.Ui.TC-TF-UI-01</div>
+            </div>
+
+
+          </div>
+        </div>
+
+        <div class="col-md-8 scroll">
+          <div class="suite-details">
+            <div id="suite-description">
+
+
+
+
+
+
+              <div class="suite-content" id="s1-s1-s1_details" style="display: none;">
+                <h4 class="title" style="color:gray">Tests.Api.TC API 01</h4>
+                <table class="suite-table">
+                  <thead>
+                    <tr>
+                      <th>Total</th>
+                      <th>Pass</th>
+                      <th>Fail</th>
+                      <th>Skip</th>
+                      <th>Duration</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>1</b></td>
+                      <td class="text-success"><b>1</b></td>
+                      <td class="text-danger"><b>0</b></td>
+                      <td class="text-warning"><b>0</b></td>
+                      <td>0:00:06.270000</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="row"></div>
+
+                <div class="card test-item">
+                  <div class="card-body">
+                    <h5 class="test-name pass title">TC_API_01 Verify Accounts</h5>
+                    <div class="test-details">
+                      <p><b>Duration:</b> 0:00:06.263000</p>
+                      <p><b>Tags:</b> api</p>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+              <div class="suite-content" id="s1-s1-s2_details" style="display: none;">
+                <h4 class="title" style="color:gray">Tests.Api.TC API 02</h4>
+                <table class="suite-table">
+                  <thead>
+                    <tr>
+                      <th>Total</th>
+                      <th>Pass</th>
+                      <th>Fail</th>
+                      <th>Skip</th>
+                      <th>Duration</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>1</b></td>
+                      <td class="text-success"><b>1</b></td>
+                      <td class="text-danger"><b>0</b></td>
+                      <td class="text-warning"><b>0</b></td>
+                      <td>0:00:13.207000</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="row"></div>
+
+                <div class="card test-item">
+                  <div class="card-body">
+                    <h5 class="test-name pass title">TC_API_02 verify newly created account</h5>
+                    <div class="test-details">
+                      <p><b>Duration:</b> 0:00:01.151000</p>
+                      <p><b>Tags:</b> api</p>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+              <div class="suite-content" id="s1-s1-s3_details" style="display: none;">
+                <h4 class="title" style="color:gray">Tests.Api.TC API 03</h4>
+                <table class="suite-table">
+                  <thead>
+                    <tr>
+                      <th>Total</th>
+                      <th>Pass</th>
+                      <th>Fail</th>
+                      <th>Skip</th>
+                      <th>Duration</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>1</b></td>
+                      <td class="text-success"><b>1</b></td>
+                      <td class="text-danger"><b>0</b></td>
+                      <td class="text-warning"><b>0</b></td>
+                      <td>0:00:14.638000</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="row"></div>
+
+                <div class="card test-item">
+                  <div class="card-body">
+                    <h5 class="test-name pass title">TC_API_03 Validate account details</h5>
+                    <div class="test-details">
+                      <p><b>Duration:</b> 0:00:02.574000</p>
+                      <p><b>Tags:</b> api</p>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+              <div class="suite-content" id="s1-s1-s4_details" style="display: none;">
+                <h4 class="title" style="color:gray">Tests.Api.TC API 04</h4>
+                <table class="suite-table">
+                  <thead>
+                    <tr>
+                      <th>Total</th>
+                      <th>Pass</th>
+                      <th>Fail</th>
+                      <th>Skip</th>
+                      <th>Duration</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>1</b></td>
+                      <td class="text-success"><b>1</b></td>
+                      <td class="text-danger"><b>0</b></td>
+                      <td class="text-warning"><b>0</b></td>
+                      <td>0:00:16.399000</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="row"></div>
+
+                <div class="card test-item">
+                  <div class="card-body">
+                    <h5 class="test-name pass title">TC_API_04 Capture Pre-Transfer Balances</h5>
+                    <div class="test-details">
+                      <p><b>Duration:</b> 0:00:04.344000</p>
+                      <p><b>Tags:</b> api</p>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+              <div class="suite-content" id="s1-s1-s5_details" style="display: none;">
+                <h4 class="title" style="color:gray">Tests.Api.TC NEG API 01</h4>
+                <table class="suite-table">
+                  <thead>
+                    <tr>
+                      <th>Total</th>
+                      <th>Pass</th>
+                      <th>Fail</th>
+                      <th>Skip</th>
+                      <th>Duration</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>1</b></td>
+                      <td class="text-success"><b>1</b></td>
+                      <td class="text-danger"><b>0</b></td>
+                      <td class="text-warning"><b>0</b></td>
+                      <td>0:00:05.400000</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="row"></div>
+
+                <div class="card test-item">
+                  <div class="card-body">
+                    <h5 class="test-name pass title">TC_NEG_API_06 Invalid Account ID via API</h5>
+                    <div class="test-details">
+                      <p><b>Duration:</b> 0:00:01.687000</p>
+                      <p><b>Tags:</b> API, negative</p>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+              <div class="suite-content" id="s1-s1-s6_details" style="display: none;">
+                <h4 class="title" style="color:gray">Tests.Api.TC NEG API 02</h4>
+                <table class="suite-table">
+                  <thead>
+                    <tr>
+                      <th>Total</th>
+                      <th>Pass</th>
+                      <th>Fail</th>
+                      <th>Skip</th>
+                      <th>Duration</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>1</b></td>
+                      <td class="text-success"><b>1</b></td>
+                      <td class="text-danger"><b>0</b></td>
+                      <td class="text-warning"><b>0</b></td>
+                      <td>0:00:07.452000</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="row"></div>
+
+                <div class="card test-item">
+                  <div class="card-body">
+                    <h5 class="test-name pass title">TC_NEG_API_07 Login API with Invalid Credentials</h5>
+                    <div class="test-details">
+                      <p><b>Duration:</b> 0:00:05.162000</p>
+                      <p><b>Tags:</b> API, negative</p>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+
+
+              <div class="suite-content" id="s1-s2-s1_details" style="display: none;">
+                <h4 class="title" style="color:gray">Tests.E2E.TC E2E 01</h4>
+                <table class="suite-table">
+                  <thead>
+                    <tr>
+                      <th>Total</th>
+                      <th>Pass</th>
+                      <th>Fail</th>
+                      <th>Skip</th>
+                      <th>Duration</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>1</b></td>
+                      <td class="text-success"><b>1</b></td>
+                      <td class="text-danger"><b>0</b></td>
+                      <td class="text-warning"><b>0</b></td>
+                      <td>0:01:07.626000</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="row"></div>
+
+                <div class="card test-item">
+                  <div class="card-body">
+                    <h5 class="test-name pass title">TC_E2E_01 Create Savings Account and Verify details via API</h5>
+                    <div class="test-details">
+                      <p><b>Duration:</b> 0:01:05.645000</p>
+                      <p><b>Tags:</b> e2e</p>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+              <div class="suite-content" id="s1-s2-s2_details" style="display: none;">
+                <h4 class="title" style="color:gray">Tests.E2E.TC E2E 02</h4>
+                <table class="suite-table">
+                  <thead>
+                    <tr>
+                      <th>Total</th>
+                      <th>Pass</th>
+                      <th>Fail</th>
+                      <th>Skip</th>
+                      <th>Duration</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>1</b></td>
+                      <td class="text-success"><b>1</b></td>
+                      <td class="text-danger"><b>0</b></td>
+                      <td class="text-warning"><b>0</b></td>
+                      <td>0:01:05.353000</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="row"></div>
+
+                <div class="card test-item">
+                  <div class="card-body">
+                    <h5 class="test-name pass title">TC_E2E_02 Create Checking Account and Verify Customer Accounts via API</h5>
+                    <div class="test-details">
+                      <p><b>Duration:</b> 0:01:03.027000</p>
+                      <p><b>Tags:</b> e2e</p>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+              <div class="suite-content" id="s1-s2-s3_details" style="display: none;">
+                <h4 class="title" style="color:gray">Tests.E2E.TC E2E 03</h4>
+                <table class="suite-table">
+                  <thead>
+                    <tr>
+                      <th>Total</th>
+                      <th>Pass</th>
+                      <th>Fail</th>
+                      <th>Skip</th>
+                      <th>Duration</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>1</b></td>
+                      <td class="text-success"><b>1</b></td>
+                      <td class="text-danger"><b>0</b></td>
+                      <td class="text-warning"><b>0</b></td>
+                      <td>0:01:30.077000</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="row"></div>
+
+                <div class="card test-item">
+                  <div class="card-body">
+                    <h5 class="test-name pass title">TC_E2E_03 Transfer Funds via UI and Verify Balances via API</h5>
+                    <div class="test-details">
+                      <p><b>Duration:</b> 0:01:25.894000</p>
+                      <p><b>Tags:</b> e2e</p>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+
+
+              <div class="suite-content" id="s1-s3-s1_details" style="display: none;">
+                <h4 class="title" style="color:gray">Tests.Ui.TC NEG LOGN UI-01</h4>
+                <table class="suite-table">
+                  <thead>
+                    <tr>
+                      <th>Total</th>
+                      <th>Pass</th>
+                      <th>Fail</th>
+                      <th>Skip</th>
+                      <th>Duration</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>1</b></td>
+                      <td class="text-success"><b>1</b></td>
+                      <td class="text-danger"><b>0</b></td>
+                      <td class="text-warning"><b>0</b></td>
+                      <td>0:00:20.241000</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="row"></div>
+
+                <div class="card test-item">
+                  <div class="card-body">
+                    <h5 class="test-name pass title">TC_NEG_LOGN_UI-01</h5>
+                    <div class="test-details">
+                      <p><b>Duration:</b> 0:00:12.998000</p>
+                      <p><b>Tags:</b> negative, UI</p>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+              <div class="suite-content" id="s1-s3-s2_details" style="display: none;">
+                <h4 class="title" style="color:gray">Tests.Ui.TC NEG TF UI-01</h4>
+                <table class="suite-table">
+                  <thead>
+                    <tr>
+                      <th>Total</th>
+                      <th>Pass</th>
+                      <th>Fail</th>
+                      <th>Skip</th>
+                      <th>Duration</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>1</b></td>
+                      <td class="text-success"><b>0</b></td>
+                      <td class="text-danger"><b>1</b></td>
+                      <td class="text-warning"><b>0</b></td>
+                      <td>0:00:59.905000</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="row"></div>
+
+                <div class="card test-item">
+                  <div class="card-body">
+                    <h5 class="test-name fail title">TC_NEG_TF_UI-01</h5>
+                    <div class="test-details">
+                      <p><b>Duration:</b> 0:00:54.671000</p>
+                      <p><b>Tags:</b> known-bug, negative, UI</p>
+
+                      <p><b>Message:</b></p>
+                      <div class="error-message-box">
+                        <p> Text 'Transfer Complete!' did not disappear in 10 seconds.</p>
+                      </div>
+                      <div>
+                        <p><b>Failed Keywords:</b></p>
+                        <div class="card-body">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                          <p class="text-danger title">Wait Until Page Does Not Contain</p>
+
+
+
+
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+              <div class="suite-content" id="s1-s3-s3_details" style="display: none;">
+                <h4 class="title" style="color:gray">Tests.Ui.TC NEG TF UI-02</h4>
+                <table class="suite-table">
+                  <thead>
+                    <tr>
+                      <th>Total</th>
+                      <th>Pass</th>
+                      <th>Fail</th>
+                      <th>Skip</th>
+                      <th>Duration</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>1</b></td>
+                      <td class="text-success"><b>1</b></td>
+                      <td class="text-danger"><b>0</b></td>
+                      <td class="text-warning"><b>0</b></td>
+                      <td>0:00:47.238000</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="row"></div>
+
+                <div class="card test-item">
+                  <div class="card-body">
+                    <h5 class="test-name pass title">TC_NEG_TF_UI-03</h5>
+                    <div class="test-details">
+                      <p><b>Duration:</b> 0:00:44.508000</p>
+                      <p><b>Tags:</b> </p>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+              <div class="suite-content" id="s1-s3-s4_details" style="display: none;">
+                <h4 class="title" style="color:gray">Tests.Ui.TC NEG TF UI-03</h4>
+                <table class="suite-table">
+                  <thead>
+                    <tr>
+                      <th>Total</th>
+                      <th>Pass</th>
+                      <th>Fail</th>
+                      <th>Skip</th>
+                      <th>Duration</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>1</b></td>
+                      <td class="text-success"><b>1</b></td>
+                      <td class="text-danger"><b>0</b></td>
+                      <td class="text-warning"><b>0</b></td>
+                      <td>0:00:44.197000</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="row"></div>
+
+                <div class="card test-item">
+                  <div class="card-body">
+                    <h5 class="test-name pass title">TC_NEG_TF_UI-04</h5>
+                    <div class="test-details">
+                      <p><b>Duration:</b> 0:00:41.483000</p>
+                      <p><b>Tags:</b> </p>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+              <div class="suite-content" id="s1-s3-s5_details" style="display: none;">
+                <h4 class="title" style="color:gray">Tests.Ui.TC NEG TF UI-04</h4>
+                <table class="suite-table">
+                  <thead>
+                    <tr>
+                      <th>Total</th>
+                      <th>Pass</th>
+                      <th>Fail</th>
+                      <th>Skip</th>
+                      <th>Duration</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>1</b></td>
+                      <td class="text-success"><b>0</b></td>
+                      <td class="text-danger"><b>1</b></td>
+                      <td class="text-warning"><b>0</b></td>
+                      <td>0:01:33.896000</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="row"></div>
+
+                <div class="card test-item">
+                  <div class="card-body">
+                    <h5 class="test-name fail title">TC_NEG_TF_UI-05</h5>
+                    <div class="test-details">
+                      <p><b>Duration:</b> 0:01:26.223000</p>
+                      <p><b>Tags:</b> </p>
+
+                      <p><b>Message:</b></p>
+                      <div class="error-message-box">
+                        <p> Text 'Transfer Complete!' did not disappear in 5 seconds.</p>
+                      </div>
+                      <div>
+                        <p><b>Failed Keywords:</b></p>
+                        <div class="card-body">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                          <p class="text-danger title">Wait Until Page Does Not Contain</p>
+
+
+
+
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+              <div class="suite-content" id="s1-s3-s6_details" style="display: none;">
+                <h4 class="title" style="color:gray">Tests.Ui.TC NEG TF UI-05</h4>
+                <table class="suite-table">
+                  <thead>
+                    <tr>
+                      <th>Total</th>
+                      <th>Pass</th>
+                      <th>Fail</th>
+                      <th>Skip</th>
+                      <th>Duration</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>1</b></td>
+                      <td class="text-success"><b>0</b></td>
+                      <td class="text-danger"><b>1</b></td>
+                      <td class="text-warning"><b>0</b></td>
+                      <td>0:01:04.745000</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="row"></div>
+
+                <div class="card test-item">
+                  <div class="card-body">
+                    <h5 class="test-name fail title">TC_NEG_TF_UI-06</h5>
+                    <div class="test-details">
+                      <p><b>Duration:</b> 0:00:56.413000</p>
+                      <p><b>Tags:</b> </p>
+
+                      <p><b>Message:</b></p>
+                      <div class="error-message-box">
+                        <p> Text 'Transfer Complete!' did not disappear in 5 seconds.</p>
+                      </div>
+                      <div>
+                        <p><b>Failed Keywords:</b></p>
+                        <div class="card-body">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                          <p class="text-danger title">Wait Until Page Does Not Contain</p>
+
+
+
+
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+              <div class="suite-content" id="s1-s3-s7_details" style="display: none;">
+                <h4 class="title" style="color:gray">Tests.Ui.TC-AC-UI-01</h4>
+                <table class="suite-table">
+                  <thead>
+                    <tr>
+                      <th>Total</th>
+                      <th>Pass</th>
+                      <th>Fail</th>
+                      <th>Skip</th>
+                      <th>Duration</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>1</b></td>
+                      <td class="text-success"><b>1</b></td>
+                      <td class="text-danger"><b>0</b></td>
+                      <td class="text-warning"><b>0</b></td>
+                      <td>0:00:35.972000</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="row"></div>
+
+                <div class="card test-item">
+                  <div class="card-body">
+                    <h5 class="test-name pass title">TC-AC-UI-01 Create New Account with Valid Data</h5>
+                    <div class="test-details">
+                      <p><b>Duration:</b> 0:00:34.113000</p>
+                      <p><b>Tags:</b> </p>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+              <div class="suite-content" id="s1-s3-s8_details" style="display: none;">
+                <h4 class="title" style="color:gray">Tests.Ui.TC-AC-UI-02</h4>
+                <table class="suite-table">
+                  <thead>
+                    <tr>
+                      <th>Total</th>
+                      <th>Pass</th>
+                      <th>Fail</th>
+                      <th>Skip</th>
+                      <th>Duration</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>1</b></td>
+                      <td class="text-success"><b>1</b></td>
+                      <td class="text-danger"><b>0</b></td>
+                      <td class="text-warning"><b>0</b></td>
+                      <td>0:00:44.138000</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="row"></div>
+
+                <div class="card test-item">
+                  <div class="card-body">
+                    <h5 class="test-name pass title">TC-AC-UI-01</h5>
+                    <div class="test-details">
+                      <p><b>Duration:</b> 0:00:41.868000</p>
+                      <p><b>Tags:</b> </p>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+              <div class="suite-content" id="s1-s3-s9_details" style="display: none;">
+                <h4 class="title" style="color:gray">Tests.Ui.TC-AC-UI-03</h4>
+                <table class="suite-table">
+                  <thead>
+                    <tr>
+                      <th>Total</th>
+                      <th>Pass</th>
+                      <th>Fail</th>
+                      <th>Skip</th>
+                      <th>Duration</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>1</b></td>
+                      <td class="text-success"><b>1</b></td>
+                      <td class="text-danger"><b>0</b></td>
+                      <td class="text-warning"><b>0</b></td>
+                      <td>0:00:51.829000</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="row"></div>
+
+                <div class="card test-item">
+                  <div class="card-body">
+                    <h5 class="test-name pass title">TC-AC-UI-03</h5>
+                    <div class="test-details">
+                      <p><b>Duration:</b> 0:00:48.527000</p>
+                      <p><b>Tags:</b> </p>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+              <div class="suite-content" id="s1-s3-s10_details" style="display: none;">
+                <h4 class="title" style="color:gray">Tests.Ui.TC-NAV-UI-01</h4>
+                <table class="suite-table">
+                  <thead>
+                    <tr>
+                      <th>Total</th>
+                      <th>Pass</th>
+                      <th>Fail</th>
+                      <th>Skip</th>
+                      <th>Duration</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>1</b></td>
+                      <td class="text-success"><b>1</b></td>
+                      <td class="text-danger"><b>0</b></td>
+                      <td class="text-warning"><b>0</b></td>
+                      <td>0:00:31.977000</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="row"></div>
+
+                <div class="card test-item">
+                  <div class="card-body">
+                    <h5 class="test-name pass title">TC-NAV-UI-01</h5>
+                    <div class="test-details">
+                      <p><b>Duration:</b> 0:00:30.368000</p>
+                      <p><b>Tags:</b> </p>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+              <div class="suite-content" id="s1-s3-s11_details" style="display: none;">
+                <h4 class="title" style="color:gray">Tests.Ui.TC-REG-UI-01</h4>
+                <table class="suite-table">
+                  <thead>
+                    <tr>
+                      <th>Total</th>
+                      <th>Pass</th>
+                      <th>Fail</th>
+                      <th>Skip</th>
+                      <th>Duration</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>1</b></td>
+                      <td class="text-success"><b>1</b></td>
+                      <td class="text-danger"><b>0</b></td>
+                      <td class="text-warning"><b>0</b></td>
+                      <td>0:00:33.527000</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="row"></div>
+
+                <div class="card test-item">
+                  <div class="card-body">
+                    <h5 class="test-name pass title">TC-REG-01 Register User with Valid Details</h5>
+                    <div class="test-details">
+                      <p><b>Duration:</b> 0:00:26.885000</p>
+                      <p><b>Tags:</b> functional</p>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+              <div class="suite-content" id="s1-s3-s12_details" style="display: none;">
+                <h4 class="title" style="color:gray">Tests.Ui.TC-TF-UI-01</h4>
+                <table class="suite-table">
+                  <thead>
+                    <tr>
+                      <th>Total</th>
+                      <th>Pass</th>
+                      <th>Fail</th>
+                      <th>Skip</th>
+                      <th>Duration</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>1</b></td>
+                      <td class="text-success"><b>1</b></td>
+                      <td class="text-danger"><b>0</b></td>
+                      <td class="text-warning"><b>0</b></td>
+                      <td>0:00:35.807000</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="row"></div>
+
+                <div class="card test-item">
+                  <div class="card-body">
+                    <h5 class="test-name pass title">TC-TF-01</h5>
+                    <div class="test-details">
+                      <p><b>Duration:</b> 0:00:32.418000</p>
+                      <p><b>Tags:</b> </p>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.colVis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+
+
+
+    <script>
+
+      function showSection(targetId) {
+        // Remove active class from all links and sections
+        document.querySelectorAll('.sidebar .nav-link').forEach(link => link.classList.remove('active'));
+        document.querySelectorAll('.content .section').forEach(section => section.style.display = 'none');
+
+        // Add active class to the clicked link and show the corresponding section
+        document.querySelector(`.sidebar .nav-link[href="#${targetId}"]`).classList.add('active');
+        document.getElementById(targetId).style.display = 'block';
+
+      }
+
+      // Event listener for hash change and initial load
+      window.addEventListener('hashchange', () => {
+        const targetId = window.location.hash.replace('#', '') || 'dashboard';
+        showSection(targetId);
+      });
+
+      // Initial load based on hash or default to 'dashboard'
+      document.addEventListener('DOMContentLoaded', () => {
+        const targetId = window.location.hash.replace('#', '') || 'dashboard';
+        showSection(targetId);
+      });
+
+      // Initialize DataTables
+      $(document).ready(function () {
+        // Initialize DataTables
+        $('#sm, #tm, #kmt').DataTable({
+          dom: '<"top"lfB>rtip',
+          order: [[2, 'desc']],
+          buttons: [
+            {
+              extend: 'copy',
+              className: 'copyButton dt-button',
+              text: 'Copy',
+              filename: function () {
+                return "Metrics" + '-' + new Date().toLocaleString();
+              },
+              exportOptions: {
+                columns: ':visible'
+              }
+            },
+            {
+              extend: 'csv',
+              className: 'csvButton dt-button',
+              text: 'CSV',
+              filename: function () {
+                return "Metrics" + '-' + new Date().toLocaleString();
+              },
+              exportOptions: {
+                columns: ':visible'
+              }
+            },
+            {
+              extend: 'excel',
+              className: 'excelButton dt-button',
+              text: 'Excel',
+              filename: function () {
+                return "Metrics" + '-' + new Date().toLocaleString();
+              },
+              exportOptions: {
+                columns: ':visible',
+              }
+            },
+            {
+              extend: 'print',
+              className: 'printButton dt-button',
+              text: 'Print',
+              filename: function () {
+                return "Metrics" + '-' + new Date().toLocaleString();
+              },
+              exportOptions: {
+                columns: ':visible',
+                alignment: 'left',
+              }
+            },
+            {
+              extend: 'colvis',
+              className: 'colviButton dt-button',
+              text: 'Hide',
+              postfixButtons: ['colvisRestore']
+            }
+          ],
+          lengthMenu: [[10, 20, 50, 100, -1], [10, 20, 50, 100, "All"]],
+          responsive: true,
+          initComplete: function () {
+            this.api().columns().every(function () {
+              var column = this;
+              $('input', this.footer()).on('keyup change', function () {
+                if (column.search() !== this.value) {
+                  column.search(this.value).draw();
+                }
+              });
+            });
+          }
+        });
+      });
+    </script>
+
+    <script>
+      window.onload = function () {
+        barChart('#suitePie', "18", "3", "0");
+        pieChart('#testPie', "18", "3", "0");
+        barChart('#keywordPie', "314", "12", "0");
+      };
+    </script>
+    <script>
+      function pieChart(chartID, passed, failed, skipped) {
+        var options = {
+          series: [parseInt(passed), parseInt(failed), parseInt(skipped)],
+          chart: {
+            type: 'donut',
+            width: 300,
+          },
+          labels: ["Pass", "Fail", "Skip"],
+          legend: {
+            show: false,
+          },
+          colors: ['#2ecc71', '#fc6666', '#ffa500'],
+        };
+
+        var chart = new ApexCharts(document.querySelector(chartID), options);
+        chart.render();
+      }
+    </script>
+    <script>
+      function barChart(chartID, passed, failed, skipped) {
+        var options = {
+          series: [{
+            name: 'Pass',
+            data: [parseInt(passed)]
+          },
+          {
+            name: 'Fail',
+            data: [parseInt(failed)]
+          },
+          {
+            name: 'Skip',
+            data: [parseInt(skipped)]
+          }],
+          chart: {
+            type: 'bar',
+            height: 120,
+            stacked: true,
+            toolbar: {
+              show: false
+            },
+          },
+          plotOptions: {
+            bar: {
+              horizontal: true,
+              dataLabels: {
+                total: {
+                  enabled: true,
+                  offsetX: 0,
+                  style: {
+                    fontSize: '12px',
+                    fontWeight: 100
+                  }
+                }
+              }
+            },
+          },
+          stroke: {
+            width: 2,
+            colors: ['#fff']
+          },
+          labels: [""],
+          legend: {
+            show: false,
+          },
+          colors: ['#2ecc71', '#fc6666', '#ffa500'],
+        };
+
+        var chart = new ApexCharts(document.querySelector(chartID), options);
+        chart.render();
+      }
+    </script>
+    <script>
+      var passArray = [];
+      var failArray = [];
+      var catgArray = [];
+
+
+
+      catgArray.push("Tests.Ui.TC NEG TF UI-01");
+      passArray.push(100.0);
+      failArray.push(1);
+
+
+
+      catgArray.push("Tests.Ui.TC NEG TF UI-04");
+      passArray.push(100.0);
+      failArray.push(1);
+
+
+
+      catgArray.push("Tests.Ui.TC NEG TF UI-05");
+      passArray.push(100.0);
+      failArray.push(1);
+
+
+
+      var options = {
+        series: [{
+          name: 'Fail Percentage',
+          data: passArray,
+          type: "line"
+        }, {
+          name: 'Fail',
+          data: failArray,
+          type: "column",
+        }],
+        chart: {
+          type: 'line',
+          height: 350,
+          // stacked: true,
+        },
+
+        plotOptions: {
+          bar: {
+            dataLabels: {
+              position: 'center',
+              hideOverflowingLabels: true
+            }
+          },
+        },
+        colors: ['#ea9999', '#fc6666'],
+        xaxis: {
+          categories: catgArray,
+          tickPlacement: 'off',
+          labels: {
+            show: false,
+            trim: true
+          }
+        },
+        yaxis: [{
+          title: {
+            text: 'Suite Fail Percentage',
+          },
+
+        }, {
+          opposite: true,
+          title: {
+            text: 'Suite Fail Count'
+          }
+        }],
+        fill: {
+          opacity: 0.9
+        },
+        tooltip: {
+          y: {
+            formatter: function (val) {
+              return val
+            }
+          },
+          x: {
+            show: true
+          }
+        }
+      };
+
+      var chart = new ApexCharts(document.querySelector("#suiteFailureLineID"), options);
+      chart.render();
+
+    </script>
+    <script>
+      var time_group = [];
+      var test_count = [];
+
+
+      time_group.push("0.0 - 0.0 min");
+      test_count.push(7);
+
+      time_group.push("0.0 - 1.0 min");
+      test_count.push(4);
+
+      time_group.push("1.0 - 1.0 min");
+      test_count.push(10);
+      
+
+      var options = {
+        series: [{
+          name: "Test Count",
+          data: test_count
+        }],
+        chart: {
+          type: 'area',
+          height: 350
+        },
+        plotOptions: {
+          bar: {
+            borderRadius: 4,
+            borderRadiusApplication: 'end',
+            horizontal: true,
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        xaxis: {
+          categories: time_group,
+        }
+      };
+
+      var chart = new ApexCharts(document.querySelector("#testExecutionTrends"), options);
+      chart.render();
+
+    </script>
+    <script>
+      function openInNewTab(url, element_id) {
+        var element_id = element_id;
+        var win = window.open(url, '_blank');
+        win.focus();
+        $('body').scrollTo(element_id);
+      }
+    </script>
+    <script>
+      $(window).on('load', function () { $('.loader').fadeOut(); });
+    </script>
+    <script>
+      function updateDetails(selectedSuite) {
+        // Hide all issue content divs
+        const contents = document.querySelectorAll('.suite-content');
+        contents.forEach(content => {
+          content.style.display = 'none';
+        });
+
+        // Show the selected suite details
+        const selectedContent = document.getElementById(selectedSuite + '_details');
+        if (selectedContent) {
+          selectedContent.style.display = 'block';
+        }
+
+      }
+    </script>
+    <script>
+      function filterSuites() {
+        const searchInput = document.getElementById('suiteSearch').value.toLowerCase();
+        const suites = document.querySelectorAll('.suite-card');
+        suites.forEach(suite => {
+          const suiteName = suite.innerText.toLowerCase();
+          suite.style.display = suiteName.includes(searchInput) && isStatusVisible(suite) ? "" : "none";
+        });
+      }
+
+      function filterByStatus(status) {
+        document.querySelector('.filter-buttons').dataset.status = status;
+        filterSuites(); // Reapply filters to update visibility
+      }
+
+      function isStatusVisible(suite) {
+        const status = document.querySelector('.filter-buttons').dataset.status;
+        return status === 'all' || suite.dataset.status === status;
+      }
+    </script>
+
+</body>
+
+</html>

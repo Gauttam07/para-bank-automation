@@ -20,5 +20,6 @@ TC_E2E_01 Create Savings Account and Verify details via API
     ${account_id}=    Get New Account Number
     ${response}=    Get Account Details    ${account_id}
     Verify Response Code    ${response}    200
+
     Should Contain    ${response.text}    SAVINGS
     Should Contain    ${response.text}    ${account_id}

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.2 (Python 3.13.5 on win32)" generated="2026-06-23T15:27:51.957408" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="C:\Users\hp5cd\OneDrive\Desktop\SPRINT-CAPGE\tests">
+<suite id="s1-s1" name="Ui" source="C:\Users\hp5cd\OneDrive\Desktop\SPRINT-CAPGE\tests\ui">
+<suite id="s1-s1-s1" name="TC NEG LOGN UI-01" source="C:\Users\hp5cd\OneDrive\Desktop\SPRINT-CAPGE\tests\ui\TC_NEG_LOGN_UI-01.robot">
+<kw name="Load Environment" owner="common_resources" type="SETUP">
+<kw name="Load Env" owner="env_loader">
+<arg>${ENV}</arg>
+<status status="PASS" start="2026-06-23T15:27:55.003435" elapsed="0.013189"/>
+</kw>
+<kw name="Get Env" owner="env_loader">
+<msg time="2026-06-23T15:27:55.024852" level="INFO">${url} = https://parabank.parasoft.com</msg>
+<var>${url}</var>
+<arg>baseurl</arg>
+<status status="PASS" start="2026-06-23T15:27:55.023691" elapsed="0.001667"/>
+</kw>
+<kw name="Get Env" owner="env_loader">
+<msg time="2026-06-23T15:27:55.035022" level="INFO">${id} = john</msg>
+<var>${id}</var>
+<arg>user_id</arg>
+<status status="PASS" start="2026-06-23T15:27:55.033321" elapsed="0.001794"/>
+</kw>
+<kw name="Get Env" owner="env_loader">
+<msg time="2026-06-23T15:27:55.037194" level="INFO">${pwd} = demo</msg>
+<var>${pwd}</var>
+<arg>user_password</arg>
+<status status="PASS" start="2026-06-23T15:27:55.036254" elapsed="0.001022"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2026-06-23T15:27:55.049430" level="INFO">${BASE_URL} = https://parabank.parasoft.com</msg>
+<arg>${BASE_URL}</arg>
+<arg>${url}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2026-06-23T15:27:55.037950" elapsed="0.011640"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2026-06-23T15:27:55.056060" level="INFO">${USER_ID} = john</msg>
+<arg>${USER_ID}</arg>
+<arg>${id}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2026-06-23T15:27:55.050010" elapsed="0.008104"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2026-06-23T15:27:55.067992" level="INFO">${USER_PWD} = demo</msg>
+<arg>${USER_PWD}</arg>
+<arg>${pwd}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2026-06-23T15:27:55.060775" elapsed="0.007394"/>
+</kw>
+<status status="PASS" start="2026-06-23T15:27:54.987717" elapsed="0.080754"/>
+</kw>
+<test id="s1-s1-s1-t1" name="TC_NEG_LOGN_UI-01" line="10">
+<kw name="Open Application" owner="common_resources" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:27:55.081711" level="INFO">Opening browser 'chrome' to base url 'https://parabank.parasoft.com'.</msg>
+<arg>${BASE_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-06-23T15:27:55.080945" elapsed="10.307389"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-06-23T15:28:05.389561" elapsed="0.171449"/>
+</kw>
+<doc>opens the application</doc>
+<status status="PASS" start="2026-06-23T15:27:55.079120" elapsed="10.483872"/>
+</kw>
+<kw name="Login With Credentials" owner="login">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${login_username}</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-06-23T15:28:05.570990" elapsed="0.370979"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:28:05.943307" level="INFO">Typing text 'invalidUser_xyz999' into text field 'xpath=//input[@name="username"]'.</msg>
+<arg>${login_username}</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:28:05.942561" elapsed="1.555858"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:28:07.501385" level="INFO">Typing text 'wrongpassword123' into text field 'xpath=//input[@name="password"]'.</msg>
+<arg>${login_password}</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:28:07.499161" elapsed="0.736029"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:28:08.236373" level="INFO">Clicking button 'xpath=//input[@value="Log In"]'.</msg>
+<arg>${login_button}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:28:08.235785" elapsed="0.942035"/>
+</kw>
+<arg>invalidUser_xyz999</arg>
+<arg>wrongpassword123</arg>
+<status status="PASS" start="2026-06-23T15:28:05.564021" elapsed="3.614180"/>
+</kw>
+<kw name="Verify Login Error Is Shown" owner="login">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${LOGIN_ERROR_MESSAGE}</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-06-23T15:28:09.181164" elapsed="0.091321"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2026-06-23T15:28:09.401164" level="INFO">${msg} = The username and password could not be verified.</msg>
+<var>${msg}</var>
+<arg>${LOGIN_ERROR_MESSAGE}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-06-23T15:28:09.272991" elapsed="0.128275"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2026-06-23T15:28:09.402737" level="INFO">Length is 48.</msg>
+<arg>${msg}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2026-06-23T15:28:09.401647" elapsed="0.001176"/>
+</kw>
+<status status="PASS" start="2026-06-23T15:28:09.178651" elapsed="0.224298"/>
+</kw>
+<kw name="Close Application" owner="common_resources" type="TEARDOWN">
+<kw name="Close All Browsers" owner="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2026-06-23T15:28:09.404067" elapsed="2.384934"/>
+</kw>
+<doc>closes the application</doc>
+<status status="PASS" start="2026-06-23T15:28:09.403470" elapsed="2.386016"/>
+</kw>
+<doc>Verify that logging in with a username that doesnt exist shows an error</doc>
+<tag>negative</tag>
+<tag>UI</tag>
+<status status="PASS" start="2026-06-23T15:27:55.069186" elapsed="16.720556"/>
+</test>
+<status status="PASS" start="2026-06-23T15:27:52.203528" elapsed="19.589638"/>
+</suite>
+<status status="PASS" start="2026-06-23T15:27:52.195057" elapsed="19.604145"/>
+</suite>
+<status status="PASS" start="2026-06-23T15:27:51.963190" elapsed="19.836983"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">negative</stat>
+<stat pass="1" fail="0" skip="0">UI</stat>
+</tag>
+<suite>
+<stat name="Tests" id="s1" pass="1" fail="0" skip="0">Tests</stat>
+<stat name="Ui" id="s1-s1" pass="1" fail="0" skip="0">Tests.Ui</stat>
+<stat name="TC NEG LOGN UI-01" id="s1-s1-s1" pass="1" fail="0" skip="0">Tests.Ui.TC NEG LOGN UI-01</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

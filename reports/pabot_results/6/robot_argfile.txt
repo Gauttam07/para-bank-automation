@@ -1,0 +1,16 @@
+--suite Tests.Data-driven.Data Driven Csv
+--variable CALLER_ID:80c991cecaed4abeb7bf4c098158c4ae
+--variable PABOTLIBURI:127.0.0.1:8270
+--variable PABOTEXECUTIONPOOLID:1
+--variable PABOTISLASTEXECUTIONINPOOL:0
+--variable PABOTNUMBEROFPROCESSES:5
+--variable PABOTQUEUEINDEX:6
+--variable PABOTLASTLEVEL:Tests.Data-driven
+--outputdir reports\pabot_results\6
+--output output.xml
+--log NONE
+--report NONE
+--xunit NONE
+--consolecolors off
+--consolemarkers off
+.\tests\
