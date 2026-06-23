@@ -8,7 +8,7 @@ Test Setup        Open Application
 Test Teardown     Close Application
 
 *** Test Cases ***
-TC-AC-UI-02
+TC-AC-UI-01 Create New Account with Valid Data
     [Documentation]    Create New Account with Valid Data
     login    ${USER_ID}    ${USER_PWD}
 

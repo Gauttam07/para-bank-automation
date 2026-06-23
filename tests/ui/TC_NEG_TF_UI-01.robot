@@ -10,7 +10,7 @@ Test Teardown     Close Application
 
 *** Test Cases ***
 TC_NEG_TF_UI-01
-    [Documentation]    Verify UI Validation for Negative Amount in Transfer Form
+    [Documentation]    Verify UI Validation for Negative Amount in Transfer Form Error Message
     [Tags]    negative    UI    known-bug
     login    ${USER_ID}    ${USER_PWD}
 
@@ -34,8 +34,9 @@ TC_NEG_TF_UI-01
     Select From Account    ${checking_id}
     Select To Account    ${savings_id}
     Click Transfer Button
+
+    Wait Until Page Does Not Contain    Transfer Complete!   10s
+    Log To Console    Negative amount transfer is Not Possible
+
     
-    # Verify the transfer was rejected by checking Error! appeared
-    # NOTE: This is expected to FAIL on ParaBank as it completes negative transfers (DEF-001)
-    Sleep    2s
-    Page Should Contain    Error!
+

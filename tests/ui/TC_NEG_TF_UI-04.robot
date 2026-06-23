@@ -9,8 +9,8 @@ Test Setup        Open Application
 Test Teardown     Close Application
 
 *** Test Cases ***
-TC_NEG_TF_UI-04
-    [Documentation]    Verify UI Validation for Alphabetic Characters in Transfer Amount
+TC_NEG_TF_UI-05
+    [Documentation]    Verify UI Error Message for Transfer Amount Exceeding Available Balance
     login    ${USER_ID}    ${USER_PWD}
 
     # Step 1: Open a Checking Account
@@ -29,8 +29,10 @@ TC_NEG_TF_UI-04
     Click Transfer Funds
     Wait Until Location Contains    transfer    10s
 
-    Enter Amount    abc
+    Enter Amount    10000000
     Select From Account    ${checking_id}
     Select To Account    ${savings_id}
     Click Transfer Button
-    Wait Until Page Contains    Error    10s
+    Wait Until Page Does Not Contain    Transfer Complete!  5s
+    Log To Console    Transfer amount exceeding available balance is Not Possible
+

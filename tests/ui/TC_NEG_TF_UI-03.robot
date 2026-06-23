@@ -9,8 +9,8 @@ Test Setup        Open Application
 Test Teardown     Close Application
 
 *** Test Cases ***
-TC_NEG_TF_UI-03
-    [Documentation]    Verify UI Validation for Blank Amount in Transfer Form
+TC_NEG_TF_UI-04
+    [Documentation]    Verify UI Validation for Alphabetic Characters in Transfer Amount Error Message
     login    ${USER_ID}    ${USER_PWD}
 
     # Step 1: Open a Checking Account
@@ -29,7 +29,9 @@ TC_NEG_TF_UI-03
     Click Transfer Funds
     Wait Until Location Contains    transfer    10s
 
+    Enter Amount    abc
     Select From Account    ${checking_id}
     Select To Account    ${savings_id}
     Click Transfer Button
-    Wait Until Page Contains    Error    10s
+    Wait Until Page Contains    Error!    10s
+    Log To Console    Alphabetic characters in transfer amount is Not Possible

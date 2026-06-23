@@ -9,8 +9,8 @@ Test Setup        Open Application
 Test Teardown     Close Application
 
 *** Test Cases ***
-TC_NEG_TF_UI-06
-    [Documentation]    Validate transfer funds to same account
+TC_NEG_TF_UI-03
+    [Documentation]    Verify UI Validation for Blank Amount in Transfer Form Error Message
     login    ${USER_ID}    ${USER_PWD}
 
     # Step 1: Open a Checking Account
@@ -29,9 +29,7 @@ TC_NEG_TF_UI-06
     Click Transfer Funds
     Wait Until Location Contains    transfer    10s
 
-    Enter Amount    100
     Select From Account    ${checking_id}
-    Select To Account    ${checking_id}
+    Select To Account    ${savings_id}
     Click Transfer Button
-    Wait Until Page Contains    Transfer Complete!    10s
-    Log To Console    Transfer to same account is successful
+    Wait Until Page Contains    Error    10s
